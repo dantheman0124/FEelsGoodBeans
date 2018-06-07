@@ -53,7 +53,7 @@ public class Room6 extends Room {
         spawnX = getSpawnX();
         spawnY = getSpawnY();
 
-        root.getChildren().addAll(walls, doors);
+        root.getChildren().addAll(walls, roomObjects, doors);
 
         scene = new Scene(root, getSCENE_W(), getSCENE_H());
 
@@ -135,9 +135,45 @@ public class Room6 extends Room {
 
     @Override
     public void fillRoom() {
-        roomObjects =  new Group();
-    }
-    
-    
+        roomObjects = new Group();
+        Office bookshelf = new Office(10, 23, 97, 103, "redBlue");
+        Office bookshelf2 = new Office(95, 35, 85, 85, "redGreen");
+        Office bookshelf3 = new Office(170, 33, 87, 87, "greenBlue");
+        Office bookshelf4 = new Office(250, 30, 85, 90, "redGreenBlue");
+        Office bookshelf5 = new Office(332, 26, 90, 97, "nineDrawers");
+        Office bookshelf6 = new Office(406, 34, 85, 85, "redGreen");
+        Office bookshelf7 = new Office(485, 3, 90, 127, "lessDrawers");
+        Office bookshelf8 = new Office(560, 9, 170, 115, "cabinet");
+        Office bookshelf9 = new Office(714, 32, 87, 87, "greenBlue");
+        Office bookshelf10 = new Office(795, 34, 85, 85, "redGreen");
+        
+        Office bookshelf11 = new Office(435, 157, 90, 95, "redBlueLess");
+        Office bookshelf12 = new Office(520, 170, 78, 83, "television");
+        Office bookshelf13 = new Office(594, 164, 78, 93, "redBlueDark");
+        Office bookshelf14 = new Office(670, 165, 85, 85, "redGreen");
+        
+        Office workDesk1 = new Office(747, 155, 120, 100, "workDeskYellow");
 
+        Desk desk = new Desk(175, 225, 100, 175);
+        DeskChair deskChair = new DeskChair(280, 260, 40, 40);
+        DeskChair deskChair2 = new DeskChair(280, 310, 40, 40);
+        DeskChair deskChair3 = new DeskChair(130, 260, 40, 40);
+        DeskChair deskChair4 = new DeskChair(130, 310, 40, 40);
+        DeskChair deskChair5 = new DeskChair(205, 180, 40, 40);
+        DeskChair deskChair6 = new DeskChair(205, 390, 40, 40);
+
+        Desk desk2 = new Desk(450, 350, 100, 175);
+        Desk desk3 = new Desk(550, 350, 100, 175);
+        DeskChair deskChair7 = new DeskChair(655, 385, 40, 40);
+        DeskChair deskChair8 = new DeskChair(655, 435, 40, 40);
+        DeskChair deskChair9 = new DeskChair(405, 385, 40, 40);
+        DeskChair deskChair10 = new DeskChair(405, 435, 40, 40);
+        DeskChair deskChair11 = new DeskChair(475, 305, 40, 40);
+        DeskChair deskChair12 = new DeskChair(575, 305, 40, 40);
+        DeskChair deskChair13 = new DeskChair(525, 305, 40, 40);
+
+        TrashCan trash = new TrashCan(30, 525, 50, 50);
+        
+        roomObjects.getChildren().addAll(bookshelf, bookshelf2, bookshelf3, bookshelf4, bookshelf5, bookshelf6, bookshelf7, bookshelf8, bookshelf9, bookshelf10, workDesk1, desk, deskChair, deskChair2, deskChair3, deskChair4, desk2, desk3, deskChair5, deskChair6, deskChair7, deskChair8, deskChair9, deskChair10, deskChair11, deskChair12, deskChair13, trash, bookshelf11, bookshelf12, bookshelf13, bookshelf14);
+    }
 }

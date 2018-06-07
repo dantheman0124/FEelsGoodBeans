@@ -38,7 +38,7 @@ public class Table extends Furniture {
                 image = new Image(new FileInputStream("src/Sprites/Counter.png"), 100, 100, true, true);
             } else if (tableType.equals("prettyTable")) {
                 image = new Image(new FileInputStream("src/Sprites/prettyTable.png"), 100, 100, true, true);
-            }else if (tableType.equals("sideDiningTable")) {
+            } else if (tableType.equals("sideDiningTable")) {
                 image = new Image(new FileInputStream("src/Sprites/sideDiningTable.png"), 100, 100, true, true);
             }
         } catch (IOException e) {
