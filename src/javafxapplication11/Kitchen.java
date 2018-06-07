@@ -41,6 +41,8 @@ public class Kitchen extends Furniture {
                 image = new Image(new FileInputStream("src/Sprites/CouchL.png"), 100, 100, true, true);
             } else if (kitchenType.equals("couchR")) {
                 image = new Image(new FileInputStream("src/Sprites/CouchR.png"), 100, 100, true, true);
+            } else if (kitchenType.equals("plant")) {
+                image = new Image(new FileInputStream("src/Sprites/Plant.png"), 100, 100, true, true);
             }
         } catch (IOException e) {
         }
