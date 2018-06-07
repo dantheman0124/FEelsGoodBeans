@@ -53,7 +53,7 @@ public class Room6 extends Room {
         spawnX = getSpawnX();
         spawnY = getSpawnY();
 
-        root.getChildren().addAll(walls, roomObjects, doors);
+        root.getChildren().addAll(floor, walls, doors, roomObjects);
 
         scene = new Scene(root, getSCENE_W(), getSCENE_H());
 
@@ -110,6 +110,12 @@ public class Room6 extends Room {
         rect.setTranslateY(doorExit.getTranslateY() + getDOOR_H());
 
         walls.getChildren().add(rect);
+        
+        floor = new Group();
+        Rectangle bg  = new Rectangle(0, 50, 900, 550);
+        FloorMat mat = new FloorMat(800, 390, 75, 75);
+        bg.setFill(Color.KHAKI);
+        floor.getChildren().addAll(bg, mat);
     }
 
     @Override
@@ -147,30 +153,30 @@ public class Room6 extends Room {
         Office bookshelf9 = new Office(714, 32, 87, 87, "greenBlue");
         Office bookshelf10 = new Office(795, 34, 85, 85, "redGreen");
         
-        Office bookshelf11 = new Office(435, 157, 90, 95, "redBlueLess");
-        Office bookshelf12 = new Office(520, 170, 78, 83, "television");
-        Office bookshelf13 = new Office(594, 164, 78, 93, "redBlueDark");
-        Office bookshelf14 = new Office(670, 165, 85, 85, "redGreen");
+        Office bookshelf11 = new Office(435, 195, 90, 95, "redBlueLess");
+        Office bookshelf12 = new Office(520, 195, 78, 95, "television");
+        Office bookshelf13 = new Office(594, 195, 78, 95, "redBlueDark");
+        Office bookshelf14 = new Office(670, 195, 85, 95, "redGreen");
         
-        Office workDesk1 = new Office(747, 155, 120, 100, "workDeskYellow");
+        Office workDesk1 = new Office(747, 195, 120, 95, "workDeskYellow");
 
-        Desk desk = new Desk(175, 225, 100, 175);
-        DeskChair deskChair = new DeskChair(280, 260, 40, 40);
-        DeskChair deskChair2 = new DeskChair(280, 310, 40, 40);
-        DeskChair deskChair3 = new DeskChair(130, 260, 40, 40);
-        DeskChair deskChair4 = new DeskChair(130, 310, 40, 40);
-        DeskChair deskChair5 = new DeskChair(205, 180, 40, 40);
-        DeskChair deskChair6 = new DeskChair(205, 390, 40, 40);
+        Desk desk = new Desk(195, 225, 75, 150);
+        DeskChair deskChair = new DeskChair(280, 260, 30, 30);
+        DeskChair deskChair2 = new DeskChair(280, 310, 30, 30);
+        DeskChair deskChair3 = new DeskChair(155, 260, 30, 30);
+        DeskChair deskChair4 = new DeskChair(155, 310, 30, 30);
+        DeskChair deskChair5 = new DeskChair(220, 180, 30, 30);
+        DeskChair deskChair6 = new DeskChair(220, 390, 30, 30);
 
-        Desk desk2 = new Desk(450, 350, 100, 175);
-        Desk desk3 = new Desk(550, 350, 100, 175);
-        DeskChair deskChair7 = new DeskChair(655, 385, 40, 40);
-        DeskChair deskChair8 = new DeskChair(655, 435, 40, 40);
-        DeskChair deskChair9 = new DeskChair(405, 385, 40, 40);
-        DeskChair deskChair10 = new DeskChair(405, 435, 40, 40);
-        DeskChair deskChair11 = new DeskChair(475, 305, 40, 40);
-        DeskChair deskChair12 = new DeskChair(575, 305, 40, 40);
-        DeskChair deskChair13 = new DeskChair(525, 305, 40, 40);
+        Desk desk2 = new Desk(475, 430, 75, 150);
+        Desk desk3 = new Desk(550, 430, 75, 150);
+        DeskChair deskChair7 = new DeskChair(630, 455, 30, 30);
+        DeskChair deskChair8 = new DeskChair(630, 525, 30, 30);
+        DeskChair deskChair9 = new DeskChair(440, 455, 30, 30);
+        DeskChair deskChair10 = new DeskChair(440, 525, 30, 30);
+        DeskChair deskChair11 = new DeskChair(485, 400, 30, 30);
+        DeskChair deskChair12 = new DeskChair(585, 400, 30, 30);
+        DeskChair deskChair13 = new DeskChair(535, 400, 30, 30);
 
         TrashCan trash = new TrashCan(30, 525, 50, 50);
         
