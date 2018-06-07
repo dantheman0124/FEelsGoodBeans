@@ -53,8 +53,8 @@ public class Room7 extends Room {
         spawnX = getSpawnX();
         spawnY = getSpawnY();
 
-        root.getChildren().addAll(walls, doors);
-        
+        root.getChildren().addAll(floor, walls, doors, roomObjects);
+
         scene = new Scene(root, getSCENE_W(), getSCENE_H());
 
         setKeyHandlers();
@@ -109,6 +109,20 @@ public class Room7 extends Room {
         rect.setTranslateY(getHEADER_H());
 
         walls.getChildren().add(rect);
+
+        //dividing wall
+        Rectangle div1 = new Rectangle(20, 330, 800, 20);
+        div1.setFill(wallsColor);
+        Rectangle div2 = new Rectangle(400,140,20,200);
+        div2.setFill(wallsColor);
+
+        walls.getChildren().addAll(div1,div2);
+        
+        floor = new Group();
+        Rectangle bg = new Rectangle(0, 50, 900, 550);
+        bg.setFill(Color.KHAKI);
+        FloorMat mat = new FloorMat(110, 160, 75, 75);
+        floor.getChildren().addAll(bg, mat);
     }
 
     @Override
@@ -135,6 +149,18 @@ public class Room7 extends Room {
     @Override
     public void fillRoom() {
         roomObjects = new Group();
+
+        Bedroom bed = new Bedroom(588, 35, 125, 125, "doublebed");
+        Bedroom bed2 = new Bedroom(80, 35, 125, 125, "doublebed");
+        Bedroom couchL = new Bedroom(420,170,60,100, "leftcouch");
+        Bedroom couchR = new Bedroom(340,170,60,100, "rightcouch");
+        Bedroom tableWBook = new Bedroom(25,55, 60,60, "bookontable");
+        Bedroom emptyTable = new Bedroom(205, 55, 60,60, "bedsidetable");
+        Table prettyTable = new Table(300,425,70,70,"prettyTable");
+        Chair leftChair = new Chair(365, 425,40,50, true);
+        Chair rightChair = new Chair(263,425,40,50,false);
+        
+        roomObjects.getChildren().addAll(bed, bed2, couchR, couchL, tableWBook, emptyTable, prettyTable, leftChair, rightChair);
     }
 
 }
