@@ -48,12 +48,12 @@ public class Room8 extends Room {
         int enterY = (int) doors.getChildren().get(0).getTranslateY();
 
         setSpawnX(enterX + getDOOR_H() / 2 - getPLAYER_H() / 2);
-        setSpawnY(enterY + getDOOR_W());
+        setSpawnY(enterY + getDOOR_W() + 20);
 
         spawnX = getSpawnX();
         spawnY = getSpawnY();
 
-        root.getChildren().addAll(walls, doors);
+        root.getChildren().addAll(floor, walls, roomObjects, doors);
 
         scene = new Scene(root, getSCENE_W(), getSCENE_H());
 
@@ -109,6 +109,12 @@ public class Room8 extends Room {
         rect.setTranslateY(getHEADER_H());
 
         walls.getChildren().add(rect);
+        
+        floor = new Group();
+        Rectangle bg  = new Rectangle(0, 50, 900, 550);
+        FloorMat mat = new FloorMat(800, 390, 75, 75);
+        bg.setFill(Color.KHAKI);
+        floor.getChildren().addAll(bg, mat);
     }
 
     @Override
@@ -135,5 +141,9 @@ public class Room8 extends Room {
     @Override
     public void fillRoom() {
         roomObjects = new Group();
+        
+        
     }
+    
+    
 }
