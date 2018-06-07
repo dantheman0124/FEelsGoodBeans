@@ -15,7 +15,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 import javafx.scene.text.Text;
 
-public class Room { 
+public class Room {
 
     static ArrayList rooms = new ArrayList<Room>();
     private final int ROOM_W = 900;
@@ -35,8 +35,10 @@ public class Room {
     private final int HEADER_H = 50;
     private final int FOOTER_H = 100;
 
-    int spawnX;
-    int spawnY;
+    int enterSpawnX;
+    int enterSpawnY;
+    int exitSpawnX;
+    int exitSpawnY;
     Color wallsColor;
     Color doorColor;
     private Image image = null;
@@ -71,18 +73,23 @@ public class Room {
 
     }
 
-    public void spawnPlayer() {
-        player.setTranslateX(spawnX);
-        player.setTranslateY(spawnY);
+    public void spawnPlayerEnter() {
+        player.setTranslateX(enterSpawnX);
+        player.setTranslateY(enterSpawnY);
         root.getChildren().add(player);
     }
 
-    public void spawnPlayer(int x, int y) {
-        player.setTranslateX(x);
-        player.setTranslateY(y);
+    public void spawnPlayerExit() {
+        player.setTranslateX(exitSpawnX);
+        player.setTranslateY(exitSpawnY);
         root.getChildren().add(player);
     }
 
+//    public void spawnPlayer(int x, int y) {
+//        player.setTranslateX(x);
+//        player.setTranslateY(y);
+//        root.getChildren().add(player);
+//    }
     public int getDOOR_W() {
         return DOOR_W;
     }
@@ -123,20 +130,36 @@ public class Room {
         return HEADER_H;
     }
 
-    public int getSpawnX() {
-        return spawnX;
+    public int getEnterSpawnX() {
+        return enterSpawnX;
     }
 
-    public int getSpawnY() {
-        return spawnY;
+    public int getEnterSpawnY() {
+        return enterSpawnY;
     }
 
-    public void setSpawnX(int X) {
-        spawnX = X;
+    public void setEnterSpawnX(int X) {
+        enterSpawnX = X;
     }
 
-    public void setSpawnY(int Y) { 
-        spawnY = Y;
+    public void setEnterSpawnY(int Y) {
+        enterSpawnY = Y;
+    }
+
+    public int getExitSpawnX() {
+        return exitSpawnX;
+    }
+
+    public int getExitSpawnY() {
+        return exitSpawnY;
+    }
+
+    public void setExitSpawnX(int X) {
+        exitSpawnX = X;
+    }
+
+    public void setExitSpawnY(int Y) {
+        exitSpawnY = Y;
     }
 
     public Character getPlayer() {
@@ -204,9 +227,15 @@ public class Room {
         });
     }
 
-    public void start(Character player) {
+    public void startEnter(Character player) {
         this.player = player;
-        spawnPlayer();
+        spawnPlayerEnter();
+        timeline.play();
+    }
+
+    public void startExit(Character player) {
+        this.player = player;
+        spawnPlayerExit();
         timeline.play();
     }
 

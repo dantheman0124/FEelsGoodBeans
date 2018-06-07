@@ -17,18 +17,18 @@ public class Room1 extends Room {
     private ArrayList<Node> obj = new ArrayList<>();
     private KeyFrame frame = new KeyFrame(Duration.seconds(0.016), e -> {
         getPlayer().update(obj);
-        
-        for(int i = 0; i < interactables.getChildren().size(); i++){
-            if(getPlayer().getBoundsInParent().intersects(interactables.getChildren().get(i).getBoundsInParent())){
-                player.getInteractables().add((Interactables)interactables.getChildren().get(i));
+
+        for (int i = 0; i < interactables.getChildren().size(); i++) {
+            if (getPlayer().getBoundsInParent().intersects(interactables.getChildren().get(i).getBoundsInParent())) {
+                player.getInteractables().add((Interactables) interactables.getChildren().get(i));
                 interactables.getChildren().remove(interactables.getChildren().get(i));
                 System.out.println(player.getInteractables().size());
                 break;
             }
         }
-        
+
         if (getPlayer().isColliding(doors.getChildren().get(0))) {
-            
+
         } else if (getPlayer().isColliding(doors.getChildren().get(1))) {
             CPTRewrite.nextRoom();
         }
@@ -59,8 +59,20 @@ public class Room1 extends Room {
         int enterX = (int) doors.getChildren().get(0).getTranslateX();
         int enterY = (int) doors.getChildren().get(0).getTranslateY();
 
-        spawnX = enterX - getDOOR_W();
-        spawnY = enterY + getDOOR_H() / 2 - getPLAYER_H() / 2;
+        int exitX = (int) doors.getChildren().get(1).getTranslateX();
+        int exitY = (int) doors.getChildren().get(1).getTranslateY();
+
+        setEnterSpawnX(enterX - getDOOR_W());
+        setEnterSpawnY(enterY + getDOOR_H() / 2 - getPLAYER_H() / 2);
+
+        setExitSpawnX(exitX - getPLAYER_W() - 50);
+        setExitSpawnY(exitY + getDOOR_H() / 2 - getPLAYER_H() / 2);
+
+        enterSpawnX = getEnterSpawnX();
+        enterSpawnY = getEnterSpawnY();
+
+        exitSpawnX = getExitSpawnX();
+        exitSpawnY = getExitSpawnY();
 
         root.getChildren().addAll(floor, walls, doors, roomObjects, interactables);
 
