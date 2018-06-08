@@ -150,7 +150,12 @@ public class Room4 extends Room {
     public void fillRoom() {
         roomObjects = new Group();
 
-        DiningTable table = new DiningTable(100, 400, 145, 120);
+        DiningTable table = new DiningTable(70, 450, 145, 120);
+        DiningTable table1 = new DiningTable(685, 450, 145, 120);
+        DiningTable table2 = new DiningTable(378, 450, 145, 120);
+
+        Table sideTable = new Table(10, 200, 90, 180, "sideDiningTable");
+
         Kitchen stoveAndPots = new Kitchen(588, 40, 75, 70, "stoveandpots");
         Kitchen microwave = new Kitchen(493, 18, 100, 101, "microwave");
         Kitchen stoveTeapot = new Kitchen(663, 24, 119, 86, "stoveteapot");
@@ -158,25 +163,26 @@ public class Room4 extends Room {
         Kitchen longCounter = new Kitchen(311, 35, 35, 160, "longcounter");
         Kitchen cornerCounter = new Kitchen(760, 32, 125, 130, "cornercounter");
 
-        Kitchen vase1 = new Kitchen(320, 390, 30, 40, "vase");
-        Kitchen vase2 = new Kitchen(320, 420, 30, 40, "vase");
-        Kitchen vase3 = new Kitchen(320, 450, 30, 40, "vase");
-        Kitchen vase4 = new Kitchen(320, 480, 30, 40, "vase");
-        Kitchen vase5 = new Kitchen(320, 510, 30, 40, "vase");
-        Kitchen vase6 = new Kitchen(320, 540, 30, 40, "vase");
-
         TrashCan trash1 = new TrashCan(290, 165, 20, 25);
         TrashCan trash2 = new TrashCan(290, 75, 20, 25);
         TrashCan trash3 = new TrashCan(290, 105, 20, 25);
         TrashCan trash4 = new TrashCan(290, 135, 20, 25);
 
-        Kitchen couchL = new Kitchen(345, 430, 60, 120, "couchL");
-        Kitchen couchR = new Kitchen(820, 430, 60, 120, "couchR");
+        int x = 260;
+        Kitchen couchL = new Kitchen(300, x, 60, 120, "couchL");
+        Table prettyTable = new Table(405, x, 84, 120, "prettyTable");
+        Kitchen couchR = new Kitchen(535, x, 60, 120, "couchR");
 
-        Table prettyTable = new Table(575, 440, 84, 116, "prettyTable");
+        Kitchen plant1 = new Kitchen(270, x+10, 30, 90, "plant");
+        Kitchen plant2 = new Kitchen(260, x + 20, 30, 90, "plant");
+        Kitchen plant3 = new Kitchen(270, x + 30, 30, 90, "plant");
 
-        roomObjects.getChildren().addAll(table, stoveTeapot, lightCounter, longCounter, stoveAndPots, microwave, cornerCounter, vase1, vase2, vase3, vase4, vase5, vase6, trash1, trash2, trash3, trash4);
-        roomObjects.getChildren().addAll(couchL, couchR, prettyTable);
+        Kitchen plant4 = new Kitchen(595, x+10, 30, 90, "plant");
+        Kitchen plant5 = new Kitchen(605, x + 20, 30, 90, "plant");
+        Kitchen plant6 = new Kitchen(595, x + 30, 30, 90, "plant");
+
+        roomObjects.getChildren().addAll(table, table1, table2, sideTable, stoveTeapot, lightCounter, longCounter, stoveAndPots, microwave, cornerCounter);
+        roomObjects.getChildren().addAll(plant1, plant2, plant3, plant4, plant5, plant6, trash1, trash2, trash3, trash4, couchL, couchR, prettyTable);
     }
 
 }

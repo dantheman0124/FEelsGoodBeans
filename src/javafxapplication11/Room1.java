@@ -109,6 +109,11 @@ public class Room1 extends Room {
         rect.setTranslateY(getHEADER_H());
 
         walls.getChildren().add(rect);
+        
+        rect = new Rectangle(getDOOR_W(), getDOOR_H(), wallsColor);
+        rect.setTranslateX(0);
+        rect.setTranslateY(getROOM_H() - getDOOR_H() - 50 + getHEADER_H());
+        walls.getChildren().add(rect);
 
         // left wall under door
         rect = new Rectangle(getWALL_W(), getROOM_H() + getHEADER_H() - getDOOR_H() - doorEnter.getTranslateY(), wallsColor);

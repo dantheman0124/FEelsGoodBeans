@@ -18,6 +18,8 @@ public class Character extends Rectangle {
     private ImagePattern ip;
     private ArrayList<Interactables> interactables = new ArrayList<>();
 
+    private HealthBar healthBar = new HealthBar();
+
     characterAction action = characterAction.NONE;
 
     public Character(double x, double y, boolean alive, double width, double height, ArrayList<Interactables> interactables) {
@@ -37,7 +39,7 @@ public class Character extends Rectangle {
             System.out.println(f);
         }
         ip = new ImagePattern(image);
-       this.setFill(ip);
+        this.setFill(ip);
     }
 
     public boolean isAlive() {
@@ -138,5 +140,12 @@ public class Character extends Rectangle {
         return interactables;
     }
     
-    
+    public HealthBar getHealthBar() {
+        return healthBar;
+    }
+
+    public void setHealthBar(HealthBar healthBar) {
+        this.healthBar = healthBar;
+    }
+
 }

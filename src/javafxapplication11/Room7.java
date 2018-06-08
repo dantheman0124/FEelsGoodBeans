@@ -1,3 +1,4 @@
+
 package javafxapplication11;
 
 import java.util.ArrayList;
@@ -62,7 +63,7 @@ public class Room7 extends Room {
         exitSpawnX = getExitSpawnX();
         exitSpawnY = getExitSpawnY();
 
-        root.getChildren().addAll(walls, doors);
+        root.getChildren().addAll(walls, doors, roomObjects);
 
         scene = new Scene(root, getSCENE_W(), getSCENE_H());
 
@@ -144,6 +145,18 @@ public class Room7 extends Room {
     @Override
     public void fillRoom() {
         roomObjects = new Group();
-    }
 
+        Bedroom bed = new Bedroom(588, 35, 125, 125, "doublebed");
+        Bedroom bed2 = new Bedroom(80, 35, 125, 125, "doublebed");
+        Bedroom couchL = new Bedroom(420,170,60,100, "leftcouch");
+        Bedroom couchR = new Bedroom(340,170,60,100, "rightcouch");
+        Bedroom tableWBook = new Bedroom(25,55, 60,60, "bookontable");
+        Bedroom emptyTable = new Bedroom(205, 55, 60,60, "bedsidetable");
+        Table prettyTable = new Table(300,425,70,70,"prettyTable");
+        Chair leftChair = new Chair(365, 425,40,50, true);
+        Chair rightChair = new Chair(263,425,40,50,false);
+        
+        roomObjects.getChildren().addAll(bed, bed2, couchR, couchL, tableWBook, emptyTable, prettyTable, leftChair, rightChair);
+    }
 }
+
