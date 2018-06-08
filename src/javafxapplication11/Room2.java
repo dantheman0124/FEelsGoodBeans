@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import javafxapplication11.CPTRewrite;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.geometry.Point2D;
 import javafx.scene.Scene;
 import javafx.scene.paint.Color;
 import javafx.scene.Group;
@@ -16,9 +17,28 @@ public class Room2 extends Room {
 
     private ArrayList<Node> obj = new ArrayList<>();
 
+    private ArrayList<Enemy> enemies = new ArrayList<Enemy>();
+    private ArrayList<Bullet> bullets = new ArrayList<Bullet>();
+    
     private KeyFrame frame = new KeyFrame(Duration.seconds(0.016), e -> {
         getPlayer().update(obj);
+        enemies.forEach(Enemy::update);
+        bullets.forEach(Bullet::update);
 
+        for (Enemy enemy : enemies) {
+            if (enemy.getAction() == EnemyAction.SHOOT) {
+                enemy.setDestination(new Point2D(Math.random() * getSCENE_W(), Math.random() * getSCENE_H() + 100));
+            }
+        }
+        
+        for (Bullet bullet : bullets) {
+            if (player.isColliding((Node) bullet)) {
+                player.getHealthBar().loseHealth(1);
+                player.getHealthBar().update();
+                
+            }
+        }
+        
         for(int i = 0; i < interactables.getChildren().size(); i++){
             if(getPlayer().getBoundsInParent().intersects(interactables.getChildren().get(i).getBoundsInParent())){
                 player.getInteractables().add((Interactables)interactables.getChildren().get(i));
@@ -70,6 +90,20 @@ public class Room2 extends Room {
 
         scene = new Scene(root, getSCENE_W(), getSCENE_H());
 
+        for (int i = 0; i < 5; i++) {
+            Enemy enemy = new Enemy((Math.random() * 800) + 80, (Math.random() * 450) + 130, 20, 50);
+            enemy.setAction(EnemyAction.MOVE);
+            enemy.setRoot(root);
+            enemy.setBullets(bullets);
+            enemy.setTarget(CPTRewrite.player);
+            enemy.setDestination(new Point2D(Math.random() * root.getPrefWidth(), Math.random() * root.getPrefHeight()));
+            
+            enemies.add(enemy);
+            root.getChildren().add(enemy.getHealthBar());
+        }
+        root.getChildren().addAll(enemies);
+        root.getChildren().add(CPTRewrite.player.getHealthBar());
+        
         setKeyHandlers();
     }
 

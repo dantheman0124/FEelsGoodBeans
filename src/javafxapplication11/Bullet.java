@@ -8,39 +8,24 @@ package javafxapplication11;
 import javafx.geometry.Point2D;
 import javafx.scene.shape.Circle;
 
-public class Bullet extends Circle {
+public class Bullet extends Circle{
+    Point2D velocity = new Point2D(0, 0);
 
-    private Point2D velocity;
-    private double speed;
-    private int damage;
+    public Bullet(double centerX, double centerY, double radius) {
+        super(centerX, centerY, radius);
+    }
 
     public void setVelocity(Point2D velocity) {
-        this.velocity = new Point2D(speed * velocity.normalize().getX(), speed * velocity.normalize().getY());
+        this.velocity = velocity;
     }
 
     public Point2D getVelocity() {
         return velocity;
     }
-
-    public void setSpeed(double speed) {
-        this.speed = speed;
+    
+    public void update () {
+        this.setCenterX(this.getCenterX() + velocity.getX());
+        this.setCenterY(this.getCenterY()+ velocity.getY());
     }
-
-    public double getSpeed() {
-        return speed;
-    }
-
-    public int getDamage() {
-        return damage;
-    }
-
-    public void setDamage(int damage) {
-        this.damage = damage;
-    }
-
-    public void update() {
-        this.setTranslateX(this.getTranslateX() + velocity.getX());
-        this.setTranslateY(this.getTranslateY() + velocity.getY());
-    }
-
 }
+
