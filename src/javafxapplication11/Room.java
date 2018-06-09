@@ -51,6 +51,7 @@ public class Room {
     Group interactables;
     Pane root;
     Scene scene;
+    static Group darkness;
 
     private Timeline timeline = new Timeline();
     public Character player;
@@ -76,7 +77,8 @@ public class Room {
     public void spawnPlayerEnter() {
         player.setTranslateX(enterSpawnX);
         player.setTranslateY(enterSpawnY);
-        root.getChildren().add(player);
+        root.getChildren().addAll(player);
+
     }
 
     public void spawnPlayerExit() {
@@ -227,15 +229,23 @@ public class Room {
         });
     }
 
-    public void startEnter(Character player) {
+    public void startEnter(Character player, int currentRoom) {
         this.player = player;
         spawnPlayerEnter();
+        if (currentRoom == 6) {
+            Room.setDark();
+            root.getChildren().add(darkness);
+        }
         timeline.play();
     }
 
-    public void startExit(Character player) {
+    public void startExit(Character player, int currentRoom) {
         this.player = player;
         spawnPlayerExit();
+        if (currentRoom == 6) {
+            Room.setDark();
+            root.getChildren().add(darkness);
+        }
         timeline.play();
     }
 
@@ -249,5 +259,13 @@ public class Room {
 
     public void setTimeline(Timeline timeline) {
         this.timeline = timeline;
+    }
+
+    public static void setDark() {
+        darkness = new Group();
+        Rectangle darkOverlay = new Rectangle(0, 16, 900, 584);
+        darkOverlay.setFill(Color.BLACK);
+        darkOverlay.setOpacity(.70);
+        darkness.getChildren().add(darkOverlay);
     }
 }

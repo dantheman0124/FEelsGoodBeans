@@ -23,7 +23,7 @@ public class CPTRewrite extends Application {
     @Override
     public void start(Stage primaryStage) throws InterruptedException {
 
-        rooms.add(new Room1());
+        rooms.add(new Room7());
         rooms.add(new Room2());
         rooms.add(new Room3());
         rooms.add(new Room4());
@@ -33,7 +33,7 @@ public class CPTRewrite extends Application {
         rooms.add(new Room8());
         rooms.add(new Room9());
 
-        rooms.get(currentRoom).startEnter(player);
+        rooms.get(currentRoom).startEnter(player,currentRoom);
         stage = primaryStage;
 //        HealthBar healthBar = new HealthBar();
 
@@ -54,7 +54,7 @@ public class CPTRewrite extends Application {
         }
         stage.setScene(rooms.get(currentRoom).getScene()); 
         stage.setTitle("Room " + (currentRoom + 1) + "!");
-        rooms.get(currentRoom).startEnter(player);
+        rooms.get(currentRoom).startEnter(player, currentRoom);
     }
 
     public static void prevRoom() {
@@ -65,7 +65,7 @@ public class CPTRewrite extends Application {
         }
         stage.setScene(rooms.get(currentRoom).getScene());
         stage.setTitle("Room " + (currentRoom + 1) + "!");
-        rooms.get(currentRoom).startExit(player);
+        rooms.get(currentRoom).startExit(player,currentRoom);
     }
 
 //    public static void setRoom(int room) {
