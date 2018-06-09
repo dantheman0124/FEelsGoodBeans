@@ -113,12 +113,20 @@ public class Room3 extends Room {
         int enterX = (int) doors.getChildren().get(0).getTranslateX();
         int enterY = (int) doors.getChildren().get(0).getTranslateY();
         
+        int exitX = (int) doors.getChildren().get(1).getTranslateX();
+        int exitY = (int) doors.getChildren().get(1).getTranslateY();
+        
+        setEnterSpawnX(enterX + getDOOR_H() / 2 - getPLAYER_W() / 2 - 30);
+        setEnterSpawnY(enterY - getPLAYER_H() - 35); // come back and figure out why this is spawning weird without the 30 later, here and in room 2 exit door
+        
+        setExitSpawnX(exitX + getDOOR_W());
+        setExitSpawnY(exitY + getDOOR_H() / 2 - getPLAYER_H() / 2);
 
-        setSpawnX(enterX + getDOOR_H() / 2 - getPLAYER_H() / 2);
-        setSpawnY(enterY - getPLAYER_H() - 100);
-
-        spawnX = getSpawnX();
-        spawnY = getSpawnY();
+        enterSpawnX = getEnterSpawnX();
+        enterSpawnY = getEnterSpawnY();
+        
+        exitSpawnX = getExitSpawnX();
+        exitSpawnY = getExitSpawnY();
 
         root.getChildren().addAll(walls, doors, interactables);
 

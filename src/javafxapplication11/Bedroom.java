@@ -42,7 +42,13 @@ public class Bedroom extends Furniture {
                 image = new Image(new FileInputStream("src/Sprites/ArmChairL.png"), 100, 100, true, true);
             } else if (bedroomType.equals("armchairR")) {
                 image = new Image(new FileInputStream("src/Sprites/ArmChairR.png"), 100, 100, true, true);
-            } 
+            } else if (bedroomType.equals("orangerug")) {
+                image = new Image(new FileInputStream("src/Sprites/orangeRug.png"), 100, 100, true, true);
+            } else if (bedroomType.equals("purplerug")) {
+                image = new Image(new FileInputStream("src/Sprites/purpleRug.png"), 100, 100, true, true);
+            } else if (bedroomType.equals("circlechair")) {
+                image = new Image(new FileInputStream("src/Sprites/roundChair.png"), 100, 100, true, true);
+            }
         } catch (IOException e) {
         }
         ip = new ImagePattern(image);

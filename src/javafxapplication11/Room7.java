@@ -17,8 +17,10 @@ public class Room7 extends Room {
         getPlayer().update(obj);
 
         if (getPlayer().isColliding(doors.getChildren().get(0))) {
+            root.getChildren().remove(darkness);
             CPTRewrite.prevRoom();
         } else if (getPlayer().isColliding(doors.getChildren().get(1))) {
+            root.getChildren().remove(darkness);
             CPTRewrite.nextRoom();
         }
     });
@@ -47,11 +49,20 @@ public class Room7 extends Room {
         int enterX = (int) doors.getChildren().get(0).getTranslateX();
         int enterY = (int) doors.getChildren().get(0).getTranslateY();
 
-        setSpawnX(enterX + getDOOR_W());
-        setSpawnY(enterY + getDOOR_H() / 2 - getPLAYER_H() / 2);
+        int exitX = (int) doors.getChildren().get(1).getTranslateX();
+        int exitY = (int) doors.getChildren().get(1).getTranslateY();
 
-        spawnX = getSpawnX();
-        spawnY = getSpawnY();
+        setEnterSpawnX(enterX + getDOOR_W() - 15);
+        setEnterSpawnY(enterY + getDOOR_H() / 2 - getPLAYER_H() / 2);
+
+        setExitSpawnX(exitX + getDOOR_H() / 2 - getPLAYER_H() / 2 - 35);
+        setExitSpawnY(exitY - getPLAYER_H() - 35);
+
+        enterSpawnX = getEnterSpawnX();
+        enterSpawnY = getEnterSpawnY();
+
+        exitSpawnX = getExitSpawnX();
+        exitSpawnY = getExitSpawnY();
 
         root.getChildren().addAll(floor, walls, doors, roomObjects);
 
@@ -110,19 +121,25 @@ public class Room7 extends Room {
 
         walls.getChildren().add(rect);
 
-        //dividing wall
-        Rectangle div1 = new Rectangle(20, 330, 800, 20);
-        div1.setFill(wallsColor);
-        Rectangle div2 = new Rectangle(400,140,20,200);
-        div2.setFill(wallsColor);
-
-        walls.getChildren().addAll(div1,div2);
-        
         floor = new Group();
         Rectangle bg = new Rectangle(0, 50, 900, 550);
+        FloorMat mat = new FloorMat(110, 170, 75, 75);
+        Bedroom rug = new Bedroom (120,420,100,80, "orangerug");
         bg.setFill(Color.KHAKI);
-        FloorMat mat = new FloorMat(110, 160, 75, 75);
-        floor.getChildren().addAll(bg, mat);
+        Bedroom rug2 = new Bedroom (500,425,90, 70, "purplerug");
+        
+        floor.getChildren().addAll(bg, mat, rug, rug2);
+
+        //dividing walls
+        Rectangle div1 = new Rectangle(20, 330, 790, 20);
+        div1.setFill(wallsColor);
+        Rectangle div2 = new Rectangle(400, 130, 20,200);
+        div2.setFill(wallsColor);
+        Rectangle div3 = new Rectangle(320,330, 20, 190);
+        div3.setFill(wallsColor);
+
+        walls.getChildren().addAll(div1, div2, div3);
+
     }
 
     @Override
@@ -150,17 +167,24 @@ public class Room7 extends Room {
     public void fillRoom() {
         roomObjects = new Group();
 
-        Bedroom bed = new Bedroom(588, 35, 125, 125, "doublebed");
+        Bedroom bed = new Bedroom(595, 35, 125, 125, "doublebed");
         Bedroom bed2 = new Bedroom(80, 35, 125, 125, "doublebed");
-        Bedroom couchL = new Bedroom(420,170,60,100, "leftcouch");
-        Bedroom couchR = new Bedroom(340,170,60,100, "rightcouch");
-        Bedroom tableWBook = new Bedroom(25,55, 60,60, "bookontable");
-        Bedroom emptyTable = new Bedroom(205, 55, 60,60, "bedsidetable");
-        Table prettyTable = new Table(300,425,70,70,"prettyTable");
-        Chair leftChair = new Chair(365, 425,40,50, true);
-        Chair rightChair = new Chair(263,425,40,50,false);
+        Bedroom couchL = new Bedroom(420, 230, 60, 100, "leftcouch");
+        Bedroom couchR = new Bedroom(340, 230, 60, 100, "rightcouch");
+        Bedroom tableWBook = new Bedroom(25, 55, 60, 60, "bookontable");
+        Bedroom emptyTable = new Bedroom(205, 55, 60, 60, "bedsidetable");
+        Bedroom cabinet = new Bedroom(780, 10, 100, 100, "bedcabinet");
+        Bedroom bookTable = new Bedroom(545, 55, 60, 60, "bookontable");
+        Table aTable = new Table(275, 255, 70, 70, "prettyTable");
+        Table aTable2 = new Table(475, 255, 70, 70, "prettyTable");
+        Kitchen plant = new Kitchen(20, 528, 50, 60, "plant");
+        Kitchen plant2 = new Kitchen(50, 528, 50, 60, "plant");
+        Bedroom emptyTable2 = new Bedroom(254,336,60,60, "bedsidetable");
+        Bedroom couchL2 = new Bedroom(420, 410, 60, 100, "leftcouch");
+        Bedroom couchR2 = new Bedroom(600, 410, 60, 100, "rightcouch");
+        Kitchen plant3 = new Kitchen(830, 528, 50, 60, "plant");
+        Kitchen plant4 = new Kitchen(800, 528, 50, 60, "plant");
         
-        roomObjects.getChildren().addAll(bed, bed2, couchR, couchL, tableWBook, emptyTable, prettyTable, leftChair, rightChair);
+        roomObjects.getChildren().addAll(bed, bed2, couchR, couchL, tableWBook, emptyTable, cabinet, bookTable, aTable, aTable2, plant, plant2, emptyTable2, couchL2, couchR2, plant3, plant4);
     }
-
 }

@@ -16,24 +16,24 @@ public class CPTRewrite extends Application {
     public static Stage stage;
     static int currentRoom = 0;
     static ArrayList<Room> rooms = new ArrayList<Room>();
-    
+
     private static ArrayList<Interactables> inventory = new ArrayList<>();
     public static Character player = new Character(30, 0, true, 50, 50, inventory);
 
     @Override
     public void start(Stage primaryStage) throws InterruptedException {
         
-        rooms.add(new Room8());
+        rooms.add(new Room1());
         rooms.add(new Room2());
         rooms.add(new Room3());
         rooms.add(new Room4());
         rooms.add(new Room5());
         rooms.add(new Room6());
         rooms.add(new Room7());
-        rooms.add(new Room1());
+        rooms.add(new Room8());
         rooms.add(new Room9());
 
-        rooms.get(currentRoom).start(player);
+        rooms.get(currentRoom).startEnter(player,currentRoom);
         stage = primaryStage;
 //        HealthBar healthBar = new HealthBar();
 
@@ -52,9 +52,9 @@ public class CPTRewrite extends Application {
         if (currentRoom > 8) {
             currentRoom = 8;
         }
-        stage.setScene(rooms.get(currentRoom).getScene());
+        stage.setScene(rooms.get(currentRoom).getScene()); 
         stage.setTitle("Room " + (currentRoom + 1) + "!");
-        rooms.get(currentRoom).start(player);
+        rooms.get(currentRoom).startEnter(player, currentRoom);
     }
 
     public static void prevRoom() {
@@ -65,16 +65,17 @@ public class CPTRewrite extends Application {
         }
         stage.setScene(rooms.get(currentRoom).getScene());
         stage.setTitle("Room " + (currentRoom + 1) + "!");
-        rooms.get(currentRoom).start(player);
+        rooms.get(currentRoom).startExit(player,currentRoom);
     }
-    
-    public static void setRoom(int room) {
-        rooms.get(currentRoom).stop();
-        
-        stage.setScene(rooms.get(currentRoom).getScene());
-        stage.setTitle("Room " + (currentRoom + 1) + "!");
 
-        rooms.get(currentRoom).start(player);
-    }
+//    public static void setRoom(int room) {
+//        rooms.get(currentRoom).stop();
+//
+//        stage.setScene(rooms.get(currentRoom).getScene());
+//        stage.setTitle("Room " + (currentRoom + 1) + "!");
+//
+//        rooms.get(currentRoom).start(player);
+//    }
+
 
 }

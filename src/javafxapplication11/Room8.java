@@ -47,11 +47,20 @@ public class Room8 extends Room {
         int enterX = (int) doors.getChildren().get(0).getTranslateX();
         int enterY = (int) doors.getChildren().get(0).getTranslateY();
 
-        setSpawnX(enterX + getDOOR_H() / 2 - getPLAYER_H() / 2);
-        setSpawnY(enterY + getDOOR_W() + 20);
+        int exitX = (int) doors.getChildren().get(1).getTranslateX();
+        int exitY = (int) doors.getChildren().get(1).getTranslateY();
 
-        spawnX = getSpawnX();
-        spawnY = getSpawnY();
+        setEnterSpawnX(enterX + getDOOR_H() / 2 - getPLAYER_H() / 2 - 35);
+        setEnterSpawnY(enterY + getDOOR_W() + 15);
+        
+        setExitSpawnX(exitX + getDOOR_H() / 2 - getPLAYER_H() / 2 - 35);
+        setExitSpawnY(exitY - getPLAYER_H() - 35);
+
+        enterSpawnX = getEnterSpawnX();
+        enterSpawnY = getEnterSpawnY();
+
+        exitSpawnX = getExitSpawnX();
+        exitSpawnY = getExitSpawnY();
 
         root.getChildren().addAll(floor, walls, roomObjects, doors);
 
