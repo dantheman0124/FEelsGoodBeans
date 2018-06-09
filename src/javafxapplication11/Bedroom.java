@@ -5,7 +5,8 @@ import java.io.IOException;
 import javafx.scene.image.Image;
 import javafx.scene.paint.ImagePattern;
 
-public class Bedroom extends Furniture{
+public class Bedroom extends Furniture {
+
     private Image image = null;
     private ImagePattern ip;
     private String bedroomType = "";
@@ -29,7 +30,19 @@ public class Bedroom extends Furniture{
                 image = new Image(new FileInputStream("src/Sprites/cabinetBedroom.png"), 100, 100, true, true);
             } else if (bedroomType.equals("TV")) {
                 image = new Image(new FileInputStream("src/Sprites/TV.png"), 100, 100, true, true);
-            }
+            } else if (bedroomType.equals("bedPink")) {
+                image = new Image(new FileInputStream("src/Sprites/bedPink.png"), 100, 100, true, true);
+            } else if (bedroomType.equals("bedsideH")) {
+                image = new Image(new FileInputStream("src/Sprites/BedsideTableH.png"), 100, 100, true, true);
+            } else if (bedroomType.equals("bedsideV")) {
+                image = new Image(new FileInputStream("src/Sprites/BedsideTableV.png"), 100, 100, true, true);
+            } else if (bedroomType.equals("blackstool")) {
+                image = new Image(new FileInputStream("src/Sprites/BlackStool.png"), 100, 100, true, true);
+            } else if (bedroomType.equals("armchairL")) {
+                image = new Image(new FileInputStream("src/Sprites/ArmChairL.png"), 100, 100, true, true);
+            } else if (bedroomType.equals("armchairR")) {
+                image = new Image(new FileInputStream("src/Sprites/ArmChairR.png"), 100, 100, true, true);
+            } 
         } catch (IOException e) {
         }
         ip = new ImagePattern(image);
