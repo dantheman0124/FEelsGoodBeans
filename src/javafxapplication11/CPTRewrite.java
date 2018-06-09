@@ -68,14 +68,4 @@ public class CPTRewrite extends Application {
         rooms.get(currentRoom).startExit(player);
     }
 
-//    public static void setRoom(int room) {
-//        rooms.get(currentRoom).stop();
-//
-//        stage.setScene(rooms.get(currentRoom).getScene());
-//        stage.setTitle("Room " + (currentRoom + 1) + "!");
-//
-//        rooms.get(currentRoom).start(player);
-//    }
-
-
 }
