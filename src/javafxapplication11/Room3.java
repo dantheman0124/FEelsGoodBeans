@@ -56,7 +56,7 @@ public class Room3 extends Room {
         current = grid[0][0];
 
         current.setVisited(true);
-        current.setFill(Color.PURPLE);
+        current.setFill(Color.KHAKI);
         
         while (getTotalUnvisited() != 0) {
 
