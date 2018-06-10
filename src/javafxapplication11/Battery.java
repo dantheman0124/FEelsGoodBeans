@@ -11,7 +11,7 @@ public class Battery extends Interactables {
     private ImagePattern ip;
 
     public Battery(double x, double y, double width, double height) {
-        super(x, y, width, height);
+        super(x, y, width, height, "battery");
         try {
             image = new Image(new FileInputStream("src/Sprites/battery.png"), 100, 100, true, true);
         } catch (IOException e) {

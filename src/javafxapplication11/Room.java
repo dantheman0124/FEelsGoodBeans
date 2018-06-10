@@ -49,6 +49,8 @@ public class Room {
     Group floor;
     Group roomObjects;
     Group interactables;
+    Group inv;
+    Group invisible;
     Pane root;
     Scene scene;
     static Group darkness;
@@ -68,6 +70,10 @@ public class Room {
 
     public void fillRoom() {
 
+    }
+    
+    public void displayInv(){
+        
     }
 
     public void createInteractables() {
