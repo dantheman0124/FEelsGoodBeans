@@ -41,8 +41,6 @@ public class Room2 extends Room {
             if (getPlayer().getBoundsInParent().intersects(interactables.getChildren().get(i).getBoundsInParent())) {
                 player.getInteractables().add((Interactables) interactables.getChildren().get(i));
                 interactables.getChildren().remove(interactables.getChildren().get(i));
-                System.out.println(player.getInteractables().size());
-                displayInv();
                 break;
             }
         }
@@ -95,7 +93,7 @@ public class Room2 extends Room {
         exitSpawnX = getExitSpawnX();
         exitSpawnY = getExitSpawnY();
 
-        root.getChildren().addAll(floor, walls, roomObjects, doors, interactables);
+        root.getChildren().addAll(floor, walls, roomObjects, inv, doors, interactables);
 
         scene = new Scene(root, getSCENE_W(), getSCENE_H());
 
@@ -221,15 +219,10 @@ public class Room2 extends Room {
     @Override
     public void createInteractables() {
         interactables = new Group();
-
-        Battery battery = new Battery(350, 100, 50, 50);
-        Key key = new Key(600, 400, 50, 50);
-        interactables.getChildren().addAll(battery, key);
     }
 
     @Override
     public void displayInv() {
-        inv = new Group();
         for (int i = 0; i < player.getInteractables().size(); i++) {
             Rectangle rect = new Rectangle(20 + i * 80, 620, 70, 70);
             inv.getChildren().add(rect);
@@ -250,6 +243,5 @@ public class Room2 extends Room {
                 inv.getChildren().add(key);
             }
         }
-        root.getChildren().add(inv);
     }
 }

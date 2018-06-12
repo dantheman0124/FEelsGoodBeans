@@ -29,13 +29,11 @@ public class Room3 extends Room {
     private KeyFrame frame = new KeyFrame(Duration.seconds(0.016), e -> {
         getPlayer().update();
 
+        displayInv();
         for (int i = 0; i < interactables.getChildren().size(); i++) {
-            displayInv();
             if (getPlayer().getBoundsInParent().intersects(interactables.getChildren().get(i).getBoundsInParent())) {
                 player.getInteractables().add((Interactables) interactables.getChildren().get(i));
                 interactables.getChildren().remove(interactables.getChildren().get(i));
-                System.out.println(player.getInteractables().size());
-                displayInv();
                 break;
             }
         }
@@ -56,7 +54,7 @@ public class Room3 extends Room {
 
         current.setVisited(true);
         current.setFill(Color.KHAKI);
-        
+
         current.setFill(Color.PURPLE);
 
         while (getTotalUnvisited() != 0) {
@@ -129,7 +127,7 @@ public class Room3 extends Room {
         exitSpawnX = getExitSpawnX();
         exitSpawnY = getExitSpawnY();
 
-        root.getChildren().addAll(walls, doors, interactables);
+        root.getChildren().addAll(walls, doors, interactables, inv);
 
         scene = new Scene(root, getSCENE_W(), getSCENE_H());
 
@@ -220,9 +218,8 @@ public class Room3 extends Room {
     public void createInteractables() {
         interactables = new Group();
 
-        Flashlight flashlight = new Flashlight(300, 150, 50, 50, true);
         Key key = new Key(600, 400, 50, 50);
-        interactables.getChildren().addAll(flashlight, key);
+        interactables.getChildren().addAll(key);
     }
 
     private void createGrid(Pane pane) {
@@ -310,9 +307,7 @@ public class Room3 extends Room {
         getUnvisited(cell)[index].getWalls()[(index + 2) % 4] = null;
     }
 
-    @Override
     public void displayInv() {
-        inv = new Group();
         for (int i = 0; i < player.getInteractables().size(); i++) {
             Rectangle rect = new Rectangle(20 + i * 80, 620, 70, 70);
             inv.getChildren().add(rect);
@@ -328,11 +323,10 @@ public class Room3 extends Room {
                 Flashlight flashlight = new Flashlight(45 + i * 80, 640, 20, 40, false);
                 inv.getChildren().add(flashlight);
             }
-            if(player.getInteractables().get(i).getName().equals("key")){
+            if (player.getInteractables().get(i).getName().equals("key")) {
                 Key key = new Key(45 + i * 80, 640, 20, 40);
                 inv.getChildren().add(key);
             }
         }
-        root.getChildren().add(inv);
     }
 }

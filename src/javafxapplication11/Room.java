@@ -49,7 +49,7 @@ public class Room {
     Group floor;
     Group roomObjects;
     Group interactables;
-    Group inv;
+    Group inv = new Group();
     Group invisible;
     Pane root;
     Scene scene;
@@ -69,15 +69,12 @@ public class Room {
     }
 
     public void fillRoom() {
-
     }
     
     public void displayInv(){
-        
     }
-
+    
     public void createInteractables() {
-
     }
 
     public void spawnPlayerEnter() {
