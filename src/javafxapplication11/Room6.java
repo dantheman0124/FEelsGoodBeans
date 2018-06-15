@@ -169,26 +169,27 @@ public class Room6 extends Room {
         
         Office workDesk1 = new Office(747, 195, 120, 95, "workDeskYellow");
 
-        Desk desk = new Desk(195, 225, 75, 150);
-        DeskChair deskChair = new DeskChair(280, 260, 30, 30);
-        DeskChair deskChair2 = new DeskChair(280, 310, 30, 30);
-        DeskChair deskChair3 = new DeskChair(155, 260, 30, 30);
-        DeskChair deskChair4 = new DeskChair(155, 310, 30, 30);
-        DeskChair deskChair5 = new DeskChair(220, 180, 30, 30);
-        DeskChair deskChair6 = new DeskChair(220, 390, 30, 30);
+//        Desk desk = new Desk(195, 225, 75, 150);
+//        DeskChair deskChair = new DeskChair(280, 260, 30, 30);
+//        DeskChair deskChair2 = new DeskChair(280, 310, 30, 30);
+//        DeskChair deskChair3 = new DeskChair(155, 260, 30, 30);
+//        DeskChair deskChair4 = new DeskChair(155, 310, 30, 30);
+//        DeskChair deskChair5 = new DeskChair(220, 180, 30, 30);
+//        DeskChair deskChair6 = new DeskChair(220, 390, 30, 30);
+//
+//        Desk desk2 = new Desk(475, 430, 75, 150);
+//        Desk desk3 = new Desk(550, 430, 75, 150);
+//        DeskChair deskChair7 = new DeskChair(630, 455, 30, 30);
+//        DeskChair deskChair8 = new DeskChair(630, 525, 30, 30);
+//        DeskChair deskChair9 = new DeskChair(440, 455, 30, 30);
+//        DeskChair deskChair10 = new DeskChair(440, 525, 30, 30);
+//        DeskChair deskChair11 = new DeskChair(485, 400, 30, 30);
+//        DeskChair deskChair12 = new DeskChair(585, 400, 30, 30);
+//        DeskChair deskChair13 = new DeskChair(535, 400, 30, 30);
 
-        Desk desk2 = new Desk(475, 430, 75, 150);
-        Desk desk3 = new Desk(550, 430, 75, 150);
-        DeskChair deskChair7 = new DeskChair(630, 455, 30, 30);
-        DeskChair deskChair8 = new DeskChair(630, 525, 30, 30);
-        DeskChair deskChair9 = new DeskChair(440, 455, 30, 30);
-        DeskChair deskChair10 = new DeskChair(440, 525, 30, 30);
-        DeskChair deskChair11 = new DeskChair(485, 400, 30, 30);
-        DeskChair deskChair12 = new DeskChair(585, 400, 30, 30);
-        DeskChair deskChair13 = new DeskChair(535, 400, 30, 30);
-
-        TrashCan trash = new TrashCan(30, 525, 50, 50);
+        //TrashCan trash = new TrashCan(30, 525, 50, 50);
         
-        roomObjects.getChildren().addAll(bookshelf, bookshelf2, bookshelf3, bookshelf4, bookshelf5, bookshelf6, bookshelf7, bookshelf8, bookshelf9, bookshelf10, workDesk1, desk, deskChair, deskChair2, deskChair3, deskChair4, desk2, desk3, deskChair5, deskChair6, deskChair7, deskChair8, deskChair9, deskChair10, deskChair11, deskChair12, deskChair13, trash, bookshelf11, bookshelf12, bookshelf13, bookshelf14);
+        roomObjects.getChildren().addAll(bookshelf, bookshelf2, bookshelf3, bookshelf4, bookshelf5, bookshelf6, bookshelf7, bookshelf8, bookshelf9, bookshelf10, workDesk1, bookshelf11, bookshelf12, bookshelf13, bookshelf14);
+        //roomObjects.getChildren().addAll(desk, deskChair, deskChair2, deskChair3, deskChair4, desk2, desk3, deskChair5, deskChair6, deskChair7, deskChair8, deskChair9, deskChair10, deskChair11, deskChair12, deskChair13, trash);
     }
 }

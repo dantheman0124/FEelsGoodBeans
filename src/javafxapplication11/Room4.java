@@ -150,9 +150,9 @@ public class Room4 extends Room {
     public void fillRoom() {
         roomObjects = new Group();
 
-        DiningTable table = new DiningTable(70, 450, 145, 120);
-        DiningTable table1 = new DiningTable(685, 450, 145, 120);
-        DiningTable table2 = new DiningTable(378, 450, 145, 120);
+        DiningTable table = new DiningTable(90, 450, 145, 120);
+        DiningTable table1 = new DiningTable(665, 450, 145, 120);
+        DiningTable table2 = new DiningTable(368, 450, 145, 120);
 
         Table sideTable = new Table(10, 200, 90, 180, "sideDiningTable");
 
@@ -168,18 +168,19 @@ public class Room4 extends Room {
         TrashCan trash3 = new TrashCan(290, 105, 20, 25);
         TrashCan trash4 = new TrashCan(290, 135, 20, 25);
 
-        int x = 260;
-        Kitchen couchL = new Kitchen(300, x, 60, 120, "couchL");
-        Table prettyTable = new Table(405, x, 84, 120, "prettyTable");
-        Kitchen couchR = new Kitchen(535, x, 60, 120, "couchR");
+        int x = 300, y = 260;
+        Kitchen couchL = new Kitchen(x, y, 60, 120, "couchL");
+        Table prettyTable = new Table(x+145, y, 84, 120, "prettyTable");
+        Kitchen couchR = new Kitchen(x+305, y, 60, 120, "couchR");
 
-        Kitchen plant1 = new Kitchen(270, x+10, 30, 90, "plant");
-        Kitchen plant2 = new Kitchen(260, x + 20, 30, 90, "plant");
-        Kitchen plant3 = new Kitchen(270, x + 30, 30, 90, "plant");
+        Kitchen plant1 = new Kitchen(270, y+10, 30, 90, "plant");
+        Kitchen plant2 = new Kitchen(260, y + 20, 30, 90, "plant");
+        Kitchen plant3 = new Kitchen(270, y + 30, 30, 90, "plant");
 
-        Kitchen plant4 = new Kitchen(595, x+10, 30, 90, "plant");
-        Kitchen plant5 = new Kitchen(605, x + 20, 30, 90, "plant");
-        Kitchen plant6 = new Kitchen(595, x + 30, 30, 90, "plant");
+        int n = 667;
+        Kitchen plant4 = new Kitchen(n, y+10, 30, 90, "plant");
+        Kitchen plant5 = new Kitchen(n+10, y + 20, 30, 90, "plant");
+        Kitchen plant6 = new Kitchen(n, y + 30, 30, 90, "plant");
 
         roomObjects.getChildren().addAll(table, table1, table2, sideTable, stoveTeapot, lightCounter, longCounter, stoveAndPots, microwave, cornerCounter);
         roomObjects.getChildren().addAll(plant1, plant2, plant3, plant4, plant5, plant6, trash1, trash2, trash3, trash4, couchL, couchR, prettyTable);

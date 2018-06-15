@@ -28,7 +28,7 @@ public class Room5 extends Room {
 
         wallsColor = Color.DARKRED;
         doorColor = Color.BISQUE;
-        
+
         getTimeline().getKeyFrames().add(frame);
         getTimeline().setCycleCount(Timeline.INDEFINITE);
 
@@ -46,19 +46,19 @@ public class Room5 extends Room {
 
         int enterX = (int) doors.getChildren().get(0).getTranslateX();
         int enterY = (int) doors.getChildren().get(0).getTranslateY();
-        
+
         int exitX = (int) doors.getChildren().get(1).getTranslateX();
         int exitY = (int) doors.getChildren().get(1).getTranslateY();
 
         setEnterSpawnX(enterX + getDOOR_H() / 2 - getPLAYER_H() / 2 - 35);
         setEnterSpawnY(enterY - getPLAYER_H() - 35);
-        
+
         setExitSpawnX(exitX - getDOOR_W() - getPLAYER_W() - 35);
         setExitSpawnY(exitY + getDOOR_H() / 2 - getPLAYER_H() / 2);
 
         enterSpawnX = getEnterSpawnX();
         enterSpawnY = getEnterSpawnY();
-        
+
         exitSpawnX = getExitSpawnX();
         exitSpawnY = getExitSpawnY();
 
@@ -123,7 +123,16 @@ public class Room5 extends Room {
         Rectangle bg = new Rectangle(0, 50, 900, 550);
         FloorMat mat = new FloorMat(800, 190, 75, 75);
         bg.setFill(Color.KHAKI);
-        floor.getChildren().addAll(bg, mat);
+        floor.getChildren().addAll(bg);
+
+        for (int i = 0; i < 11; i++) {
+            for (int j = 0; j < 6; j++) {
+                Floor tile = new Floor(i * 95, 43 + j * 90, 110, 107, "blueTile");
+                tile.setOpacity(.6);
+                floor.getChildren().add(tile);
+            }
+        }
+        floor.getChildren().addAll(mat);
     }
 
     @Override
@@ -157,9 +166,7 @@ public class Room5 extends Room {
         HealingMachine machine2 = new HealingMachine(782, 50, 48, 61);
         HealingMachine machine3 = new HealingMachine(830, 510, 48, 61);
         HealingMachine machine4 = new HealingMachine(782, 510, 48, 61);
-        LabMachine machine5 = new LabMachine(500, 50, 55, 64);
-        LabMachine machine6 = new LabMachine(575, 50, 55, 64);
-        LabMachine machine7 = new LabMachine(650, 50, 55, 64);
+
         DisplayShelves shelf = new DisplayShelves(600, 234, 40, 44, true);
         DisplayShelves shelf2 = new DisplayShelves(600, 256, 40, 44, true);
         DisplayShelves shelf3 = new DisplayShelves(600, 278, 40, 44, true);
@@ -203,8 +210,16 @@ public class Room5 extends Room {
         Chair chair14 = new Chair(648, 500, 25, 30, true);
         Chair chair15 = new Chair(648, 540, 25, 30, true);
 
+        Lab beakers = new Lab(550, 500, 150, 60, "beakers");
+        Lab lockers = new Lab(600, 30, 90, 100, "lockers");
+        Lab lockers1 = new Lab(690, 30, 90, 100, "lockers");
+        Lab lockers2 = new Lab(510, 30, 90, 100, "lockers");
+
         roomObjects.getChildren().addAll(desk, desk2, desk3, shelf, shelf2, shelf3, shelf4, shelf5, shelf6, shelf7, shelf8, shelf9, shelf10, shelf11, shelf12, shelf13, shelf14, shelf15, shelf16, shelf17, shelf18, shelf19, shelf20, shelf21);
-        roomObjects.getChildren().addAll(machine, machine2, machine3, machine4, trash, trash2, trash3, chair, chair2, chair3, machine5, machine6, machine7, desk4, desk5, desk6, chair4, chair5, chair6, chair7, chair8, chair9, chair10, chair11, chair12, chair13, chair14, chair15);
+        //roomObjects.getChildren().addAll(machine, machine2, machine3, machine4, trash, trash2, trash3, 
+        roomObjects.getChildren().addAll(chair, chair2, chair3, desk4, desk5, chair4, chair5, chair6, chair7, chair8, chair9, chair10, chair11);
+        roomObjects.getChildren().addAll(beakers, lockers, lockers1, lockers2);
+
     }
 
 }
