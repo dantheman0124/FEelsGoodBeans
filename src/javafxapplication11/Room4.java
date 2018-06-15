@@ -1,8 +1,11 @@
 package javafxapplication11;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.paint.Color;
 import javafx.scene.Group;
@@ -190,6 +193,26 @@ public class Room4 extends Room {
         Kitchen plant4 = new Kitchen(595, x+10, 30, 90, "plant");
         Kitchen plant5 = new Kitchen(605, x + 20, 30, 90, "plant");
         Kitchen plant6 = new Kitchen(595, x + 30, 30, 90, "plant");
+        
+        EventHandler enterCode = new EventHandler() {
+            @Override
+            public void handle(Event event) {
+                Scanner input = new Scanner(System.in);
+                Node source = (Node) event.getSource();
+                System.out.print("Enter a passcode: ");
+                String passcode = input.next();
+                if(passcode.equals("8240")){
+                    Key key = new Key(-100, -100, 0, 0);
+                    CPTRewrite.player.getInteractables().add(key);
+                    source.setOnMouseClicked(null);
+                }else{
+                    System.out.println("Wrong code.");
+                }
+            }
+        };
+        
+        microwave.setOnMouseClicked(enterCode);
+        
 
         roomObjects.getChildren().addAll(table, table1, table2, sideTable, stoveTeapot, lightCounter, longCounter, stoveAndPots, microwave, cornerCounter);
         roomObjects.getChildren().addAll(plant1, plant2, plant3, plant4, plant5, plant6, trash1, trash2, trash3, trash4, couchL, couchR, prettyTable);
