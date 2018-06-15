@@ -66,6 +66,8 @@ public class CPTRewrite extends Application {
         stage.setScene(rooms.get(currentRoom).getScene());
         stage.setTitle("Room " + (currentRoom + 1) + "!");
         rooms.get(currentRoom).startExit(player,currentRoom);
+        
+        System.out.println("delete this");
     }
 
 }

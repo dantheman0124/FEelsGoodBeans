@@ -36,7 +36,7 @@ public class Room2 extends Room {
             }
         }
 
-        displayInv();
+        //displayInv();
         for (int i = 0; i < interactables.getChildren().size(); i++) {
             if (getPlayer().getBoundsInParent().intersects(interactables.getChildren().get(i).getBoundsInParent())) {
                 player.getInteractables().add((Interactables) interactables.getChildren().get(i));
