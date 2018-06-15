@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import javafxapplication11.CPTRewrite;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.paint.Color;
 import javafx.scene.Group;
@@ -19,20 +21,16 @@ public class Room1 extends Room {
         getPlayer().update(obj);
 
         displayInv();
-        for (int i = 0; i < interactables.getChildren().size(); i++) {
+        for (int i = 0; i < interactables.getChildren().size(); i++) {;
             if (getPlayer().getBoundsInParent().intersects(interactables.getChildren().get(i).getBoundsInParent())) {
                 player.getInteractables().add((Interactables) interactables.getChildren().get(i));
                 interactables.getChildren().remove(interactables.getChildren().get(i));
-                //System.out.println(player.getInteractables().size());
-                displayInv();
                 break;
             }
         }
 
         if (getPlayer().isColliding(doors.getChildren().get(0))) {
-
         } else if (getPlayer().isColliding(doors.getChildren().get(1))) {
-//            System.out.println(player.getInteractables().size());
             CPTRewrite.nextRoom();
         }
     });
@@ -77,7 +75,7 @@ public class Room1 extends Room {
         exitSpawnX = getExitSpawnX();
         exitSpawnY = getExitSpawnY();
 
-        root.getChildren().addAll(floor, walls, doors, roomObjects, interactables);
+        root.getChildren().addAll(floor, walls, doors, roomObjects, inv, interactables);
 
         scene = new Scene(root, getSCENE_W(), getSCENE_H());
 
@@ -112,7 +110,7 @@ public class Room1 extends Room {
         rect.setTranslateY(getHEADER_H());
 
         walls.getChildren().add(rect);
-        
+
         rect = new Rectangle(getDOOR_W(), getDOOR_H(), wallsColor);
         rect.setTranslateX(0);
         rect.setTranslateY(getROOM_H() - getDOOR_H() - 50 + getHEADER_H());
@@ -188,45 +186,62 @@ public class Room1 extends Room {
         IronBeam ironBeam3 = new IronBeam(600, 470, 50, 110);
         ComputerDesk computerDesk = new ComputerDesk(600, 20, 100, 75);
 
+        EventHandler objClick = new EventHandler() {
+            @Override
+            public void handle(Event event) {
+                Node source = (Node) event.getSource();
+                System.out.println("There is nothing in here.");
+            }
+        };
+
+        EventHandler findItem = new EventHandler() {
+            @Override
+            public void handle(Event event) {
+                Node source = (Node) event.getSource();
+                System.out.println("You found a key!");
+                Key key = new Key(-100, -100, 0, 0);
+                CPTRewrite.player.getInteractables().add(key);
+                System.out.println(CPTRewrite.player.getInteractables().size());
+                root.getChildren().remove(source);
+            }
+        };
+
+        crate.setOnMouseClicked(findItem);
+        crate2.setOnMouseClicked(objClick);
+        crate3.setOnMouseClicked(objClick);
+        crate4.setOnMouseClicked(objClick);
+        crate5.setOnMouseClicked(objClick);
+
         roomObjects.getChildren().addAll(crate, crate2, crate3, crate4, crate5, table, bookcase, bookcase2, bookcase3, bookcase4, desk, deskChair, computerDesk, ironBeam, ironBeam2, ironBeam3);
     }
 
     @Override
     public void createInteractables() {
         interactables = new Group();
-
-        Battery battery = new Battery(350, 100, 50, 50);
-        Crowbar crowbar = new Crowbar(500, 200, 50, 30);
-        Flashlight flashlight = new Flashlight(500, 400, 50, 30, true);
-        Key key = new Key(600, 400, 50, 50);
-        interactables.getChildren().addAll(battery, crowbar, flashlight, key);
     }
 
     @Override
     public void displayInv() {
-        inv = new Group();
-        for(int i = 0; i < player.getInteractables().size(); i++){
+        for (int i = 0; i < player.getInteractables().size(); i++) {
             Rectangle rect = new Rectangle(20 + i * 80, 620, 70, 70);
             inv.getChildren().add(rect);
-            if(player.getInteractables().get(i).getName().equals("battery")){
+            if (player.getInteractables().get(i).getName().equals("battery")) {
                 Battery battery = new Battery(25 + i * 80, 640, 60, 30);
                 inv.getChildren().add(battery);
             }
-            if(player.getInteractables().get(i).getName().equals("crowbar")){
+            if (player.getInteractables().get(i).getName().equals("crowbar")) {
                 Crowbar crowbar = new Crowbar(25 + i * 80, 640, 65, 35);
                 inv.getChildren().add(crowbar);
             }
-            if(player.getInteractables().get(i).getName().equals("flashlight")){
+            if (player.getInteractables().get(i).getName().equals("flashlight")) {
                 Flashlight flashlight = new Flashlight(45 + i * 80, 640, 20, 40, false);
                 inv.getChildren().add(flashlight);
             }
-            if(player.getInteractables().get(i).getName().equals("key")){
+            if (player.getInteractables().get(i).getName().equals("key")) {
                 Key key = new Key(45 + i * 80, 640, 20, 40);
                 inv.getChildren().add(key);
             }
         }
-        root.getChildren().add(inv);
     }
-
 
 }

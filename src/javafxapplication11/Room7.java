@@ -15,6 +15,8 @@ public class Room7 extends Room {
     private ArrayList<Node> obj = new ArrayList<>();
     private KeyFrame frame = new KeyFrame(Duration.seconds(0.016), e -> {
         getPlayer().update(obj);
+        
+        displayInv();
 
         if (getPlayer().isColliding(doors.getChildren().get(0))) {
             root.getChildren().remove(darkness);
@@ -64,7 +66,7 @@ public class Room7 extends Room {
         exitSpawnX = getExitSpawnX();
         exitSpawnY = getExitSpawnY();
 
-        root.getChildren().addAll(floor, walls, doors, roomObjects);
+        root.getChildren().addAll(floor, walls, doors, roomObjects, inv);
 
         scene = new Scene(root, getSCENE_W(), getSCENE_H());
 
@@ -186,5 +188,28 @@ public class Room7 extends Room {
         Kitchen plant4 = new Kitchen(800, 528, 50, 60, "plant");
         
         roomObjects.getChildren().addAll(bed, bed2, couchR, couchL, tableWBook, emptyTable, cabinet, bookTable, aTable, aTable2, plant, plant2, emptyTable2, couchL2, couchR2, plant3, plant4);
+    }
+    
+    public void displayInv() {
+        for (int i = 0; i < player.getInteractables().size(); i++) {
+            Rectangle rect = new Rectangle(20 + i * 80, 620, 70, 70);
+            inv.getChildren().add(rect);
+            if (player.getInteractables().get(i).getName().equals("battery")) {
+                Battery battery = new Battery(25 + i * 80, 640, 60, 30);
+                inv.getChildren().add(battery);
+            }
+            if (player.getInteractables().get(i).getName().equals("crowbar")) {
+                Crowbar crowbar = new Crowbar(25 + i * 80, 640, 65, 35);
+                inv.getChildren().add(crowbar);
+            }
+            if (player.getInteractables().get(i).getName().equals("flashlight")) {
+                Flashlight flashlight = new Flashlight(45 + i * 80, 640, 20, 40, false);
+                inv.getChildren().add(flashlight);
+            }
+            if (player.getInteractables().get(i).getName().equals("key")) {
+                Key key = new Key(45 + i * 80, 640, 20, 40);
+                inv.getChildren().add(key);
+            }
+        }
     }
 }

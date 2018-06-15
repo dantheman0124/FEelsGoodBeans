@@ -15,6 +15,8 @@ public class Room9 extends Room {
     private ArrayList<Node> obj = new ArrayList<>();
     private KeyFrame frame = new KeyFrame(Duration.seconds(0.016), e -> {
         getPlayer().update(obj);
+        
+        displayInv();
 
         if (getPlayer().isColliding(doors.getChildren().get(0))) {
             CPTRewrite.prevRoom();
@@ -54,7 +56,7 @@ public class Room9 extends Room {
         exitSpawnX = getExitSpawnX();
         exitSpawnY = getExitSpawnY();
 
-        root.getChildren().addAll(walls, doors);
+        root.getChildren().addAll(walls, doors, inv);
 
         scene = new Scene(root, getSCENE_W(), getSCENE_H());
 
@@ -122,6 +124,29 @@ public class Room9 extends Room {
     @Override
     public void fillRoom() {
         roomObjects = new Group();
+    }
+    
+    public void displayInv() {
+        for (int i = 0; i < player.getInteractables().size(); i++) {
+            Rectangle rect = new Rectangle(20 + i * 80, 620, 70, 70);
+            inv.getChildren().add(rect);
+            if (player.getInteractables().get(i).getName().equals("battery")) {
+                Battery battery = new Battery(25 + i * 80, 640, 60, 30);
+                inv.getChildren().add(battery);
+            }
+            if (player.getInteractables().get(i).getName().equals("crowbar")) {
+                Crowbar crowbar = new Crowbar(25 + i * 80, 640, 65, 35);
+                inv.getChildren().add(crowbar);
+            }
+            if (player.getInteractables().get(i).getName().equals("flashlight")) {
+                Flashlight flashlight = new Flashlight(45 + i * 80, 640, 20, 40, false);
+                inv.getChildren().add(flashlight);
+            }
+            if (player.getInteractables().get(i).getName().equals("key")) {
+                Key key = new Key(45 + i * 80, 640, 20, 40);
+                inv.getChildren().add(key);
+            }
+        }
     }
 
 }

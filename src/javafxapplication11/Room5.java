@@ -15,6 +15,8 @@ public class Room5 extends Room {
     private ArrayList<Node> obj = new ArrayList<>();
     private KeyFrame frame = new KeyFrame(Duration.seconds(0.016), e -> {
         getPlayer().update(obj);
+        
+        displayInv();
 
         if (getPlayer().isColliding(doors.getChildren().get(0))) {
             CPTRewrite.prevRoom();
@@ -35,6 +37,7 @@ public class Room5 extends Room {
         createDoors();
         createWalls();
         fillRoom();
+        createInteractables();
 
         for (int i = 0; i < roomObjects.getChildren().size(); i++) {
             obj.add(roomObjects.getChildren().get(i));
@@ -62,7 +65,7 @@ public class Room5 extends Room {
         exitSpawnX = getExitSpawnX();
         exitSpawnY = getExitSpawnY();
 
-        root.getChildren().addAll(floor, walls, doors, roomObjects);
+        root.getChildren().addAll(floor, walls, doors, roomObjects, inv);
 
         scene = new Scene(root, getSCENE_W(), getSCENE_H());
 
@@ -205,6 +208,29 @@ public class Room5 extends Room {
 
         roomObjects.getChildren().addAll(desk, desk2, desk3, shelf, shelf2, shelf3, shelf4, shelf5, shelf6, shelf7, shelf8, shelf9, shelf10, shelf11, shelf12, shelf13, shelf14, shelf15, shelf16, shelf17, shelf18, shelf19, shelf20, shelf21);
         roomObjects.getChildren().addAll(machine, machine2, machine3, machine4, trash, trash2, trash3, chair, chair2, chair3, machine5, machine6, machine7, desk4, desk5, desk6, chair4, chair5, chair6, chair7, chair8, chair9, chair10, chair11, chair12, chair13, chair14, chair15);
+    }
+    
+    public void displayInv() {
+        for (int i = 0; i < player.getInteractables().size(); i++) {
+            Rectangle rect = new Rectangle(20 + i * 80, 620, 70, 70);
+            inv.getChildren().add(rect);
+            if (player.getInteractables().get(i).getName().equals("battery")) {
+                Battery battery = new Battery(25 + i * 80, 640, 60, 30);
+                inv.getChildren().add(battery);
+            }
+            if (player.getInteractables().get(i).getName().equals("crowbar")) {
+                Crowbar crowbar = new Crowbar(25 + i * 80, 640, 65, 35);
+                inv.getChildren().add(crowbar);
+            }
+            if (player.getInteractables().get(i).getName().equals("flashlight")) {
+                Flashlight flashlight = new Flashlight(45 + i * 80, 640, 20, 40, false);
+                inv.getChildren().add(flashlight);
+            }
+            if (player.getInteractables().get(i).getName().equals("key")) {
+                Key key = new Key(45 + i * 80, 640, 20, 40);
+                inv.getChildren().add(key);
+            }
+        }
     }
 
 }
