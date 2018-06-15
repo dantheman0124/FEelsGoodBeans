@@ -22,14 +22,11 @@ public class Room2 extends Room {
     
     private KeyFrame frame = new KeyFrame(Duration.seconds(0.016), e -> {
         getPlayer().update(obj);
-        enemies.forEach(Enemy::update);
+        for (Enemy enemy : enemies) {
+            enemy.update(obj);
+        }
         bullets.forEach(Bullet::update);
 
-        for (Enemy enemy : enemies) {
-            if (enemy.getAction() == EnemyAction.SHOOT) {
-                enemy.setDestination(new Point2D(Math.random() * getSCENE_W(), Math.random() * getSCENE_H() + 100));
-            }
-        }
         
         for (Bullet bullet : bullets) {
             if (player.isColliding((Node) bullet)) {
@@ -96,7 +93,10 @@ public class Room2 extends Room {
             enemy.setRoot(root);
             enemy.setBullets(bullets);
             enemy.setTarget(CPTRewrite.player);
-            enemy.setDestination(new Point2D(Math.random() * root.getPrefWidth(), Math.random() * root.getPrefHeight()));
+            Point2D dest = new Point2D(Math.random() * getROOM_W() + getWALL_W(), Math.random() * getROOM_H() + (getHEADER_H() + getWALL_W()));
+            
+            enemy.setDestination(dest);
+            
             
             enemies.add(enemy);
             root.getChildren().add(enemy.getHealthBar());

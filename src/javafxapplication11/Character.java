@@ -18,7 +18,7 @@ public class Character extends Rectangle {
     private ImagePattern ip;
     private ArrayList<Interactables> interactables = new ArrayList<>();
 
-    private HealthBar healthBar = new HealthBar();
+    private HealthBar healthBar = new HealthBar(1);
 
     characterAction action = characterAction.NONE;
 
