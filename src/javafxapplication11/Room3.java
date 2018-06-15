@@ -15,8 +15,10 @@ import javafx.util.Duration;
 
 public class Room3 extends Room {
 
-    private final int WIDTH = 17, HEIGHT = 10;
-    private final double SIZE = 860 / 17;
+    private final int WIDTH = 10, HEIGHT = 6;
+    private final double SIZE_W = 86;
+    private final double SIZE_H = 86;
+    private final double SIZE = 50;
     private Cell[][] grid = new Cell[HEIGHT][WIDTH];
 
     Stack<Cell> stack = new Stack<Cell>();
@@ -27,7 +29,7 @@ public class Room3 extends Room {
 
     private ArrayList<Node> obj = new ArrayList<>();
     private KeyFrame frame = new KeyFrame(Duration.seconds(0.016), e -> {
-        getPlayer().update();
+        getPlayer().update(obj);
 
         displayInv();
         for (int i = 0; i < interactables.getChildren().size(); i++) {
@@ -225,7 +227,7 @@ public class Room3 extends Room {
     private void createGrid(Pane pane) {
         for (int i = 0; i < grid.length; i++) {
             for (int j = 0; j < grid[0].length; j++) {
-                Cell cell = new Cell(j * SIZE + getWALL_W(), i * SIZE + (getWALL_W() + getHEADER_H()), SIZE, SIZE);
+                Cell cell = new Cell(j * SIZE_W + getWALL_W(), i * SIZE_H + (getWALL_W() + getHEADER_H()), SIZE_W, SIZE_H);
                 cell.setFill(Color.BLACK);
                 cell.setStroke(null);
                 grid[i][j] = cell;

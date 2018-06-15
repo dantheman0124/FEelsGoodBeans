@@ -223,7 +223,8 @@ public class Room {
                     player.setFill(ip);
                     player.setAction(characterAction.DOWN);
                     break;
-                default:
+                case SPACE:
+                    player.setShoot(true);
             }
         });
 
@@ -271,4 +272,10 @@ public class Room {
         darkOverlay.setOpacity(.70);
         darkness.getChildren().add(darkOverlay);
     }
+
+    public Pane getRoot() {
+        return root;
+    }
+    
+    
 }
