@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import javafxapplication11.CPTRewrite;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.paint.Color;
 import javafx.scene.Group;
@@ -184,6 +186,32 @@ public class Room1 extends Room {
         IronBeam ironBeam3 = new IronBeam(600, 470, 50, 110);
         ComputerDesk computerDesk = new ComputerDesk(600, 20, 100, 75);
 
+        EventHandler objClick = new EventHandler() {
+            @Override
+            public void handle(Event event) {
+                Node source = (Node) event.getSource();
+                System.out.println("There is nothing in here.");
+            }
+        };
+
+        EventHandler findItem = new EventHandler() {
+            @Override
+            public void handle(Event event) {
+                Node source = (Node) event.getSource();
+                System.out.println("You found a key!");
+                Key key = new Key(-100, -100, 0, 0);
+                CPTRewrite.player.getInteractables().add(key);
+                System.out.println(CPTRewrite.player.getInteractables().size());
+                root.getChildren().remove(source);
+            }
+        };
+
+        crate.setOnMouseClicked(findItem);
+        crate2.setOnMouseClicked(objClick);
+        crate3.setOnMouseClicked(objClick);
+        crate4.setOnMouseClicked(objClick);
+        crate5.setOnMouseClicked(objClick);
+
         roomObjects.getChildren().addAll(crate, crate2, crate3, crate4, crate5, table, bookcase, bookcase2, bookcase3, bookcase4, desk, deskChair, computerDesk, ironBeam, ironBeam2, ironBeam3);
     }
 
@@ -215,6 +243,5 @@ public class Room1 extends Room {
             }
         }
     }
-    
-    
+
 }
