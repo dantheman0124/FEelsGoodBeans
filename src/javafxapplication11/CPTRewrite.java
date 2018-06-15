@@ -23,7 +23,9 @@ public class CPTRewrite extends Application {
     @Override
     public void start(Stage primaryStage) throws InterruptedException {
 
-        rooms.add(new Room6());
+        
+        
+        rooms.add(new Room1());
         rooms.add(new Room2());
         rooms.add(new Room3());
         rooms.add(new Room4());
@@ -32,6 +34,8 @@ public class CPTRewrite extends Application {
         rooms.add(new Room7());
         rooms.add(new Room8());
         rooms.add(new Room9());
+        
+        player.setRoot(rooms.get(1).getRoot());
 
         rooms.get(currentRoom).startEnter(player, currentRoom);
         stage = primaryStage;
