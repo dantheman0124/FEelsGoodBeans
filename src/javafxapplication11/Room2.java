@@ -49,6 +49,7 @@ public class Room2 extends Room {
                 if (enemy.isDead()) {
                     enemies.remove(enemy);
                     root.getChildren().remove(enemy);
+                    root.getChildren().remove(enemy.getHealthBar());
                 }
             }
         }
