@@ -15,7 +15,16 @@ public class Room4 extends Room {
     private ArrayList<Node> obj = new ArrayList<>();
     private KeyFrame frame = new KeyFrame(Duration.seconds(0.016), e -> {
         getPlayer().update(obj);
-
+        
+        displayInv();
+        for (int i = 0; i < interactables.getChildren().size(); i++) {
+            if (getPlayer().getBoundsInParent().intersects(interactables.getChildren().get(i).getBoundsInParent())) {
+                player.getInteractables().add((Interactables) interactables.getChildren().get(i));
+                interactables.getChildren().remove(interactables.getChildren().get(i));
+                break;
+            }
+        }
+        
         if (getPlayer().isColliding(doors.getChildren().get(0))) {
             CPTRewrite.prevRoom();
         } else if (getPlayer().isColliding(doors.getChildren().get(1))) {
@@ -35,6 +44,7 @@ public class Room4 extends Room {
         createDoors();
         createWalls();
         fillRoom();
+        createInteractables();
 
         for (int i = 0; i < roomObjects.getChildren().size(); i++) {
             obj.add(roomObjects.getChildren().get(i));
@@ -47,17 +57,22 @@ public class Room4 extends Room {
         int enterX = (int) doors.getChildren().get(0).getTranslateX();
         int enterY = (int) doors.getChildren().get(0).getTranslateY();
 
-        setSpawnX(enterX + getDOOR_W() - 150);
-        setSpawnY(enterY + getDOOR_H() / 2 - getPLAYER_H() / 2);
-        
-//        setSpawnX(enterX - getPLAYER_W());
-//        setSpawnY(enterY + getDOOR_H() / 2 - getPLAYER_H() / 2);
+        int exitX = (int) doors.getChildren().get(1).getTranslateX();
+        int exitY = (int) doors.getChildren().get(1).getTranslateY();
 
-        spawnX = getSpawnX();
-        spawnY = getSpawnY();
+        setEnterSpawnX(enterX - getDOOR_W() - getPLAYER_W() - 35);
+        setEnterSpawnY(enterY + getDOOR_H() / 2 - getPLAYER_H() / 2);
 
+        setExitSpawnX(exitX + getDOOR_H() / 2 - getPLAYER_H() / 2 - 35);
+        setExitSpawnY(exitY + getDOOR_W() + 30);
 
-        root.getChildren().addAll(floor, walls, roomObjects, doors);
+        enterSpawnX = getEnterSpawnX();
+        enterSpawnY = getEnterSpawnY();
+
+        exitSpawnX = getExitSpawnX();
+        exitSpawnY = getExitSpawnY();
+
+        root.getChildren().addAll(floor, walls, roomObjects, interactables, doors, inv);
 
         scene = new Scene(root, getSCENE_W(), getSCENE_H());
 
@@ -180,4 +195,35 @@ public class Room4 extends Room {
         roomObjects.getChildren().addAll(plant1, plant2, plant3, plant4, plant5, plant6, trash1, trash2, trash3, trash4, couchL, couchR, prettyTable);
     }
 
+    @Override
+    public void createInteractables() {
+        interactables = new Group();
+
+        Flashlight flashlight = new Flashlight(300, 150, 50, 50, true);
+        Key key = new Key(600, 400, 50, 50);
+        interactables.getChildren().addAll(flashlight, key);
+    }
+    
+    public void displayInv() {
+        for (int i = 0; i < player.getInteractables().size(); i++) {
+            Rectangle rect = new Rectangle(20 + i * 80, 620, 70, 70);
+            inv.getChildren().add(rect);
+            if (player.getInteractables().get(i).getName().equals("battery")) {
+                Battery battery = new Battery(25 + i * 80, 640, 60, 30);
+                inv.getChildren().add(battery);
+            }
+            if (player.getInteractables().get(i).getName().equals("crowbar")) {
+                Crowbar crowbar = new Crowbar(25 + i * 80, 640, 65, 35);
+                inv.getChildren().add(crowbar);
+            }
+            if (player.getInteractables().get(i).getName().equals("flashlight")) {
+                Flashlight flashlight = new Flashlight(45 + i * 80, 640, 20, 40, false);
+                inv.getChildren().add(flashlight);
+            }
+            if (player.getInteractables().get(i).getName().equals("key")) {
+                Key key = new Key(45 + i * 80, 640, 20, 40);
+                inv.getChildren().add(key);
+            }
+        }
+    }
 }

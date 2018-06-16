@@ -22,8 +22,9 @@ public class Enemy extends Rectangle{
 
     private EnemyAction action = EnemyAction.NONE;
     private Node target;
-    private double speed = 10;
+    private double speed = 0.5;
     private HealthBar healthBar = new HealthBar(0.3);
+    private boolean alive = true;
 
     private Pane root;
     private ArrayList<Bullet> bullets;
@@ -103,6 +104,10 @@ public class Enemy extends Rectangle{
         }
 
         healthBar.relocate(this.getX(), this.getY() - 20);
+        
+        if (healthBar.getHealth() < 0) {
+            alive = false;
+        }
     }
 
     public void update(ArrayList<Node> all) {
@@ -160,6 +165,10 @@ public class Enemy extends Rectangle{
         }
 
         healthBar.relocate(this.getX(), this.getY() - 20);
+        
+        if (healthBar.getHealth() < 0) {
+            alive = false;
+        }
 
     }
 
@@ -299,5 +308,11 @@ public class Enemy extends Rectangle{
 
         return output;
     }
+    
+    public boolean isDead() {
+        return !alive;
+    }
+    
+    
 
 }

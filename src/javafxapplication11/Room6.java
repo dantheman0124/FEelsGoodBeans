@@ -15,6 +15,8 @@ public class Room6 extends Room {
     private ArrayList<Node> obj = new ArrayList<>();
     private KeyFrame frame = new KeyFrame(Duration.seconds(0.016), e -> {
         getPlayer().update(obj);
+        
+        displayInv();
 
         if (getPlayer().isColliding(doors.getChildren().get(0))) {
             CPTRewrite.prevRoom();
@@ -46,14 +48,23 @@ public class Room6 extends Room {
 
         int enterX = (int) doors.getChildren().get(0).getTranslateX();
         int enterY = (int) doors.getChildren().get(0).getTranslateY();
+        
+        int exitX = (int) doors.getChildren().get(1).getTranslateX();
+        int exitY = (int) doors.getChildren().get(1).getTranslateY();
 
-        setSpawnX(enterX + getDOOR_W());
-        setSpawnY(enterY + getDOOR_H() / 2 - getPLAYER_H() / 2);
+        setEnterSpawnX(enterX + getDOOR_W()-10);
+        setEnterSpawnY(enterY + getDOOR_H() / 2 - getPLAYER_H() / 2);
+        
+        setExitSpawnX(exitX - getDOOR_W() - getPLAYER_W() - 35);
+        setExitSpawnY(exitY + getDOOR_H() / 2 - getPLAYER_H() / 2);
 
-        spawnX = getSpawnX();
-        spawnY = getSpawnY();
+        enterSpawnX = getEnterSpawnX();
+        enterSpawnY = getEnterSpawnY();
+        
+        exitSpawnX = getExitSpawnX();
+        exitSpawnY = getExitSpawnY();
 
-        root.getChildren().addAll(floor, walls, doors, roomObjects);
+        root.getChildren().addAll(floor, walls, doors, roomObjects, inv);
 
         scene = new Scene(root, getSCENE_W(), getSCENE_H());
 
@@ -181,5 +192,28 @@ public class Room6 extends Room {
         TrashCan trash = new TrashCan(30, 525, 50, 50);
         
         roomObjects.getChildren().addAll(bookshelf, bookshelf2, bookshelf3, bookshelf4, bookshelf5, bookshelf6, bookshelf7, bookshelf8, bookshelf9, bookshelf10, workDesk1, desk, deskChair, deskChair2, deskChair3, deskChair4, desk2, desk3, deskChair5, deskChair6, deskChair7, deskChair8, deskChair9, deskChair10, deskChair11, deskChair12, deskChair13, trash, bookshelf11, bookshelf12, bookshelf13, bookshelf14);
+    }
+    
+    public void displayInv() {
+        for (int i = 0; i < player.getInteractables().size(); i++) {
+            Rectangle rect = new Rectangle(20 + i * 80, 620, 70, 70);
+            inv.getChildren().add(rect);
+            if (player.getInteractables().get(i).getName().equals("battery")) {
+                Battery battery = new Battery(25 + i * 80, 640, 60, 30);
+                inv.getChildren().add(battery);
+            }
+            if (player.getInteractables().get(i).getName().equals("crowbar")) {
+                Crowbar crowbar = new Crowbar(25 + i * 80, 640, 65, 35);
+                inv.getChildren().add(crowbar);
+            }
+            if (player.getInteractables().get(i).getName().equals("flashlight")) {
+                Flashlight flashlight = new Flashlight(45 + i * 80, 640, 20, 40, false);
+                inv.getChildren().add(flashlight);
+            }
+            if (player.getInteractables().get(i).getName().equals("key")) {
+                Key key = new Key(45 + i * 80, 640, 20, 40);
+                inv.getChildren().add(key);
+            }
+        }
     }
 }

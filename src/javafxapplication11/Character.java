@@ -2,12 +2,13 @@ package javafxapplication11;
 
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.ArrayList;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 import java.util.ArrayList;
+import javafx.geometry.Point2D;
+import javafx.scene.layout.Pane;
 
 public class Character extends Rectangle {
 
@@ -17,6 +18,12 @@ public class Character extends Rectangle {
     private Image image = null;
     private ImagePattern ip;
     private ArrayList<Interactables> interactables = new ArrayList<>();
+    private ArrayList<Bullet> bullets = new ArrayList<>();
+    
+    private characterAction lastAction = characterAction.NONE;
+    
+    private Pane root = new Pane();
+    private boolean shoot = false;
 
     private HealthBar healthBar = new HealthBar(1);
 
@@ -93,6 +100,10 @@ public class Character extends Rectangle {
             case NONE:
                 break;
         }
+        
+        if (action != characterAction.NONE) {
+            lastAction = action;
+        }
     }
 
     public void update(ArrayList<Node> objects) {
@@ -113,6 +124,15 @@ public class Character extends Rectangle {
                 case NONE:
                     break;
             }
+        }
+        
+        if (action != characterAction.NONE) {
+            lastAction = action;
+        }
+        
+        if (shoot) {
+            shootBullet();
+            shoot = false;
         }
     }
 
@@ -147,5 +167,56 @@ public class Character extends Rectangle {
     public void setHealthBar(HealthBar healthBar) {
         this.healthBar = healthBar;
     }
+
+    public boolean canShoot() {
+        return shoot;
+    }
+
+    public void setShoot(boolean shoot) {
+        this.shoot = shoot;
+    }
+    
+    public void shootBullet() {
+        Bullet bullet = new Bullet(this.getX(), this.getY(), 5);
+        bullet.setTranslateX(this.getTranslateX() + (this.getWidth() / 2));
+        bullet.setTranslateY(this.getTranslateY() + (this.getHeight()/ 2));
+        switch (lastAction) {
+            case RIGHT:
+                bullet.setVelocity(new Point2D(speed, 0));
+                break;
+            case LEFT:
+                bullet.setVelocity(new Point2D(-1 * speed, 0));
+                break;
+            case UP:
+                bullet.setVelocity(new Point2D(0, -1 * speed));
+                break;
+            case DOWN:
+                bullet.setVelocity(new Point2D(0, speed));
+                break;
+        }
+        
+        root.getChildren().add(bullet);
+        bullets.add(bullet);
+    }
+
+    public ArrayList<Bullet> getBullets() {
+        return bullets;
+    }
+
+    public void setBullets(ArrayList<Bullet> bullets) {
+        this.bullets = bullets;
+    }
+
+    public void setRoot(Pane root) {
+        this.root = root;
+    }
+    
+    
+    
+    
+    
+    
+    
+    
 
 }
