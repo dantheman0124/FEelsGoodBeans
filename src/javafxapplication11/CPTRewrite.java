@@ -8,7 +8,7 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
-import javafx.scene.shape.Rectangle;
+import javafx.scene.shape.Rectangle; 
 import javafx.stage.Stage;
 
 public class CPTRewrite extends Application {
@@ -32,6 +32,8 @@ public class CPTRewrite extends Application {
         rooms.add(new Room7());
         rooms.add(new Room8());
         rooms.add(new Room9());
+        
+        player.setRoot(rooms.get(1).getRoot());
 
         rooms.get(currentRoom).startEnter(player, currentRoom);
         stage = primaryStage;

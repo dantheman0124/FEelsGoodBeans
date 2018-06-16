@@ -31,6 +31,8 @@ public class Floor extends Furniture {
                 image = new Image(new FileInputStream("src/Sprites/BedRug.png"), 100, 100, true, true);
             } else if (floorPattern.equals("whiteTile")) {
                 image = new Image(new FileInputStream("src/Sprites/WhiteFloorTile.png"), 100, 100, true, true);
+            } else if (floorPattern.equals("blueTile")) {
+                image = new Image(new FileInputStream("src/Sprites/blueTile.png"), 100, 100, true, true);
             }
         } catch (IOException e) {
             System.out.println(e);

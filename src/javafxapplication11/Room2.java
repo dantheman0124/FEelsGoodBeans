@@ -20,8 +20,11 @@ public class Room2 extends Room {
 
     private KeyFrame frame = new KeyFrame(Duration.seconds(0.016), e -> {
         getPlayer().update(obj);
-        enemies.forEach(Enemy::update);
+        for (Enemy enemy : enemies) {
+            enemy.update(obj);
+        }
         bullets.forEach(Bullet::update);
+        player.getBullets().forEach(Bullet::update);
 
         for (Enemy enemy : enemies) {
             if (enemy.getAction() == EnemyAction.SHOOT) {
@@ -35,8 +38,23 @@ public class Room2 extends Room {
                 player.getHealthBar().update();
             }
         }
+        
+        for (Bullet bullet : player.getBullets()) {
+            for (Enemy enemy : enemies) {
+                if (enemy.isColliding(bullet)) {
+                    enemy.getHealthBar().loseHealth(1);
+                    enemy.getHealthBar().update();
+                }
+                
+                if (enemy.isDead()) {
+                    enemies.remove(enemy);
+                    root.getChildren().remove(enemy);
+                    root.getChildren().remove(enemy.getHealthBar());
+                }
+            }
+        }
 
-        displayInv();
+        //displayInv();
         for (int i = 0; i < interactables.getChildren().size(); i++) {
             if (getPlayer().getBoundsInParent().intersects(interactables.getChildren().get(i).getBoundsInParent())) {
                 player.getInteractables().add((Interactables) interactables.getChildren().get(i));
@@ -50,6 +68,8 @@ public class Room2 extends Room {
         } else if (getPlayer().isColliding(doors.getChildren().get(1))) {
             CPTRewrite.nextRoom();
         }
+        
+        
     }
     );
 
@@ -58,6 +78,8 @@ public class Room2 extends Room {
 
         wallsColor = Color.DARKRED;
         doorColor = Color.BISQUE;
+        
+        
 
         getTimeline().getKeyFrames().add(frame);
         getTimeline().setCycleCount(Timeline.INDEFINITE);

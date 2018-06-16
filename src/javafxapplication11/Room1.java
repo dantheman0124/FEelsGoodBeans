@@ -85,7 +85,7 @@ public class Room1 extends Room {
     @Override
     public void createWalls() {
         walls = new Group();
-
+        
         Rectangle doorEnter = (Rectangle) doors.getChildren().get(0);
         Rectangle doorExit = (Rectangle) doors.getChildren().get(1);
         Rectangle rect;
@@ -138,10 +138,14 @@ public class Room1 extends Room {
         walls.getChildren().add(rect);
 
         floor = new Group();
-        Rectangle bg = new Rectangle(0, 50, 900, 550);
-        bg.setFill(Color.KHAKI);
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 14; j++) {
+                Floor tile = new Floor(i * 100, j * 39+48, 120, 50, "bedroomWood");
+                floor.getChildren().add(tile);
+            }
+        }
         FloorMat mat = new FloorMat(800, 290, 75, 75);
-        floor.getChildren().addAll(bg, mat);
+        floor.getChildren().addAll(mat);
     }
 
     @Override
@@ -174,17 +178,17 @@ public class Room1 extends Room {
         Crate crate3 = new Crate(830, 68, 50, 50);
         Crate crate4 = new Crate(250, 530, 50, 50);
         Crate crate5 = new Crate(300, 530, 50, 50);
-        Table table = new Table(350, 250, 200, 100);
-        Bookcase bookcase = new Bookcase(100, 20, 110, 75);
-        Bookcase bookcase2 = new Bookcase(175, 20, 110, 75);
-        Bookcase bookcase3 = new Bookcase(250, 20, 110, 75);
-        Bookcase bookcase4 = new Bookcase(325, 20, 110, 75);
-        Desk desk = new Desk(20, 220, 100, 175);
-        DeskChair deskChair = new DeskChair(125, 280, 40, 40);
+        Table table = new Table(300, 260, 100, 100, "prettyTable");
+        Table table2 = new Table(490, 260, 100, 100, "prettyTable");
+        Office bookcase = new Office(10, 0, 170, 115, "cabinet");
+        Office bookcase2 = new Office(163, 16, 90, 97, "nineDrawers");
+        Office bookcase3 = new Office(235, -7, 90, 127, "lessDrawers");
+        Office bookcase4 = new Office(308, 24, 85, 85, "redGreen");
+        Table desk = new Table(9, 220, 90, 180, "sideDiningTable");
         IronBeam ironBeam = new IronBeam(500, 470, 50, 110);
         IronBeam ironBeam2 = new IronBeam(550, 470, 50, 110);
         IronBeam ironBeam3 = new IronBeam(600, 470, 50, 110);
-        ComputerDesk computerDesk = new ComputerDesk(600, 20, 100, 75);
+        Office workDesk = new Office(500, 20, 120, 95, "workDeskYellow");
 
         EventHandler objClick = new EventHandler() {
             @Override
@@ -198,11 +202,11 @@ public class Room1 extends Room {
             @Override
             public void handle(Event event) {
                 Node source = (Node) event.getSource();
-                System.out.println("You found a key!");
-                Key key = new Key(-100, -100, 0, 0);
-                CPTRewrite.player.getInteractables().add(key);
+                System.out.println("You found a flashlight!");
+                Flashlight flashlight = new Flashlight(-100, -100, 0, 0, false);
+                CPTRewrite.player.getInteractables().add(flashlight);
                 System.out.println(CPTRewrite.player.getInteractables().size());
-                root.getChildren().remove(source);
+                roomObjects.getChildren().remove(source);
             }
         };
 
@@ -212,7 +216,7 @@ public class Room1 extends Room {
         crate4.setOnMouseClicked(objClick);
         crate5.setOnMouseClicked(objClick);
 
-        roomObjects.getChildren().addAll(crate, crate2, crate3, crate4, crate5, table, bookcase, bookcase2, bookcase3, bookcase4, desk, deskChair, computerDesk, ironBeam, ironBeam2, ironBeam3);
+        roomObjects.getChildren().addAll(crate, crate2, crate3, crate4, crate5, table, table2, bookcase, bookcase2, bookcase3, bookcase4, desk, workDesk, ironBeam, ironBeam2, ironBeam3);
     }
 
     @Override
