@@ -136,13 +136,27 @@ public class Room8 extends Room {
         rect.setTranslateX(355);
         rect.setTranslateY(360);
         walls.getChildren().add(rect);
+        
+        //desk dividing wall (horizontal)
+            rect = new Rectangle(370, getWALL_W(), wallsColor);
+        rect.setTranslateX(525);
+        rect.setTranslateY(420);
+        walls.getChildren().add(rect);
+        
+        //desk dividing wall
+        rect = new Rectangle(getWALL_W(), 92, wallsColor);
+        rect.setTranslateX(525);
+        rect.setTranslateY(420);
+        walls.getChildren().add(rect);
 
         floor = new Group();
         Rectangle bg = new Rectangle(0, 50, 900, 550);
         FloorMat mat = new FloorMat(410, 500, 75, 75);
+        Bedroom rug2 = new Bedroom (725,220,80, 60, "purplerug");
+        rug2.setRotate(90);
         bg.setFill(Color.KHAKI);
 
-        floor.getChildren().addAll(bg, mat);
+        floor.getChildren().addAll(bg, mat, rug2);
 
         for (int i = 0; i < 7; i++) {
             for (int j = 0; j < 4; j++) {
@@ -213,8 +227,17 @@ public class Room8 extends Room {
         Bedroom armchairL = new Bedroom(x, y, 60, 70, "armchairL");
         Bedroom armchairR = new Bedroom(x + 120, y, 60, 70, "armchairR");
         Bedroom blackStool = new Bedroom(x + 65, y + 15, 50, 60, "blackstool");
+        
+        Room8Stuff piano = new Room8Stuff(390,80, 120,120, "piano");
+        Kitchen couch = new Kitchen(670, 200, 60,100,"couchL");
+        Kitchen couch2 = new Kitchen(800, 200, 60,100,"couchR");
+        Kitchen plant = new Kitchen (650, 455, 50, 60, "plant");
+        
+        Office workDesk1 = new Office(540, 425, 120, 95, "workDeskYellow");
+        Office workDesk2 = new Office(760, 425, 120, 95, "workDeskYellow");
+    
 
-        roomObjects.getChildren().addAll(sink, shower, toilet, bathtub, bed, bedsideH, bedsideV, blackStool, armchairL, armchairR);
+        roomObjects.getChildren().addAll(sink, shower, toilet, bathtub, bed, bedsideH, bedsideV, blackStool, armchairL, armchairR, piano, couch, couch2, plant, workDesk1, workDesk2);
     }
 
     public void displayInv() {
