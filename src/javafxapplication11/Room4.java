@@ -18,7 +18,7 @@ public class Room4 extends Room {
     private ArrayList<Node> obj = new ArrayList<>();
     private KeyFrame frame = new KeyFrame(Duration.seconds(0.016), e -> {
         getPlayer().update(obj);
-        
+
         displayInv();
         for (int i = 0; i < interactables.getChildren().size(); i++) {
             if (getPlayer().getBoundsInParent().intersects(interactables.getChildren().get(i).getBoundsInParent())) {
@@ -27,7 +27,7 @@ public class Room4 extends Room {
                 break;
             }
         }
-        
+
         if (getPlayer().isColliding(doors.getChildren().get(0))) {
             CPTRewrite.prevRoom();
         } else if (getPlayer().isColliding(doors.getChildren().get(1))) {
@@ -133,9 +133,14 @@ public class Room4 extends Room {
         walls.getChildren().add(rect);
 
         floor = new Group();
-        Rectangle bg = new Rectangle(0, 50, 900, 550);
-        bg.setFill(Color.KHAKI);
-        floor.getChildren().addAll(bg);
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 14; j++) {
+                Floor tile = new Floor(i * 100, j * 39 + 48, 120, 50, "bedroomWood");
+                floor.getChildren().add(tile);
+            }
+        }
+        FloorMat mat = new FloorMat(90, 70, 75, 75);
+        floor.getChildren().addAll(mat);
     }
 
     @Override
@@ -183,15 +188,13 @@ public class Room4 extends Room {
 
         int x = 300, y = 260;
         Kitchen couchL = new Kitchen(x, y, 60, 120, "couchL");
-        Table prettyTable = new Table(x+145, y, 84, 120, "prettyTable");
-        Kitchen couchR = new Kitchen(x+305, y, 60, 120, "couchR");
+        Table prettyTable = new Table(x + 145, y, 84, 120, "prettyTable");
+        Kitchen couchR = new Kitchen(x + 305, y, 60, 120, "couchR");
 
-        Kitchen plant1 = new Kitchen(270, y+10, 30, 90, "plant");
+        Kitchen plant1 = new Kitchen(270, y + 10, 30, 90, "plant");
         Kitchen plant2 = new Kitchen(260, y + 20, 30, 90, "plant");
         Kitchen plant3 = new Kitchen(270, y + 30, 30, 90, "plant");
 
-       
-        
         EventHandler enterCode = new EventHandler() {
             @Override
             public void handle(Event event) {
@@ -199,21 +202,21 @@ public class Room4 extends Room {
                 Node source = (Node) event.getSource();
                 System.out.print("Enter a passcode: ");
                 String passcode = input.next();
-                if(passcode.equals("8240")){
+                if (passcode.equals("8240")) {
                     Key key = new Key(-100, -100, 0, 0);
                     CPTRewrite.player.getInteractables().add(key);
                     source.setOnMouseClicked(null);
-                }else{
+                } else {
                     System.out.println("Wrong code.");
                 }
             }
         };
-        
+
         microwave.setOnMouseClicked(enterCode);
-        
+
         int n = 667;
-        Kitchen plant4 = new Kitchen(n, y+10, 30, 90, "plant");
-        Kitchen plant5 = new Kitchen(n+10, y + 20, 30, 90, "plant");
+        Kitchen plant4 = new Kitchen(n, y + 10, 30, 90, "plant");
+        Kitchen plant5 = new Kitchen(n + 10, y + 20, 30, 90, "plant");
         Kitchen plant6 = new Kitchen(n, y + 30, 30, 90, "plant");
 
         roomObjects.getChildren().addAll(table, table1, table2, sideTable, stoveTeapot, lightCounter, longCounter, stoveAndPots, microwave, cornerCounter);
@@ -228,7 +231,7 @@ public class Room4 extends Room {
         Key key = new Key(600, 400, 50, 50);
         interactables.getChildren().addAll(flashlight, key);
     }
-    
+
     public void displayInv() {
         for (int i = 0; i < player.getInteractables().size(); i++) {
             Rectangle rect = new Rectangle(20 + i * 80, 620, 70, 70);

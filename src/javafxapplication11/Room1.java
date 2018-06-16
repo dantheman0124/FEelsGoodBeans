@@ -108,7 +108,6 @@ public class Room1 extends Room {
         rect = new Rectangle(getWALL_W(), doorEnter.getTranslateY() - getHEADER_H(), wallsColor);
         rect.setTranslateX(0);
         rect.setTranslateY(getHEADER_H());
-
         walls.getChildren().add(rect);
 
         rect = new Rectangle(getDOOR_W(), getDOOR_H(), wallsColor);
@@ -137,10 +136,28 @@ public class Room1 extends Room {
 
         walls.getChildren().add(rect);
 
+        // wall under shelves
+        rect = new Rectangle(560, getWALL_W(), wallsColor);
+        rect.setTranslateX(345 - getWALL_W());
+        rect.setTranslateY(doorExit.getTranslateY() - getWALL_W());
+        walls.getChildren().add(rect);
+        
+        // wall left of shelves
+        rect = new Rectangle(getWALL_W(), 70, wallsColor);
+        rect.setTranslateX(345 - getWALL_W());
+        rect.setTranslateY(getHEADER_H() + getWALL_W());
+        walls.getChildren().add(rect);
+        
+        // wall below that^^ 
+        rect = new Rectangle(getWALL_W(), doorEnter.getTranslateY()-doorExit.getTranslateY(), wallsColor);
+        rect.setTranslateX(345 - getWALL_W());
+        rect.setTranslateY(doorExit.getTranslateY());
+        walls.getChildren().add(rect);
+
         floor = new Group();
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 14; j++) {
-                Floor tile = new Floor(i * 100, j * 39+48, 120, 50, "bedroomWood");
+                Floor tile = new Floor(i * 100, j * 39 + 48, 120, 50, "bedroomWood");
                 floor.getChildren().add(tile);
             }
         }
@@ -178,13 +195,13 @@ public class Room1 extends Room {
         Crate crate3 = new Crate(830, 68, 50, 50);
         Crate crate4 = new Crate(250, 530, 50, 50);
         Crate crate5 = new Crate(300, 530, 50, 50);
-        Table table = new Table(300, 260, 100, 100, "prettyTable");
-        Table table2 = new Table(490, 260, 100, 100, "prettyTable");
-        Office bookcase = new Office(10, 0, 170, 115, "cabinet");
-        Office bookcase2 = new Office(163, 16, 90, 97, "nineDrawers");
-        Office bookcase3 = new Office(235, -7, 90, 127, "lessDrawers");
-        Office bookcase4 = new Office(308, 24, 85, 85, "redGreen");
-        Table desk = new Table(9, 220, 90, 180, "sideDiningTable");
+        //Table table = new Table(300, 260, 100, 100, "prettyTable");
+        //Table table2 = new Table(490, 260, 100, 100, "prettyTable");
+        Office bookcase = new Office(345, 0, 170, 115, "cabinet");
+        //Office bookcase2 = new Office(163, 16, 90, 97, "nineDrawers");
+        Office bookcase3 = new Office(615, -7, 90, 127, "lessDrawers");
+        Office bookcase4 = new Office(688, 24, 85, 85, "redGreen");
+        Table desk = new Table(9, 200, 90, 180, "sideDiningTable");
         IronBeam ironBeam = new IronBeam(500, 470, 50, 110);
         IronBeam ironBeam2 = new IronBeam(550, 470, 50, 110);
         IronBeam ironBeam3 = new IronBeam(600, 470, 50, 110);
@@ -216,7 +233,7 @@ public class Room1 extends Room {
         crate4.setOnMouseClicked(objClick);
         crate5.setOnMouseClicked(objClick);
 
-        roomObjects.getChildren().addAll(crate, crate2, crate3, crate4, crate5, table, table2, bookcase, bookcase2, bookcase3, bookcase4, desk, workDesk, ironBeam, ironBeam2, ironBeam3);
+        roomObjects.getChildren().addAll(crate, crate2, crate3, crate4, crate5, bookcase, bookcase3, bookcase4, desk, workDesk, ironBeam, ironBeam2, ironBeam3);
     }
 
     @Override

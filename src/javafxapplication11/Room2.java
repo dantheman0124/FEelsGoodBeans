@@ -38,14 +38,14 @@ public class Room2 extends Room {
                 player.getHealthBar().update();
             }
         }
-        
+
         for (Bullet bullet : player.getBullets()) {
             for (Enemy enemy : enemies) {
                 if (enemy.isColliding(bullet)) {
                     enemy.getHealthBar().loseHealth(1);
                     enemy.getHealthBar().update();
                 }
-                
+
                 if (enemy.isDead()) {
                     enemies.remove(enemy);
                     root.getChildren().remove(enemy);
@@ -67,8 +67,7 @@ public class Room2 extends Room {
         } else if (getPlayer().isColliding(doors.getChildren().get(1))) {
             CPTRewrite.nextRoom();
         }
-        
-        
+
     }
     );
 
@@ -77,8 +76,6 @@ public class Room2 extends Room {
 
         wallsColor = Color.DARKRED;
         doorColor = Color.BISQUE;
-        
-        
 
         getTimeline().getKeyFrames().add(frame);
         getTimeline().setCycleCount(Timeline.INDEFINITE);
@@ -186,9 +183,14 @@ public class Room2 extends Room {
         walls.getChildren().add(rect);
 
         floor = new Group();
-        Rectangle bg = new Rectangle(0, 50, 900, 550);
-        bg.setFill(Color.KHAKI);
-        floor.getChildren().addAll(bg);
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 14; j++) {
+                Floor tile = new Floor(i * 100, j * 39 + 48, 120, 50, "bedroomWood");
+                floor.getChildren().add(tile);
+            }
+        }
+        FloorMat mat = new FloorMat(700, 70, 75, 75);
+        floor.getChildren().addAll(mat);
     }
 
     @Override

@@ -123,10 +123,14 @@ public class Room6 extends Room {
         walls.getChildren().add(rect);
 
         floor = new Group();
-        Rectangle bg = new Rectangle(0, 50, 900, 550);
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 14; j++) {
+                Floor tile = new Floor(i * 100, j * 39+48, 120, 50, "bedroomWood");
+                floor.getChildren().add(tile);
+            }
+        };
         FloorMat mat = new FloorMat(800, 390, 75, 75);
-        bg.setFill(Color.KHAKI);
-        floor.getChildren().addAll(bg, mat);
+        floor.getChildren().addAll(mat);
     }
 
     @Override

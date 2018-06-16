@@ -15,7 +15,7 @@ public class Room8 extends Room {
     private ArrayList<Node> obj = new ArrayList<>();
     private KeyFrame frame = new KeyFrame(Duration.seconds(0.016), e -> {
         getPlayer().update(obj);
-        
+
         displayInv();
 
         if (getPlayer().isColliding(doors.getChildren().get(0))) {
@@ -54,7 +54,7 @@ public class Room8 extends Room {
 
         setEnterSpawnX(enterX + getDOOR_H() / 2 - getPLAYER_H() / 2 - 35);
         setEnterSpawnY(enterY + getDOOR_W() + 15);
-        
+
         setExitSpawnX(exitX + getDOOR_H() / 2 - getPLAYER_H() / 2 - 35);
         setExitSpawnY(exitY - getPLAYER_H() - 35);
 
@@ -144,6 +144,16 @@ public class Room8 extends Room {
 
         floor.getChildren().addAll(bg, mat);
 
+        //bedroom floor
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 13; j++) {
+                Floor tile = new Floor(i * 105, j * 42 +45, 125, 55, "bedroomWood");
+                floor.getChildren().add(tile);
+            }
+        }
+        
+        //264
+        
         //bathroom floor
         for (int i = 0; i < 7; i++) {
             for (int j = 0; j < 4; j++) {
@@ -152,13 +162,6 @@ public class Room8 extends Room {
             }
         }
 
-        //bedroom floor
-        for (int i = 0; i < 4; i++) {
-            for (int j = 0; j < 8; j++) {
-                Floor tile = new Floor(258 - i * 100, 265 + j * 39, 120, 50, "bedroomWood");
-                floor.getChildren().add(tile);
-            }
-        }
 
 //        for (int i = 0; i < 12; i++) {
 //            for (int j = 0; j < 12; j++) {
@@ -166,15 +169,12 @@ public class Room8 extends Room {
 //                floor.getChildren().add(tile);
 //            }
 //        }
-
 //        for (int i = 0; i < 4; i++) {
 //            for (int j = 0; j < 8; j++) {
 //                Floor tile = new Floor(366 + i * 100, 70 + j * 39, 120, 50, "bedroomWood");
 //                floor.getChildren().add(tile);
 //            }
 //        }
-
-
     }
 
     @Override
