@@ -49,11 +49,12 @@ public class Room2 extends Room {
                 if (enemy.isDead()) {
                     enemies.remove(enemy);
                     root.getChildren().remove(enemy);
+                    root.getChildren().remove(enemy.getHealthBar());
                 }
             }
         }
 
-        displayInv();
+        //displayInv();
         for (int i = 0; i < interactables.getChildren().size(); i++) {
             if (getPlayer().getBoundsInParent().intersects(interactables.getChildren().get(i).getBoundsInParent())) {
                 player.getInteractables().add((Interactables) interactables.getChildren().get(i));

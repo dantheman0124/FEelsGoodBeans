@@ -8,7 +8,7 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
-import javafx.scene.shape.Rectangle;
+import javafx.scene.shape.Rectangle; 
 import javafx.stage.Stage;
 
 public class CPTRewrite extends Application {

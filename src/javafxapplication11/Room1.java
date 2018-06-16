@@ -85,7 +85,7 @@ public class Room1 extends Room {
     @Override
     public void createWalls() {
         walls = new Group();
-
+        
         Rectangle doorEnter = (Rectangle) doors.getChildren().get(0);
         Rectangle doorExit = (Rectangle) doors.getChildren().get(1);
         Rectangle rect;

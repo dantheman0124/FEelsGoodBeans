@@ -105,7 +105,7 @@ public class Enemy extends Rectangle{
 
         healthBar.relocate(this.getX(), this.getY() - 20);
         
-        if (healthBar.getHealth() < 0) {
+        if (healthBar.getHealth() <= 0) {
             alive = false;
         }
     }
