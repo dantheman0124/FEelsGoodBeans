@@ -49,6 +49,8 @@ public class Room {
     Group floor;
     Group roomObjects;
     Group interactables;
+    Group inv = new Group();
+    Group invisible;
     Pane root;
     Scene scene;
     static Group darkness;
@@ -67,11 +69,12 @@ public class Room {
     }
 
     public void fillRoom() {
-
     }
-
+    
+    public void displayInv(){
+    }
+    
     public void createInteractables() {
-
     }
 
     public void spawnPlayerEnter() {
@@ -220,7 +223,8 @@ public class Room {
                     player.setFill(ip);
                     player.setAction(characterAction.DOWN);
                     break;
-                default:
+                case SPACE:
+                    player.setShoot(true);
             }
         });
 
@@ -268,4 +272,10 @@ public class Room {
         darkOverlay.setOpacity(.70);
         darkness.getChildren().add(darkOverlay);
     }
+
+    public Pane getRoot() {
+        return root;
+    }
+    
+    
 }

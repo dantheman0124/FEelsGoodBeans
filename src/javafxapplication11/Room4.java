@@ -1,8 +1,11 @@
 package javafxapplication11;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.paint.Color;
 import javafx.scene.Group;
@@ -15,7 +18,16 @@ public class Room4 extends Room {
     private ArrayList<Node> obj = new ArrayList<>();
     private KeyFrame frame = new KeyFrame(Duration.seconds(0.016), e -> {
         getPlayer().update(obj);
-
+        
+        displayInv();
+        for (int i = 0; i < interactables.getChildren().size(); i++) {
+            if (getPlayer().getBoundsInParent().intersects(interactables.getChildren().get(i).getBoundsInParent())) {
+                player.getInteractables().add((Interactables) interactables.getChildren().get(i));
+                interactables.getChildren().remove(interactables.getChildren().get(i));
+                break;
+            }
+        }
+        
         if (getPlayer().isColliding(doors.getChildren().get(0))) {
             CPTRewrite.prevRoom();
         } else if (getPlayer().isColliding(doors.getChildren().get(1))) {
@@ -35,6 +47,7 @@ public class Room4 extends Room {
         createDoors();
         createWalls();
         fillRoom();
+        createInteractables();
 
         for (int i = 0; i < roomObjects.getChildren().size(); i++) {
             obj.add(roomObjects.getChildren().get(i));
@@ -62,7 +75,7 @@ public class Room4 extends Room {
         exitSpawnX = getExitSpawnX();
         exitSpawnY = getExitSpawnY();
 
-        root.getChildren().addAll(floor, walls, roomObjects, doors);
+        root.getChildren().addAll(floor, walls, roomObjects, interactables, doors, inv);
 
         scene = new Scene(root, getSCENE_W(), getSCENE_H());
 
@@ -177,6 +190,27 @@ public class Room4 extends Room {
         Kitchen plant2 = new Kitchen(260, y + 20, 30, 90, "plant");
         Kitchen plant3 = new Kitchen(270, y + 30, 30, 90, "plant");
 
+       
+        
+        EventHandler enterCode = new EventHandler() {
+            @Override
+            public void handle(Event event) {
+                Scanner input = new Scanner(System.in);
+                Node source = (Node) event.getSource();
+                System.out.print("Enter a passcode: ");
+                String passcode = input.next();
+                if(passcode.equals("8240")){
+                    Key key = new Key(-100, -100, 0, 0);
+                    CPTRewrite.player.getInteractables().add(key);
+                    source.setOnMouseClicked(null);
+                }else{
+                    System.out.println("Wrong code.");
+                }
+            }
+        };
+        
+        microwave.setOnMouseClicked(enterCode);
+        
         int n = 667;
         Kitchen plant4 = new Kitchen(n, y+10, 30, 90, "plant");
         Kitchen plant5 = new Kitchen(n+10, y + 20, 30, 90, "plant");
@@ -186,4 +220,35 @@ public class Room4 extends Room {
         roomObjects.getChildren().addAll(plant1, plant2, plant3, plant4, plant5, plant6, trash1, trash2, trash3, trash4, couchL, couchR, prettyTable);
     }
 
+    @Override
+    public void createInteractables() {
+        interactables = new Group();
+
+        Flashlight flashlight = new Flashlight(300, 150, 50, 50, true);
+        Key key = new Key(600, 400, 50, 50);
+        interactables.getChildren().addAll(flashlight, key);
+    }
+    
+    public void displayInv() {
+        for (int i = 0; i < player.getInteractables().size(); i++) {
+            Rectangle rect = new Rectangle(20 + i * 80, 620, 70, 70);
+            inv.getChildren().add(rect);
+            if (player.getInteractables().get(i).getName().equals("battery")) {
+                Battery battery = new Battery(25 + i * 80, 640, 60, 30);
+                inv.getChildren().add(battery);
+            }
+            if (player.getInteractables().get(i).getName().equals("crowbar")) {
+                Crowbar crowbar = new Crowbar(25 + i * 80, 640, 65, 35);
+                inv.getChildren().add(crowbar);
+            }
+            if (player.getInteractables().get(i).getName().equals("flashlight")) {
+                Flashlight flashlight = new Flashlight(45 + i * 80, 640, 20, 40, false);
+                inv.getChildren().add(flashlight);
+            }
+            if (player.getInteractables().get(i).getName().equals("key")) {
+                Key key = new Key(45 + i * 80, 640, 20, 40);
+                inv.getChildren().add(key);
+            }
+        }
+    }
 }

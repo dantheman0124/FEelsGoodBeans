@@ -16,6 +16,8 @@ public class Room6 extends Room {
     private KeyFrame frame = new KeyFrame(Duration.seconds(0.016), e -> {
         getPlayer().update(obj);
 
+        displayInv();
+
         if (getPlayer().isColliding(doors.getChildren().get(0))) {
             CPTRewrite.prevRoom();
         } else if (getPlayer().isColliding(doors.getChildren().get(1))) {
@@ -35,7 +37,7 @@ public class Room6 extends Room {
         createDoors();
         createWalls();
         fillRoom();
-        
+
         for (int i = 0; i < roomObjects.getChildren().size(); i++) {
             obj.add(roomObjects.getChildren().get(i));
         }
@@ -46,23 +48,23 @@ public class Room6 extends Room {
 
         int enterX = (int) doors.getChildren().get(0).getTranslateX();
         int enterY = (int) doors.getChildren().get(0).getTranslateY();
-        
+
         int exitX = (int) doors.getChildren().get(1).getTranslateX();
         int exitY = (int) doors.getChildren().get(1).getTranslateY();
 
-        setEnterSpawnX(enterX + getDOOR_W()-10);
+        setEnterSpawnX(enterX + getDOOR_W() - 10);
         setEnterSpawnY(enterY + getDOOR_H() / 2 - getPLAYER_H() / 2);
-        
+
         setExitSpawnX(exitX - getDOOR_W() - getPLAYER_W() - 35);
         setExitSpawnY(exitY + getDOOR_H() / 2 - getPLAYER_H() / 2);
 
         enterSpawnX = getEnterSpawnX();
         enterSpawnY = getEnterSpawnY();
-        
+
         exitSpawnX = getExitSpawnX();
         exitSpawnY = getExitSpawnY();
 
-        root.getChildren().addAll(floor, walls, doors, roomObjects);
+        root.getChildren().addAll(floor, walls, doors, roomObjects, inv);
 
         scene = new Scene(root, getSCENE_W(), getSCENE_H());
 
@@ -119,9 +121,9 @@ public class Room6 extends Room {
         rect.setTranslateY(doorExit.getTranslateY() + getDOOR_H());
 
         walls.getChildren().add(rect);
-        
+
         floor = new Group();
-        Rectangle bg  = new Rectangle(0, 50, 900, 550);
+        Rectangle bg = new Rectangle(0, 50, 900, 550);
         FloorMat mat = new FloorMat(800, 390, 75, 75);
         bg.setFill(Color.KHAKI);
         floor.getChildren().addAll(bg, mat);
@@ -161,35 +163,53 @@ public class Room6 extends Room {
         Office bookshelf8 = new Office(560, 9, 170, 115, "cabinet");
         Office bookshelf9 = new Office(714, 32, 87, 87, "greenBlue");
         Office bookshelf10 = new Office(795, 34, 85, 85, "redGreen");
-        
+
         Office bookshelf11 = new Office(435, 195, 90, 95, "redBlueLess");
         Office bookshelf12 = new Office(520, 195, 78, 95, "television");
         Office bookshelf13 = new Office(594, 195, 78, 95, "redBlueDark");
         Office bookshelf14 = new Office(670, 195, 85, 95, "redGreen");
-        
+
         Office workDesk1 = new Office(747, 195, 120, 95, "workDeskYellow");
 
-//        Desk desk = new Desk(195, 225, 75, 150);
-//        DeskChair deskChair = new DeskChair(280, 260, 30, 30);
-//        DeskChair deskChair2 = new DeskChair(280, 310, 30, 30);
-//        DeskChair deskChair3 = new DeskChair(155, 260, 30, 30);
-//        DeskChair deskChair4 = new DeskChair(155, 310, 30, 30);
-//        DeskChair deskChair5 = new DeskChair(220, 180, 30, 30);
-//        DeskChair deskChair6 = new DeskChair(220, 390, 30, 30);
-//
-//        Desk desk2 = new Desk(475, 430, 75, 150);
-//        Desk desk3 = new Desk(550, 430, 75, 150);
-//        DeskChair deskChair7 = new DeskChair(630, 455, 30, 30);
-//        DeskChair deskChair8 = new DeskChair(630, 525, 30, 30);
-//        DeskChair deskChair9 = new DeskChair(440, 455, 30, 30);
-//        DeskChair deskChair10 = new DeskChair(440, 525, 30, 30);
-//        DeskChair deskChair11 = new DeskChair(485, 400, 30, 30);
-//        DeskChair deskChair12 = new DeskChair(585, 400, 30, 30);
-//        DeskChair deskChair13 = new DeskChair(535, 400, 30, 30);
+        Table table = new Table(190, 225, 100, 100, "prettyTable");
+        Table table6 = new Table(190, 295, 100, 100, "prettyTable");
+        Chair deskChair = new Chair(280, 260, 30, 30, true);
+        Chair deskChair2 = new Chair(280, 320, 30, 30, true);
+        Chair deskChair3 = new Chair(155, 260, 30, 30, false);
+        Chair deskChair4 = new Chair(155, 320, 30, 30, false);
 
-        //TrashCan trash = new TrashCan(30, 525, 50, 50);
-        
-        roomObjects.getChildren().addAll(bookshelf, bookshelf2, bookshelf3, bookshelf4, bookshelf5, bookshelf6, bookshelf7, bookshelf8, bookshelf9, bookshelf10, workDesk1, bookshelf11, bookshelf12, bookshelf13, bookshelf14);
-        //roomObjects.getChildren().addAll(desk, deskChair, deskChair2, deskChair3, deskChair4, desk2, desk3, deskChair5, deskChair6, deskChair7, deskChair8, deskChair9, deskChair10, deskChair11, deskChair12, deskChair13, trash);
+        Table table2 = new Table(465, 420, 100, 100, "prettyTable");
+        Table table3 = new Table(540, 420, 100, 100, "prettyTable");
+        Table table4 = new Table(465, 490, 100, 100, "prettyTable");
+        Table table5 = new Table(540, 490, 100, 100, "prettyTable");
+        Chair deskChair7 = new Chair(630, 455, 30, 30, true);
+        Chair deskChair8 = new Chair(630, 525, 30, 30, true);
+        Chair deskChair9 = new Chair(440, 455, 30, 30, false);
+        Chair deskChair10 = new Chair(440, 525, 30, 30, false);
+
+        roomObjects.getChildren().addAll(bookshelf, bookshelf2, bookshelf3, bookshelf4, bookshelf5, bookshelf6, bookshelf7, bookshelf8, bookshelf9, bookshelf10, workDesk1, table, deskChair, deskChair2, deskChair3, deskChair4, table2, table3, table4, table5, deskChair7, deskChair8, deskChair9, deskChair10, bookshelf11, bookshelf12, bookshelf13, bookshelf14, table6);
+    }
+
+    public void displayInv() {
+        for (int i = 0; i < player.getInteractables().size(); i++) {
+            Rectangle rect = new Rectangle(20 + i * 80, 620, 70, 70);
+            inv.getChildren().add(rect);
+            if (player.getInteractables().get(i).getName().equals("battery")) {
+                Battery battery = new Battery(25 + i * 80, 640, 60, 30);
+                inv.getChildren().add(battery);
+            }
+            if (player.getInteractables().get(i).getName().equals("crowbar")) {
+                Crowbar crowbar = new Crowbar(25 + i * 80, 640, 65, 35);
+                inv.getChildren().add(crowbar);
+            }
+            if (player.getInteractables().get(i).getName().equals("flashlight")) {
+                Flashlight flashlight = new Flashlight(45 + i * 80, 640, 20, 40, false);
+                inv.getChildren().add(flashlight);
+            }
+            if (player.getInteractables().get(i).getName().equals("key")) {
+                Key key = new Key(45 + i * 80, 640, 20, 40);
+                inv.getChildren().add(key);
+            }
+        }
     }
 }

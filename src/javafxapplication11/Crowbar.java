@@ -11,7 +11,7 @@ public class Crowbar extends Interactables {
     private ImagePattern ip;
 
     public Crowbar(double x, double y, double width, double height) {
-        super(x, y, width, height);
+        super(x, y, width, height, "crowbar");
         try {
             image = new Image(new FileInputStream("src/Sprites/crowbar.png"), 100, 100, true, true);
         } catch (IOException e) {

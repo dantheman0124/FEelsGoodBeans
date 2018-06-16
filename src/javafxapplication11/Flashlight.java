@@ -5,15 +5,13 @@ import java.io.IOException;
 import javafx.scene.image.Image;
 import javafx.scene.paint.ImagePattern;
 
-public class Flashlight extends Interactables {
-
-    
+public class Flashlight extends Interactables { 
     private Image image = null;
     private ImagePattern ip;
     private boolean on = false;
 
     public Flashlight(double x, double y, double width, double height, boolean on) {
-        super(x, y, width, height);
+        super(x, y, width, height, "flashlight");
         try {
             if (on){
             image = new Image(new FileInputStream("src/Sprites/flashlight_on.png"), 100, 100, true, true);
