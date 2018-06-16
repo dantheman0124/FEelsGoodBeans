@@ -94,14 +94,12 @@ public class Room1 extends Room {
         rect = new Rectangle(getROOM_W(), getWALL_W(), wallsColor);
         rect.setTranslateX(0);
         rect.setTranslateY(getHEADER_H());
-
         walls.getChildren().add(rect);
 
         // bottom wall
         rect = new Rectangle(getROOM_W(), getWALL_W(), wallsColor);
         rect.setTranslateX(0);
         rect.setTranslateY(getROOM_H() - getWALL_W() + getHEADER_H());
-
         walls.getChildren().add(rect);
 
         // left wall above door
@@ -119,21 +117,18 @@ public class Room1 extends Room {
         rect = new Rectangle(getWALL_W(), getROOM_H() + getHEADER_H() - getDOOR_H() - doorEnter.getTranslateY(), wallsColor);
         rect.setTranslateX(0);
         rect.setTranslateY(doorEnter.getTranslateY() + getDOOR_H());
-
         walls.getChildren().add(rect);
 
         // right wall above door
         rect = new Rectangle(getWALL_W(), doorExit.getTranslateY() - getHEADER_H(), wallsColor); // to find how long the vertical wall has to be, make it the length of the x coordinate of the door
         rect.setTranslateX(getROOM_W() - getWALL_W());
         rect.setTranslateY(getHEADER_H());
-
         walls.getChildren().add(rect);
 
         // right wall under door
         rect = new Rectangle(getWALL_W(), getROOM_H() + getHEADER_H() - doorExit.getTranslateY() - getDOOR_H(), wallsColor);
         rect.setTranslateX(getROOM_W() - getWALL_W());
         rect.setTranslateY(doorExit.getTranslateY() + getDOOR_H());
-
         walls.getChildren().add(rect);
 
         // wall under shelves
@@ -146,6 +141,12 @@ public class Room1 extends Room {
         rect = new Rectangle(getWALL_W(), 70, wallsColor);
         rect.setTranslateX(345 - getWALL_W());
         rect.setTranslateY(getHEADER_H() + getWALL_W());
+        walls.getChildren().add(rect);
+        
+        // wall below that^^ 
+        rect = new Rectangle(getWALL_W(), doorEnter.getTranslateY()-doorExit.getTranslateY(), wallsColor);
+        rect.setTranslateX(345 - getWALL_W());
+        rect.setTranslateY(doorExit.getTranslateY());
         walls.getChildren().add(rect);
         
         // wall below that^^ 
