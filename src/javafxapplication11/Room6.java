@@ -1,8 +1,11 @@
 package javafxapplication11;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.paint.Color;
 import javafx.scene.Group;
@@ -16,8 +19,7 @@ public class Room6 extends Room {
     private KeyFrame frame = new KeyFrame(Duration.seconds(0.016), e -> {
         getPlayer().update(obj);
 
-        displayInv();
-
+        //displayInv();
         if (getPlayer().isColliding(doors.getChildren().get(0))) {
             CPTRewrite.prevRoom();
         } else if (getPlayer().isColliding(doors.getChildren().get(1))) {
@@ -169,7 +171,7 @@ public class Room6 extends Room {
         Office bookshelf13 = new Office(594, 195, 78, 95, "redBlueDark");
         Office bookshelf14 = new Office(670, 195, 85, 95, "redGreen");
 
-        Office workDesk1 = new Office(747, 195, 120, 95, "workDeskYellow");
+        ComputerDesk workDesk1 = new ComputerDesk(760, 200, 100, 75);
 
         Table table = new Table(190, 225, 100, 100, "prettyTable");
         Table table6 = new Table(190, 295, 100, 100, "prettyTable");
@@ -183,9 +185,26 @@ public class Room6 extends Room {
         Table table4 = new Table(465, 490, 100, 100, "prettyTable");
         Table table5 = new Table(540, 490, 100, 100, "prettyTable");
         Chair deskChair7 = new Chair(630, 455, 30, 30, true);
-       Chair deskChair8 = new Chair(630, 525, 30, 30, true);
+        Chair deskChair8 = new Chair(630, 525, 30, 30, true);
         Chair deskChair9 = new Chair(440, 455, 30, 30, false);
         Chair deskChair10 = new Chair(440, 525, 30, 30, false);
+        
+        EventHandler enterCode = new EventHandler() {
+            @Override
+            public void handle(Event event) {
+                Scanner input = new Scanner(System.in);
+                Node source = (Node) event.getSource();
+                System.out.print("Enter a passcode: ");
+                String passcode = input.next();
+                if(passcode.equals("tuttifrutti")){
+                    source.setOnMouseClicked(null);
+                }else{
+                    System.out.println("Wrong code.");
+                }
+            }
+        };
+        
+        workDesk1.setOnMouseClicked(enterCode);
 
         roomObjects.getChildren().addAll(bookshelf, bookshelf2, bookshelf3, bookshelf4, bookshelf5, bookshelf6, bookshelf7, bookshelf8, bookshelf9, bookshelf10, workDesk1, table, deskChair, deskChair2, deskChair3, deskChair4, table2, table3, table4, table5, deskChair7, deskChair8, deskChair9, deskChair10, bookshelf11, bookshelf12, bookshelf13, bookshelf14, table6);
     }

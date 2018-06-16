@@ -31,7 +31,7 @@ public class Room3 extends Room {
     private KeyFrame frame = new KeyFrame(Duration.seconds(0.016), e -> {
         getPlayer().update(obj);
 
-        displayInv();
+        //displayInv();
         for (int i = 0; i < interactables.getChildren().size(); i++) {
             if (getPlayer().getBoundsInParent().intersects(interactables.getChildren().get(i).getBoundsInParent())) {
                 player.getInteractables().add((Interactables) interactables.getChildren().get(i));
@@ -202,7 +202,7 @@ public class Room3 extends Room {
 
         // door exit (1)
         door = new Rectangle(getDOOR_W(), getDOOR_H(), doorColor);
-        door.setTranslateX(0);
+        door.setTranslateX(20);
         door.setTranslateY(200 + getHEADER_H());
 
         doors.getChildren().add(door);

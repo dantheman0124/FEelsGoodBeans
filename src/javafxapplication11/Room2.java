@@ -53,7 +53,7 @@ public class Room2 extends Room {
             }
         }
 
-        displayInv();
+        //displayInv();
         for (int i = 0; i < interactables.getChildren().size(); i++) {
             if (getPlayer().getBoundsInParent().intersects(interactables.getChildren().get(i).getBoundsInParent())) {
                 player.getInteractables().add((Interactables) interactables.getChildren().get(i));
@@ -226,15 +226,14 @@ public class Room2 extends Room {
         OilDrum bod3 = new OilDrum(465, 265, 70, 70, true);
         OilDrum od1 = new OilDrum(423, 265, 30, 57, false);
         OilDrum od2 = new OilDrum(383, 265, 30, 57, false);
-        OilDrum od3 = new OilDrum(775, 120, 30, 57, false);
-        OilDrum od4 = new OilDrum(775, 150, 30, 57, false);
-        Table table = new Table(170, 180, 100, 60);
+        OilDrum od3 = new OilDrum(750, 135, 30, 57, false);
+        OilDrum od4 = new OilDrum(750, 165, 30, 57, false);
         TrashCan trash1 = new TrashCan(857, 300, 20, 25);
         TrashCan trash2 = new TrashCan(857, 330, 20, 25);
         TrashCan trash3 = new TrashCan(857, 360, 20, 25);
         TrashCan trash4 = new TrashCan(857, 270, 20, 25);
 
-        roomObjects.getChildren().addAll(crate, crate2, crate3, crate4, crate5, bod1, bod2, bod3, od1, od2, od3, od4, table, trash1, trash2, trash3, trash4);
+        roomObjects.getChildren().addAll(crate, crate2, crate3, crate4, crate5, bod1, bod2, bod3, od1, od2, od3, od4, trash1, trash2, trash3, trash4);
     }
 
     @Override
