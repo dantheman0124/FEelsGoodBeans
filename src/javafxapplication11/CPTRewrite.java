@@ -46,7 +46,7 @@ public class CPTRewrite extends Application {
 //        primaryStage.show();
 
         if (main) {
-            rooms.add(new Room9());
+            rooms.add(new Room1());
             rooms.add(new Room2());
             rooms.add(new Room3());
             rooms.add(new Room4());
