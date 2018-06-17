@@ -13,6 +13,7 @@ import javafx.scene.Node;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 import javafxapplication11.CPTRewrite;
+import java.math.*;
 
 public class Room1 extends Room {
 
@@ -190,6 +191,17 @@ public class Room1 extends Room {
         IronBeam ironBeam3 = new IronBeam(600, 470, 50, 110);
         Office workDesk = new Office(500, 20, 120, 95, "workDeskYellow");
 
+        // distance formula code
+        
+
+        
+        
+        
+        
+        
+        
+        
+        
         EventHandler objClick = new EventHandler() {
             @Override
             public void handle(Event event) {
