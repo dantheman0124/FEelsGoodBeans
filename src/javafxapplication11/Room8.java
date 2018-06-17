@@ -137,12 +137,24 @@ public class Room8 extends Room {
         rect.setTranslateY(360);
         walls.getChildren().add(rect);
 
-        floor = new Group();
-        Rectangle bg = new Rectangle(0, 50, 900, 550);
-        FloorMat mat = new FloorMat(410, 500, 75, 75);
-        bg.setFill(Color.KHAKI);
+        //desk dividing wall (horizontal)
+        rect = new Rectangle(370, getWALL_W(), wallsColor);
+        rect.setTranslateX(525);
+        rect.setTranslateY(400);
+        walls.getChildren().add(rect);
 
-        floor.getChildren().addAll(bg, mat);
+        //desk dividing wall
+        rect = new Rectangle(getWALL_W(), 100, wallsColor);
+        rect.setTranslateX(525);
+        rect.setTranslateY(400);
+        walls.getChildren().add(rect);
+
+        floor = new Group();
+        FloorMat mat = new FloorMat(410, 500, 75, 75);
+        Bedroom rug2 = new Bedroom(725, 220, 80, 60, "purplerug");
+        rug2.setRotate(90);
+
+        floor.getChildren().addAll(rug2);
 
         //bedroom floor
         for (int i = 0; i < 9; i++) {
@@ -152,7 +164,6 @@ public class Room8 extends Room {
             }
         }
 
-        //264
         //bathroom floor
         for (int i = 0; i < 7; i++) {
             for (int j = 0; j < 4; j++) {
@@ -160,19 +171,8 @@ public class Room8 extends Room {
                 floor.getChildren().add(tile);
             }
         }
+        floor.getChildren().add(mat);
 
-//        for (int i = 0; i < 12; i++) {
-//            for (int j = 0; j < 12; j++) {
-//                Floor tile = new Floor(374 + i * 39, 70 + j * 39, 40, 40, "whiteTile");
-//                floor.getChildren().add(tile);
-//            }
-//        }
-//        for (int i = 0; i < 4; i++) {
-//            for (int j = 0; j < 8; j++) {
-//                Floor tile = new Floor(366 + i * 100, 70 + j * 39, 120, 50, "bedroomWood");
-//                floor.getChildren().add(tile);
-//            }
-//        }
     }
 
     @Override
@@ -201,7 +201,7 @@ public class Room8 extends Room {
         roomObjects = new Group();
 
         Bathroom sink = new Bathroom(185, 40, 115, 70, "sink");
-        Bathroom shower = new Bathroom(9, 0, 120, 120, "shower");
+        Bathroom shower = new Bathroom(9, 0, 122, 118, "shower");
         Bathroom toilet = new Bathroom(295, 160, 60, 75, "toilet");
         Bathroom bathtub = new Bathroom(300, 50, 58, 110, "bathtub");
         Bathroom extraCounter = new Bathroom(131, 46, 54, 64, "extraCounter");
@@ -215,7 +215,27 @@ public class Room8 extends Room {
         Bedroom armchairR = new Bedroom(x + 120, y, 60, 70, "armchairR");
         Bedroom blackStool = new Bedroom(x + 65, y + 15, 50, 60, "blackstool");
 
-        roomObjects.getChildren().addAll(sink, shower, toilet, bathtub, extraCounter, bed, bedsideH, bedsideV, blackStool, armchairL, armchairR);
+        Room8Stuff piano = new Room8Stuff(390, 80, 120, 120, "piano");
+        Kitchen couch = new Kitchen(670, 200, 60, 100, "couchL");
+        Kitchen couch2 = new Kitchen(800, 200, 60, 100, "couchR");
+        Kitchen plant = new Kitchen(650, 435, 50, 60, "plant");
+
+        Office workDesk1 = new Office(540, 405, 120, 95, "workDeskYellow");
+        Office workDesk2 = new Office(760, 405, 120, 95, "workDeskYellow");
+        
+        //fixing photoshop errors
+        Rectangle rect = new Rectangle(getWALL_W(), getHEADER_H(), Color.WHITE);
+        rect.setTranslateX(0);
+        rect.setTranslateY(0);
+        Rectangle rect1 = new Rectangle(50, 12, Color.WHITE);
+        rect1.setTranslateX(180);
+        rect1.setTranslateY(30);
+        Rectangle rect2 = new Rectangle(65, 12, Color.WHITE);
+        rect2.setTranslateX(240);
+        rect2.setTranslateY(30);
+
+        roomObjects.getChildren().addAll(sink, shower, toilet, bathtub, extraCounter, bed, bedsideH, bedsideV, blackStool, armchairL, armchairR, piano, couch, couch2, plant, workDesk1, workDesk2);
+        roomObjects.getChildren().addAll(rect, rect1, rect2);
     }
 
     public void displayInv() {
