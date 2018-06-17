@@ -190,7 +190,7 @@ public class Room2 extends Room {
                 floor.getChildren().add(tile);
             }
         }
-        FloorMat mat = new FloorMat(700, 70, 75, 75);
+        FloorMat mat = new FloorMat(590, 70, 75, 75);
         floor.getChildren().addAll(mat);
     }
 
@@ -229,13 +229,13 @@ public class Room2 extends Room {
         OilDrum bod3 = new OilDrum(465, 265, 70, 70, true);
         OilDrum od1 = new OilDrum(423, 265, 30, 57, false);
         OilDrum od2 = new OilDrum(383, 265, 30, 57, false);
-        OilDrum od3 = new OilDrum(775, 120, 30, 57, false);
-        OilDrum od4 = new OilDrum(775, 150, 30, 57, false);
+        OilDrum od3 = new OilDrum(775, 130, 30, 57, false);
+        OilDrum od4 = new OilDrum(775, 160, 30, 57, false);
         Table table = new Table(170, 180, 100, 60);
-        TrashCan trash1 = new TrashCan(857, 300, 20, 25);
-        TrashCan trash2 = new TrashCan(857, 330, 20, 25);
-        TrashCan trash3 = new TrashCan(857, 360, 20, 25);
-        TrashCan trash4 = new TrashCan(857, 270, 20, 25);
+        TrashCan trash1 = new TrashCan(857, 310, 20, 25);
+        TrashCan trash2 = new TrashCan(857, 340, 20, 25);
+        TrashCan trash3 = new TrashCan(857, 370, 20, 25);
+        TrashCan trash4 = new TrashCan(857, 280, 20, 25);
 
         roomObjects.getChildren().addAll(crate, crate2, crate3, crate4, crate5, bod1, bod2, bod3, od1, od2, od3, od4, table, trash1, trash2, trash3, trash4);
     }
