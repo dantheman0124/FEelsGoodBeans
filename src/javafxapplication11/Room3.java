@@ -196,7 +196,7 @@ public class Room3 extends Room {
         // door enter (0)
         door = new Rectangle(getDOOR_H(), getDOOR_W(), doorColor);
         door.setTranslateX(getROOM_W() - getDOOR_H() - 200);
-        door.setTranslateY(getHEADER_H() + getROOM_H() - getDOOR_W());
+        door.setTranslateY(getHEADER_H() + getROOM_H() - getDOOR_W() - 15);
 
         doors.getChildren().add(door);
 

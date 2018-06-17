@@ -13,6 +13,8 @@ import javafx.util.Duration;
 
 public class Room2 extends Room {
 
+    public static boolean nextRoom = false;
+
     private ArrayList<Node> obj = new ArrayList<>();
 
     private ArrayList<Enemy> enemies = new ArrayList<Enemy>();
@@ -38,14 +40,14 @@ public class Room2 extends Room {
                 player.getHealthBar().update();
             }
         }
-        
+
         for (Bullet bullet : player.getBullets()) {
             for (Enemy enemy : enemies) {
                 if (enemy.isColliding(bullet)) {
                     enemy.getHealthBar().loseHealth(1);
                     enemy.getHealthBar().update();
                 }
-                
+
                 if (enemy.isDead()) {
                     enemies.remove(enemy);
                     root.getChildren().remove(enemy);
@@ -67,8 +69,12 @@ public class Room2 extends Room {
         } else if (getPlayer().isColliding(doors.getChildren().get(1))) {
             CPTRewrite.nextRoom();
         }
-        
-        
+
+        if (nextRoom) {
+            walls.getChildren().remove(walls.getChildren().size() - 1);
+            doors.getChildren().get(doors.getChildren().size() - 1).setTranslateY(doors.getChildren().get(doors.getChildren().size() - 1).getTranslateY() + 16);
+            nextRoom = false;
+        }
     }
     );
 
@@ -77,8 +83,6 @@ public class Room2 extends Room {
 
         wallsColor = Color.DARKRED;
         doorColor = Color.BISQUE;
-        
-        
 
         getTimeline().getKeyFrames().add(frame);
         getTimeline().setCycleCount(Timeline.INDEFINITE);
@@ -189,6 +193,13 @@ public class Room2 extends Room {
         Rectangle bg = new Rectangle(0, 50, 900, 550);
         bg.setFill(Color.KHAKI);
         floor.getChildren().addAll(bg);
+
+        //invis wall
+        rect = new Rectangle(doorExit.getTranslateX(), getWALL_W(), wallsColor);
+        rect.setTranslateX(150);
+        rect.setTranslateY(50);
+
+        walls.getChildren().add(rect);
     }
 
     @Override

@@ -143,6 +143,7 @@ public class Room8 extends Room {
 
         floor.getChildren().addAll(bg, mat);
 
+        //bathroom floor
         for (int i = 0; i < 7; i++) {
             for (int j = 0; j < 4; j++) {
                 Floor tile = new Floor(305 - i * 50, 70 + j * 50, 50, 50, "bathroomGrey");
@@ -150,6 +151,7 @@ public class Room8 extends Room {
             }
         }
 
+        //bedroom floor
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 8; j++) {
                 Floor tile = new Floor(258 - i * 100, 265 + j * 39, 120, 50, "bedroomWood");

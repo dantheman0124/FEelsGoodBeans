@@ -138,10 +138,14 @@ public class Room1 extends Room {
         walls.getChildren().add(rect);
 
         floor = new Group();
-        Rectangle bg = new Rectangle(0, 50, 900, 550);
-        bg.setFill(Color.KHAKI);
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 14; j++) {
+                Floor tile = new Floor(i * 100, j * 39+48, 120, 50, "bedroomWood");
+                floor.getChildren().add(tile);
+            }
+        }
         FloorMat mat = new FloorMat(800, 290, 75, 75);
-        floor.getChildren().addAll(bg, mat);
+        floor.getChildren().addAll(mat);
     }
 
     @Override
@@ -200,9 +204,10 @@ public class Room1 extends Room {
                 Node source = (Node) event.getSource();
                 System.out.println("You found a flashlight!");
                 Flashlight flashlight = new Flashlight(-100, -100, 0, 0, false);
-                CPTRewrite.player.getInteractables().add(flashlight);
+                CPTRewrite.inventory.add(flashlight);
                 System.out.println(CPTRewrite.player.getInteractables().size());
                 roomObjects.getChildren().remove(source);
+                Room2.nextRoom = true;
             }
         };
 
