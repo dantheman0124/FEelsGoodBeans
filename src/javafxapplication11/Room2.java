@@ -40,7 +40,8 @@ public class Room2 extends Room {
         }
 
         for (Bullet bullet : player.getBullets()) {
-            for (Enemy enemy : enemies) {
+            for (int i = 0; i< enemies.size(); i++) {
+                Enemy enemy = enemies.get(i);
                 if (enemy.isColliding(bullet)) {
                     enemy.getHealthBar().loseHealth(1);
                     enemy.getHealthBar().update();
