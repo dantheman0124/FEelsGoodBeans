@@ -18,32 +18,32 @@ public class CPTRewrite extends Application {
     public static Stage stage;
     static int currentRoom = 0;
     static ArrayList<Room> rooms = new ArrayList<Room>();
-    private static boolean main = false;
+    private static boolean main = true;
 
     public static ArrayList<Interactables> inventory = new ArrayList<>();
     public static Character player = new Character(30, 0, true, 50, 50, inventory);
 
     @Override
     public void start(Stage primaryStage) throws InterruptedException {
-        Group root = new Group();
-        Scene scene = new Scene(root, 500, 500);
-        
-        Button game = new Button("Play Game");
-        game.setTranslateX(200);
-        game.setTranslateY(250);
-        
-        Button instruction = new Button("Instructions");
-        instruction.setTranslateX(200);
-        instruction.setTranslateY(300);
-        
-        Text title = new Text("Main Menu Demo!");
-        title.setTranslateX(125);
-        title.setTranslateY(30);
-        title.setFont(Font.font(30));
-        
-        root.getChildren().addAll(game, instruction, title);
-        primaryStage.setScene(scene);
-        primaryStage.show();
+//        Group root = new Group();
+//        Scene scene = new Scene(root, 500, 500);
+//        
+//        Button game = new Button("Play Game");
+//        game.setTranslateX(200);
+//        game.setTranslateY(250);
+//        
+//        Button instruction = new Button("Instructions");
+//        instruction.setTranslateX(200);
+//        instruction.setTranslateY(300);
+//        
+//        Text title = new Text("Main Menu Demo!");
+//        title.setTranslateX(125);
+//        title.setTranslateY(30);
+//        title.setFont(Font.font(30));
+//        
+//        root.getChildren().addAll(game, instruction, title);
+//        primaryStage.setScene(scene);
+//        primaryStage.show();
 
         if (main) {
             rooms.add(new Room1());
