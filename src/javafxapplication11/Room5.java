@@ -15,7 +15,7 @@ public class Room5 extends Room {
     private ArrayList<Node> obj = new ArrayList<>();
     private KeyFrame frame = new KeyFrame(Duration.seconds(0.016), e -> {
         getPlayer().update(obj);
-        
+
         displayInv();
 
         if (getPlayer().isColliding(doors.getChildren().get(0))) {
@@ -91,43 +91,83 @@ public class Room5 extends Room {
         rect = new Rectangle(doorEnter.getTranslateX(), getWALL_W(), wallsColor);
         rect.setTranslateX(0);
         rect.setTranslateY(getHEADER_H() + getROOM_H() - getWALL_W());
+        walls.getChildren().add(rect);
 
+        // vertical wall right of door
+        rect = new Rectangle(getWALL_W(), 110, wallsColor);
+        rect.setTranslateX(doorEnter.getTranslateX() + getDOOR_H());
+        rect.setTranslateY(490);
         walls.getChildren().add(rect);
 
         // bottom wall right of door
         rect = new Rectangle(getROOM_W() - doorEnter.getTranslateX() - getDOOR_H(), getWALL_W(), wallsColor);
         rect.setTranslateX(doorEnter.getTranslateX() + getDOOR_H());
         rect.setTranslateY(getHEADER_H() + getROOM_H() - getWALL_W());
-
         walls.getChildren().add(rect);
 
         //left wall 
         rect = new Rectangle(getWALL_W(), getROOM_H(), wallsColor);
         rect.setTranslateX(0);
         rect.setTranslateY(getHEADER_H());
-
         walls.getChildren().add(rect);
 
         // right wall above door
         rect = new Rectangle(getWALL_W(), doorExit.getTranslateY() - getHEADER_H(), wallsColor); // to find how long the vertical wall has to be, make it the length of the x coordinate of the door
         rect.setTranslateX(getROOM_W() - getWALL_W());
         rect.setTranslateY(getHEADER_H());
-
         walls.getChildren().add(rect);
 
         // right wall under door
         rect = new Rectangle(getWALL_W(), getROOM_H() + getHEADER_H() - doorExit.getTranslateY() - getDOOR_H(), wallsColor);
         rect.setTranslateX(getROOM_W() - getWALL_W());
         rect.setTranslateY(doorExit.getTranslateY() + getDOOR_H());
-
         walls.getChildren().add(rect);
+
+        // vertical wall right of lockers
+        rect = new Rectangle(getWALL_W(), 150, wallsColor);
+        rect.setTranslateX(310);
+        rect.setTranslateY(getHEADER_H() + getWALL_W());
+        walls.getChildren().add(rect);
+
+        // horizontal wall below of lockers
+        rect = new Rectangle(160, getWALL_W(), wallsColor);
+        rect.setTranslateX(20);
+        rect.setTranslateY(doorExit.getTranslateY() + 50);
+        walls.getChildren().add(rect);
+
+        // horizontal wall bottom right of lockers
+        rect = new Rectangle(120, getWALL_W(), wallsColor);
+        rect.setTranslateX(280);
+        rect.setTranslateY(doorExit.getTranslateY() + 50);
+        walls.getChildren().add(rect);
+
+        // horizontal wall below computers
+        rect = new Rectangle(200, getWALL_W(), wallsColor);
+        rect.setTranslateX(500);
+        rect.setTranslateY(doorExit.getTranslateY() + 50);
+        walls.getChildren().add(rect);
+
+        // wall right of computers
+        rect = new Rectangle(getWALL_W(), doorExit.getTranslateY() - getHEADER_H() - getWALL_W(), wallsColor);
+        rect.setTranslateX(750);
+        rect.setTranslateY(getHEADER_H() + getWALL_W());
+        walls.getChildren().add(rect);
+
+        // wall diagonal near computers
+        for (int i = 0; i < 70; i++) {
+            rect = new Rectangle(getWALL_W(), getWALL_W() - 10, wallsColor);
+            rect.setTranslateX(750 - i);
+            rect.setTranslateY(getHEADER_H() + getWALL_W() + i + 70);
+            walls.getChildren().add(rect);
+        }
 
         floor = new Group();
         Rectangle bg = new Rectangle(0, 50, 900, 550);
         FloorMat mat = new FloorMat(800, 190, 75, 75);
-        bg.setFill(Color.KHAKI);
+        bg.setFill(Color.KHAKI);            // background khaki colour
         floor.getChildren().addAll(bg);
 
+        // tile floor
         for (int i = 0; i < 11; i++) {
             for (int j = 0; j < 6; j++) {
                 Floor tile = new Floor(i * 95, 43 + j * 90, 110, 107, "blueTile");
@@ -135,7 +175,8 @@ public class Room5 extends Room {
                 floor.getChildren().add(tile);
             }
         }
-        floor.getChildren().addAll(mat);
+
+        floor.getChildren().addAll(mat);    //mat
     }
 
     @Override
@@ -162,69 +203,55 @@ public class Room5 extends Room {
     @Override
     public void fillRoom() {
         roomObjects = new Group();
-        ScienceDesk desk = new ScienceDesk(30, 30, 66, 66);
-        ScienceDesk desk2 = new ScienceDesk(146, 30, 66, 66);
-        ScienceDesk desk3 = new ScienceDesk(264, 30, 66, 66);
-        HealingMachine machine = new HealingMachine(830, 50, 48, 61);
-        HealingMachine machine2 = new HealingMachine(782, 50, 48, 61);
-        HealingMachine machine3 = new HealingMachine(830, 510, 48, 61);
-        HealingMachine machine4 = new HealingMachine(782, 510, 48, 61);
 
-        DisplayShelves shelf = new DisplayShelves(600, 234, 40, 44, true);
-        DisplayShelves shelf2 = new DisplayShelves(600, 256, 40, 44, true);
-        DisplayShelves shelf3 = new DisplayShelves(600, 278, 40, 44, true);
-        DisplayShelves shelf4 = new DisplayShelves(600, 300, 40, 44, true);
-        DisplayShelves shelf5 = new DisplayShelves(600, 322, 40, 44, true);
-        DisplayShelves shelf6 = new DisplayShelves(600, 344, 40, 44, true);
-        DisplayShelves shelf7 = new DisplayShelves(600, 366, 40, 44, true);
-        DisplayShelves shelf8 = new DisplayShelves(400, 234, 40, 44, true);
-        DisplayShelves shelf9 = new DisplayShelves(400, 256, 40, 44, true);
-        DisplayShelves shelf10 = new DisplayShelves(400, 278, 40, 44, true);
-        DisplayShelves shelf11 = new DisplayShelves(400, 300, 40, 44, true);
-        DisplayShelves shelf12 = new DisplayShelves(400, 322, 40, 44, true);
-        DisplayShelves shelf13 = new DisplayShelves(400, 344, 40, 44, true);
-        DisplayShelves shelf14 = new DisplayShelves(400, 366, 40, 44, true);
-        DisplayShelves shelf15 = new DisplayShelves(200, 234, 40, 44, true);
-        DisplayShelves shelf16 = new DisplayShelves(200, 256, 40, 44, true);
-        DisplayShelves shelf17 = new DisplayShelves(200, 278, 40, 44, true);
-        DisplayShelves shelf18 = new DisplayShelves(200, 300, 40, 44, true);
-        DisplayShelves shelf19 = new DisplayShelves(200, 322, 40, 44, true);
-        DisplayShelves shelf20 = new DisplayShelves(200, 344, 40, 44, true);
-        DisplayShelves shelf21 = new DisplayShelves(200, 366, 40, 44, true);
-        TrashCan trash = new TrashCan(100, 60, 20, 25);
-        TrashCan trash2 = new TrashCan(216, 60, 20, 25);
-        TrashCan trash3 = new TrashCan(334, 60, 20, 25);
-        DeskChair chair = new DeskChair(45, 90, 25, 30);
-        DeskChair chair2 = new DeskChair(161, 90, 25, 30);
-        DeskChair chair3 = new DeskChair(277, 90, 25, 30);
-        Desk desk4 = new Desk(220, 490, 88, 88);
-        Desk desk5 = new Desk(390, 490, 88, 88);
-        Desk desk6 = new Desk(560, 490, 88, 88);
-        Chair chair4 = new Chair(195, 500, 25, 30, false);
-        Chair chair5 = new Chair(195, 540, 25, 30, false);
-        Chair chair6 = new Chair(308, 500, 25, 30, true);
-        Chair chair7 = new Chair(308, 540, 25, 30, true);
-        Chair chair8 = new Chair(365, 500, 25, 30, false);
-        Chair chair9 = new Chair(365, 540, 25, 30, false);
-        Chair chair10 = new Chair(478, 500, 25, 30, true);
-        Chair chair11 = new Chair(478, 540, 25, 30, true);
-        Chair chair12 = new Chair(535, 500, 25, 30, false);
-        Chair chair13 = new Chair(535, 540, 25, 30, false);
-        Chair chair14 = new Chair(648, 500, 25, 30, true);
-        Chair chair15 = new Chair(648, 540, 25, 30, true);
+        // computers and chairs
+        int x = 360, y = 30;
+        for (int i = 0; i < 4; i++) {
+            Lab desk = new Lab(x + i * 101, y, 66, 66, "scienceDesk");
+            Chair chair = new Chair(x + 15 + i * 101, y + 60, 25, 30, "deskChair");
+            roomObjects.getChildren().addAll(desk, chair);
+        }
 
-        Lab beakers = new Lab(550, 500, 150, 60, "beakers");
-        Lab lockers = new Lab(600, 30, 90, 100, "lockers");
-        Lab lockers1 = new Lab(690, 30, 90, 100, "lockers");
-        Lab lockers2 = new Lab(510, 30, 90, 100, "lockers");
+        x = 778;
+        y = 50;
+        Lab machine = new Lab(x, y, 48, 61, "healingMachine");
+        Lab machine2 = new Lab(x + 48, y, 48, 61, "healingMachine");
+        Lab machine3 = new Lab(x, y + 460, 48, 61, "healingMachine");
+        Lab machine4 = new Lab(x + 48, y + 460, 48, 61, "healingMachine");
 
-        roomObjects.getChildren().addAll(desk, desk2, desk3, shelf, shelf2, shelf3, shelf4, shelf5, shelf6, shelf7, shelf8, shelf9, shelf10, shelf11, shelf12, shelf13, shelf14, shelf15, shelf16, shelf17, shelf18, shelf19, shelf20, shelf21);
-        //roomObjects.getChildren().addAll(machine, machine2, machine3, machine4, trash, trash2, trash3, 
-        roomObjects.getChildren().addAll(chair, chair2, chair3, desk4, desk5, chair4, chair5, chair6, chair7, chair8, chair9, chair10, chair11);
+        // display shelves
+        Lab shelf;
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 5; j++) {
+                shelf = new Lab(130 + i * 200, 285 + j * 22, 40, 44, "displayShelf");
+                roomObjects.getChildren().addAll(shelf);
+            }
+        }
+
+        // table and chairs at the bottom
+        for (int j = 260; j < 451; j+=170) {
+            for (int i = 0; i < 2; i++) {
+                Chair chairL = new Chair(j, 500 + i * 40, 25, 30, false);
+                Chair chairR = new Chair(j + 113, 500 + i * 40, 25, 30, true);
+                roomObjects.getChildren().addAll(chairL, chairR);
+            }
+            Table desk = new Table(j + 25, 490, 88, 88, "blueTable");
+            roomObjects.getChildren().addAll(desk);
+        }
+
+        Lab beakers = new Lab(595, 500, 150, 60, "beakers");
+
+        x = 120;
+        Lab lockers = new Lab(x, 30, 90, 100, "lockers");
+        Lab lockers1 = new Lab(x + 90, 30, 90, 100, "lockers");
+        Lab lockers2 = new Lab(x - 90, 30, 90, 100, "lockers");
+
+        roomObjects.getChildren().addAll(machine, machine2, machine3, machine4);
+        //roomObjects.getChildren().addAll(desk4, desk5, chair4, chair5, chair6, chair7, chair8, chair9, chair10, chair11);
         roomObjects.getChildren().addAll(beakers, lockers, lockers1, lockers2);
 
     }
-    
+
     public void displayInv() {
         for (int i = 0; i < player.getInteractables().size(); i++) {
             Rectangle rect = new Rectangle(20 + i * 80, 620, 70, 70);
