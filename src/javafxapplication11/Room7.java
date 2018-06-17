@@ -140,6 +140,13 @@ public class Room7 extends Room {
         div3.setFill(wallsColor);
 
         walls.getChildren().addAll(div1, div2, div3);
+        
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 14; j++) {
+                Floor tile = new Floor(i * 100, j * 39+48, 120, 50, "bedroomWood");
+                floor.getChildren().add(tile);
+            }
+        };
 
     }
 

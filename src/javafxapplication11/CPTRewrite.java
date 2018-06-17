@@ -8,7 +8,7 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
-import javafx.scene.shape.Rectangle;
+import javafx.scene.shape.Rectangle; 
 import javafx.stage.Stage;
 
 public class CPTRewrite extends Application {
@@ -23,7 +23,7 @@ public class CPTRewrite extends Application {
     @Override
     public void start(Stage primaryStage) throws InterruptedException {
 
-        rooms.add(new Room1());
+        rooms.add(new Room4());
         rooms.add(new Room2());
         rooms.add(new Room3());
         rooms.add(new Room4());

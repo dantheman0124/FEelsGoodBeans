@@ -3,6 +3,8 @@ package javafxapplication11;
 import java.util.ArrayList;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.geometry.Point2D;
 import javafx.scene.Scene;
 import javafx.scene.paint.Color;
@@ -14,6 +16,7 @@ import javafx.util.Duration;
 public class Room2 extends Room {
 
     public static boolean nextRoom = false;
+    public static boolean haveBattery = false;
 
     private ArrayList<Node> obj = new ArrayList<>();
 
@@ -51,6 +54,7 @@ public class Room2 extends Room {
                 if (enemy.isDead()) {
                     enemies.remove(enemy);
                     root.getChildren().remove(enemy);
+                    root.getChildren().remove(enemy.getHealthBar());
                 }
             }
         }
@@ -70,10 +74,11 @@ public class Room2 extends Room {
             CPTRewrite.nextRoom();
         }
 
-        if (nextRoom) {
+        if (nextRoom && haveBattery) {
             walls.getChildren().remove(walls.getChildren().size() - 1);
             doors.getChildren().get(doors.getChildren().size() - 1).setTranslateY(doors.getChildren().get(doors.getChildren().size() - 1).getTranslateY() + 16);
             nextRoom = false;
+            haveBattery = false;
         }
     }
     );
@@ -189,17 +194,22 @@ public class Room2 extends Room {
 
         walls.getChildren().add(rect);
 
-        floor = new Group();
-        Rectangle bg = new Rectangle(0, 50, 900, 550);
-        bg.setFill(Color.KHAKI);
-        floor.getChildren().addAll(bg);
-
-        //invis wall
+        //in front of door
         rect = new Rectangle(doorExit.getTranslateX(), getWALL_W(), wallsColor);
         rect.setTranslateX(150);
-        rect.setTranslateY(50);
+        rect.setTranslateY(getHEADER_H());
 
         walls.getChildren().add(rect);
+
+        floor = new Group();
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 14; j++) {
+                Floor tile = new Floor(i * 100, j * 39 + 48, 120, 50, "bedroomWood");
+                floor.getChildren().add(tile);
+            }
+        }
+        FloorMat mat = new FloorMat(590, 70, 75, 75);
+        floor.getChildren().addAll(mat);
     }
 
     @Override
@@ -227,6 +237,18 @@ public class Room2 extends Room {
     public void fillRoom() {
         roomObjects = new Group();
 
+        EventHandler findItem = new EventHandler() {
+            @Override
+            public void handle(Event event) {
+                Node source = (Node) event.getSource();
+                System.out.println("You found a battery!");
+                Battery battery = new Battery(-100, -100, 0, 0);
+                CPTRewrite.inventory.add(battery);
+                roomObjects.getChildren().remove(source);
+                haveBattery = true;
+            }
+        };
+
         Crate crate = new Crate(20, 470, 50, 50);
         Crate crate2 = new Crate(20, 500, 50, 50);
         Crate crate3 = new Crate(20, 530, 50, 50);
@@ -237,14 +259,10 @@ public class Room2 extends Room {
         OilDrum bod3 = new OilDrum(465, 265, 70, 70, true);
         OilDrum od1 = new OilDrum(423, 265, 30, 57, false);
         OilDrum od2 = new OilDrum(383, 265, 30, 57, false);
-        OilDrum od3 = new OilDrum(750, 135, 30, 57, false);
-        OilDrum od4 = new OilDrum(750, 165, 30, 57, false);
-        TrashCan trash1 = new TrashCan(857, 300, 20, 25);
-        TrashCan trash2 = new TrashCan(857, 330, 20, 25);
-        TrashCan trash3 = new TrashCan(857, 360, 20, 25);
-        TrashCan trash4 = new TrashCan(857, 270, 20, 25);
+        
+        crate.setOnMouseClicked(findItem);
 
-        roomObjects.getChildren().addAll(crate, crate2, crate3, crate4, crate5, bod1, bod2, bod3, od1, od2, od3, od4, trash1, trash2, trash3, trash4);
+        roomObjects.getChildren().addAll(crate, crate2, crate3, crate4, crate5, bod1, bod2, bod3, od1, od2);
     }
 
     @Override

@@ -31,6 +31,8 @@ public class Bathroom extends Furniture {
                 image = new Image(new FileInputStream("src/Sprites/Toilet.png"), 100, 100, true, true);
             } else if (bathroom.equals("bathtub")) {
                 image = new Image(new FileInputStream("src/Sprites/Bathtub.png"), 100, 100, true, true);
+            } else if (bathroom.equals("extraCounter")) {
+                image = new Image(new FileInputStream("src/Sprites/extraCounter.png"), 100, 100, true, true);
             } 
         } catch (IOException e) {
             System.out.println(e);

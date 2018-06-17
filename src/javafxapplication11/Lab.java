@@ -27,7 +27,16 @@ public class Lab extends Furniture {
                 image = new Image(new FileInputStream("src/Sprites/beakers.png"), 100, 100, true, true);
             } else if (labType.equals("lockers")) {
                 image = new Image(new FileInputStream("src/Sprites/lockers.png"), 100, 100, true, true);
+            } else if (labType.equals("healingMachine")) {
+                image = new Image(new FileInputStream("src/Sprites/Healing_Machine.png"), 100, 100, true, true);
+            } else if (labType.equals("scienceDesk")) {
+                image = new Image(new FileInputStream("src/Sprites/Science_Computer_Desk.png"), 100, 100, true, true);
+            } else if (labType.equals("displayShelf")) {
+                image = new Image(new FileInputStream("src/Sprites/Display_Shelf.png"), 100, 100, true, true);
+            } else if (labType.equals("researchShelf")) {
+                image = new Image(new FileInputStream("src/Sprites/Research_Shelf.png"), 100, 100, true, true);
             }
+
         } catch (IOException e) {
         }
         ip = new ImagePattern(image);
