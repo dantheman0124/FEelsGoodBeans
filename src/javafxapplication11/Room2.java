@@ -32,19 +32,53 @@ public class Room2 extends Room {
             }
         }
 
-        for (Bullet bullet : bullets) {
+        for (int i = 0; i<bullets.size(); i++) {
+            Bullet bullet = bullets.get(i);
+            for (int j = 0; j < roomObjects.getChildren().size(); j++) {
+                if (bullet.getBoundsInParent().intersects(roomObjects.getChildren().get(j).getBoundsInParent())) {
+                    root.getChildren().remove(bullet);
+                    bullets.remove(bullet);
+                }
+            }
+
+            for (int k = 0; k < walls.getChildren().size(); k++) {
+                if (bullet.getBoundsInParent().intersects(walls.getChildren().get(k).getBoundsInParent())) {
+                    root.getChildren().remove(bullet);
+                    bullets.remove(bullet);
+                }
+            }
+
             if (player.isColliding((Node) bullet)) {
+                root.getChildren().remove(bullet);
+                bullets.remove(bullet);
                 player.getHealthBar().loseHealth(1);
                 player.getHealthBar().update();
             }
         }
 
-        for (Bullet bullet : player.getBullets()) {
-            for (int i = 0; i< enemies.size(); i++) {
-                Enemy enemy = enemies.get(i);
+        for (int i = 0; i < player.getBullets().size(); i++) {
+            Bullet bullet = player.getBullets().get(i);
+            for (int j = 0; j < roomObjects.getChildren().size(); j++) {
+                if (bullet.getBoundsInParent().intersects(roomObjects.getChildren().get(j).getBoundsInParent())) {
+                    root.getChildren().remove(bullet);
+                    player.getBullets().remove(bullet);
+                }
+            }
+
+            for (int k = 0; k < walls.getChildren().size(); k++) {
+                if (bullet.getBoundsInParent().intersects(walls.getChildren().get(k).getBoundsInParent())) {
+                    root.getChildren().remove(bullet);
+                    player.getBullets().remove(bullet);
+                }
+            }
+
+            for (int l = 0; l < enemies.size(); l++) {
+                Enemy enemy = enemies.get(l);
                 if (enemy.isColliding(bullet)) {
                     enemy.getHealthBar().loseHealth(1);
                     enemy.getHealthBar().update();
+                    root.getChildren().remove(bullet);
+                    player.getBullets().remove(bullet);
                 }
 
                 if (enemy.isDead()) {
