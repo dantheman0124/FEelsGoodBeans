@@ -215,7 +215,7 @@ public class Room8 extends Room {
         Bedroom armchairR = new Bedroom(x + 120, y, 60, 70, "armchairR");
         Bedroom blackStool = new Bedroom(x + 65, y + 15, 50, 60, "blackstool");
 
-        Room8Stuff piano = new Room8Stuff(390, 80, 120, 120, "piano");
+        Bedroom piano = new Bedroom(390, 80, 120, 120, "piano");
         Kitchen couch = new Kitchen(670, 200, 60, 100, "couchL");
         Kitchen couch2 = new Kitchen(800, 200, 60, 100, "couchR");
         Kitchen plant = new Kitchen(650, 435, 50, 60, "plant");
