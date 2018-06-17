@@ -50,7 +50,10 @@ public class Table extends Furniture {
                 image = new Image(new FileInputStream("src/Sprites/brownTableHorizontal.png"), 100, 100, true, true);
             } else if (tableType.equals("brownTableV")) {
                 image = new Image(new FileInputStream("src/Sprites/brownTableVertical.png"), 100, 100, true, true);
+            } else if (tableType.equals("greenDiningTable")) {
+                image = new Image(new FileInputStream("src/Sprites/Dining_Table.png"), 100, 100, true, true);
             }
+
         } catch (IOException e) {
         }
         ip = new ImagePattern(image);

@@ -181,9 +181,9 @@ public class Room4 extends Room {
     public void fillRoom() {
         roomObjects = new Group();
 
-        DiningTable table = new DiningTable(90, 450, 145, 120);
-        DiningTable table1 = new DiningTable(665, 450, 145, 120);
-        DiningTable table2 = new DiningTable(368, 450, 145, 120);
+        Table table = new Table(90, 450, 145, 120, "greenDiningTable");
+        Table table1 = new Table(665, 450, 145, 120, "greenDiningTable");
+        Table table2 = new Table(368, 450, 145, 120, "greenDiningTable");
 
         Table sideTable = new Table(10, 200, 90, 180, "sideDiningTable");
 

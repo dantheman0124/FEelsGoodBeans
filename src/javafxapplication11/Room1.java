@@ -203,6 +203,7 @@ public class Room1 extends Room {
         Crate crate4 = new Crate(250, 530, 50, 50);
         Crate crate5 = new Crate(300, 530, 50, 50);
 
+        // group of tables and chairs
         int x = 430, y = 310;
         for (int i = 0; i < 2; i++) {
             Chair chairL = new Chair(x + i * 230, y + 35 + i * 110, 30, 30, false);
@@ -211,16 +212,14 @@ public class Room1 extends Room {
             roomObjects.getChildren().addAll(table, chairL, chairR);
         }
 
+        // bookshelves and desk
         Office bookcase = new Office(345, 0, 170, 115, "cabinet");
-        //Office bookcase2 = new Office(163, 16, 90, 97, "nineDrawers");
         Office bookcase3 = new Office(615, -7, 90, 127, "lessDrawers");
         Office bookcase4 = new Office(688, 24, 85, 85, "redGreen");
         Table desk = new Table(9, 200, 90, 180, "sideDiningTable");
-//        IronBeam ironBeam = new IronBeam(500, 470, 50, 110);
-//        IronBeam ironBeam2 = new IronBeam(550, 470, 50, 110);
-//        IronBeam ironBeam3 = new IronBeam(600, 470, 50, 110);
         Office workDesk = new Office(500, 20, 120, 95, "workDeskYellow");
 
+        // cabinets in top left corner
         Bedroom cabinetClosed1 = new Bedroom(30, 20, 65, 110, "cabinetsClosed");
         Bedroom cabinetClosed2 = new Bedroom(95, 20, 65, 110, "cabinetsClosed");
         Bedroom cabinetOpen = new Bedroom(160, 21, 65, 113, "cabinetsOpen");
@@ -253,7 +252,6 @@ public class Room1 extends Room {
         crate5.setOnMouseClicked(objClick);
 
         roomObjects.getChildren().addAll(crate, crate2, crate3, crate4, crate5, bookcase, bookcase3, bookcase4, desk, workDesk);
-        //roomObjects.getChildren().addAll(ironBeam, ironBeam2, ironBeam3, table2);
         roomObjects.getChildren().addAll(cabinetClosed1, cabinetClosed2, cabinetOpen, cabinetClosed4);
     }
 
