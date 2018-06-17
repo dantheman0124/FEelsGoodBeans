@@ -5,7 +5,6 @@
  */
 package javafxapplication11;
 
-
 import java.io.FileInputStream;
 import java.io.IOException;
 import javafx.scene.image.Image;
@@ -46,6 +45,10 @@ public class Office extends Furniture {
                 image = new Image(new FileInputStream("src/Sprites/Television.png"), 100, 100, true, true);
             } else if (officeType.equals("workDeskYellow")) {
                 image = new Image(new FileInputStream("src/Sprites/workDeskYellow.png"), 100, 100, true, true);
+            } else if (officeType.equals("computer")) {
+                image = new Image(new FileInputStream("src/Sprites/Computer.png"), 100, 100, true, true);
+            }else if (officeType.equals("computerTower")) {
+                image = new Image(new FileInputStream("src/Sprites/ComputerTower.png"), 100, 100, true, true);
             }
         } catch (IOException e) {
         }
