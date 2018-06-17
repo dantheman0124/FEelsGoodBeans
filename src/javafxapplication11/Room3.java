@@ -81,6 +81,22 @@ public class Room3 extends Room {
 
             current.setFill(Color.PURPLE);
         }
+        
+        for (int i = 0; i < grid.length; i++) {
+            grid[i][0].getWalls()[3] = null;
+            root.getChildren().remove(grid[i][0].getWalls()[3]);
+            
+            grid[i][grid[0].length - 1].getWalls()[1] = null;
+            root.getChildren().remove(grid[i][grid[0].length - 1].getWalls()[3]);
+        }
+        
+        for (int i = 0; i < grid[0].length; i++) {
+            grid[0][1].getWalls()[0] = null;
+            root.getChildren().remove(grid[0][1].getWalls()[0]);
+            
+            grid[grid.length - 1][i].getWalls()[2] = null;
+            root.getChildren().remove(grid[grid.length - 1][i].getWalls()[2]);
+        }
 
         for (int i = 0; i < grid.length; i++) {
             for (int j = 0; j < grid[0].length; j++) {

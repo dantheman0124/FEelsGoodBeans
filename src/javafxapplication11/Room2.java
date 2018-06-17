@@ -37,7 +37,7 @@ public class Room2 extends Room {
             }
         }
 
-        for (int i = 0; i<bullets.size(); i++) {
+        for (int i = 0; i < bullets.size(); i++) {
             Bullet bullet = bullets.get(i);
             for (int j = 0; j < roomObjects.getChildren().size(); j++) {
                 if (bullet.getBoundsInParent().intersects(roomObjects.getChildren().get(j).getBoundsInParent())) {
@@ -48,6 +48,13 @@ public class Room2 extends Room {
 
             for (int k = 0; k < walls.getChildren().size(); k++) {
                 if (bullet.getBoundsInParent().intersects(walls.getChildren().get(k).getBoundsInParent())) {
+                    root.getChildren().remove(bullet);
+                    bullets.remove(bullet);
+                }
+            }
+
+            for (int k = 0; k < doors.getChildren().size(); k++) {
+                if (bullet.getBoundsInParent().intersects(doors.getChildren().get(k).getBoundsInParent())) {
                     root.getChildren().remove(bullet);
                     bullets.remove(bullet);
                 }
@@ -72,6 +79,13 @@ public class Room2 extends Room {
 
             for (int k = 0; k < walls.getChildren().size(); k++) {
                 if (bullet.getBoundsInParent().intersects(walls.getChildren().get(k).getBoundsInParent())) {
+                    root.getChildren().remove(bullet);
+                    player.getBullets().remove(bullet);
+                }
+            }
+
+            for (int k = 0; k < doors.getChildren().size(); k++) {
+                if (bullet.getBoundsInParent().intersects(doors.getChildren().get(k).getBoundsInParent())) {
                     root.getChildren().remove(bullet);
                     player.getBullets().remove(bullet);
                 }
