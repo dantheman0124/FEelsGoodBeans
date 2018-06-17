@@ -195,6 +195,8 @@ public class Room6 extends Room {
         Office bookshelf14 = new Office(670, y, 85, 95, "redGreen");
 
         Office workDesk1 = new Office(747, 195, 120, 95, "workDeskYellow");
+        Office computer = new Office(778, 200, 30, 40, "computer");
+        Office computerTower = new Office(808, 245, 18, 36, "computerTower");
 
         int x = 95;
         y = 405;
@@ -207,9 +209,9 @@ public class Room6 extends Room {
         Chair chairL = new Chair(x + 79, y + 70, 35, 60, "brownChairLeft");
         Chair chairL2 = new Chair(x + 79, y + 95, 35, 60, "brownChairLeft");
 
-        x = 350;
+        x = 340;
         y = 520;
-        int diff = 190;
+        int diff = 210;
         for (int i = 0; i < 2; i++) {
             Table tableH = new Table(x + i * diff, y, 120, 55, "brownTableH");
             Chair chairD = new Chair(x + 20 + i * diff, y - 20, 30, 55, "brownChairDown");
@@ -219,7 +221,7 @@ public class Room6 extends Room {
             roomObjects.getChildren().addAll(chairD, chairD2, chairL3, chairR3, tableH);
         }
 
-        roomObjects.getChildren().addAll(bookshelf, bookshelf2, bookshelf3, bookshelf4, bookshelf5, bookshelf6, bookshelf7, bookshelf8, bookshelf9, bookshelf10, workDesk1);
+        roomObjects.getChildren().addAll(bookshelf, bookshelf2, bookshelf3, bookshelf4, bookshelf5, bookshelf6, bookshelf7, bookshelf8, bookshelf9, bookshelf10, computerTower, workDesk1, computer);
         roomObjects.getChildren().addAll(bookshelf11, bookshelf12, bookshelf13, bookshelf14);
         roomObjects.getChildren().addAll(chairDown, table1, chairR, chairR2, chairL, chairL2, table2, chairUp);
 
