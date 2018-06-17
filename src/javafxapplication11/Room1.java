@@ -85,7 +85,7 @@ public class Room1 extends Room {
     @Override
     public void createWalls() {
         walls = new Group();
-        
+
         Rectangle doorEnter = (Rectangle) doors.getChildren().get(0);
         Rectangle doorExit = (Rectangle) doors.getChildren().get(1);
         Rectangle rect;
@@ -113,6 +113,18 @@ public class Room1 extends Room {
         rect.setTranslateY(getROOM_H() - getDOOR_H() - 50 + getHEADER_H());
         walls.getChildren().add(rect);
 
+        // horizontal wall right of that^^ 
+        rect = new Rectangle(150, getWALL_W(), wallsColor);
+        rect.setTranslateX(getWALL_W());
+        rect.setTranslateY(doorEnter.getTranslateY() - getWALL_W());
+        walls.getChildren().add(rect);
+
+        // another horizontal wall right of that^^ 
+        rect = new Rectangle(40, getWALL_W(), wallsColor);
+        rect.setTranslateX(getWALL_W() + 280);
+        rect.setTranslateY(doorEnter.getTranslateY() - getWALL_W());
+        walls.getChildren().add(rect);
+
         // left wall under door
         rect = new Rectangle(getWALL_W(), getROOM_H() + getHEADER_H() - getDOOR_H() - doorEnter.getTranslateY(), wallsColor);
         rect.setTranslateX(0);
@@ -136,21 +148,15 @@ public class Room1 extends Room {
         rect.setTranslateX(345 - getWALL_W());
         rect.setTranslateY(doorExit.getTranslateY() - getWALL_W());
         walls.getChildren().add(rect);
-        
+
         // wall left of shelves
-        rect = new Rectangle(getWALL_W(), 70, wallsColor);
+        rect = new Rectangle(getWALL_W(), 60, wallsColor);
         rect.setTranslateX(345 - getWALL_W());
         rect.setTranslateY(getHEADER_H() + getWALL_W());
         walls.getChildren().add(rect);
-        
+
         // wall below that^^ 
-        rect = new Rectangle(getWALL_W(), doorEnter.getTranslateY()-doorExit.getTranslateY(), wallsColor);
-        rect.setTranslateX(345 - getWALL_W());
-        rect.setTranslateY(doorExit.getTranslateY());
-        walls.getChildren().add(rect);
-        
-        // wall below that^^ 
-        rect = new Rectangle(getWALL_W(), doorEnter.getTranslateY()-doorExit.getTranslateY(), wallsColor);
+        rect = new Rectangle(getWALL_W(), doorEnter.getTranslateY() - doorExit.getTranslateY(), wallsColor);
         rect.setTranslateX(345 - getWALL_W());
         rect.setTranslateY(doorExit.getTranslateY());
         walls.getChildren().add(rect);
@@ -196,17 +202,29 @@ public class Room1 extends Room {
         Crate crate3 = new Crate(830, 68, 50, 50);
         Crate crate4 = new Crate(250, 530, 50, 50);
         Crate crate5 = new Crate(300, 530, 50, 50);
-        //Table table = new Table(300, 260, 100, 100, "prettyTable");
-        //Table table2 = new Table(490, 260, 100, 100, "prettyTable");
+
+        int x = 430, y = 310;
+        for (int i = 0; i < 2; i++) {
+            Chair chairL = new Chair(x + i * 230, y + 35 + i * 110, 30, 30, false);
+            Table table = new Table(x + 30 + i * 230, y + i * 110, 100, 100, "prettyTable");
+            Chair chairR = new Chair(x + 120 + i * 230, y + 35 + i * 110, 30, 30, true);
+            roomObjects.getChildren().addAll(table, chairL, chairR);
+        }
+
         Office bookcase = new Office(345, 0, 170, 115, "cabinet");
         //Office bookcase2 = new Office(163, 16, 90, 97, "nineDrawers");
         Office bookcase3 = new Office(615, -7, 90, 127, "lessDrawers");
         Office bookcase4 = new Office(688, 24, 85, 85, "redGreen");
         Table desk = new Table(9, 200, 90, 180, "sideDiningTable");
-        IronBeam ironBeam = new IronBeam(500, 470, 50, 110);
-        IronBeam ironBeam2 = new IronBeam(550, 470, 50, 110);
-        IronBeam ironBeam3 = new IronBeam(600, 470, 50, 110);
+//        IronBeam ironBeam = new IronBeam(500, 470, 50, 110);
+//        IronBeam ironBeam2 = new IronBeam(550, 470, 50, 110);
+//        IronBeam ironBeam3 = new IronBeam(600, 470, 50, 110);
         Office workDesk = new Office(500, 20, 120, 95, "workDeskYellow");
+
+        Bedroom cabinetClosed1 = new Bedroom(30, 20, 65, 110, "cabinetsClosed");
+        Bedroom cabinetClosed2 = new Bedroom(95, 20, 65, 110, "cabinetsClosed");
+        Bedroom cabinetOpen = new Bedroom(160, 21, 65, 113, "cabinetsOpen");
+        Bedroom cabinetClosed4 = new Bedroom(225, 20, 65, 110, "cabinetsClosed");
 
         EventHandler objClick = new EventHandler() {
             @Override
@@ -234,7 +252,9 @@ public class Room1 extends Room {
         crate4.setOnMouseClicked(objClick);
         crate5.setOnMouseClicked(objClick);
 
-        roomObjects.getChildren().addAll(crate, crate2, crate3, crate4, crate5, bookcase, bookcase3, bookcase4, desk, workDesk, ironBeam, ironBeam2, ironBeam3);
+        roomObjects.getChildren().addAll(crate, crate2, crate3, crate4, crate5, bookcase, bookcase3, bookcase4, desk, workDesk);
+        //roomObjects.getChildren().addAll(ironBeam, ironBeam2, ironBeam3, table2);
+        roomObjects.getChildren().addAll(cabinetClosed1, cabinetClosed2, cabinetOpen, cabinetClosed4);
     }
 
     @Override

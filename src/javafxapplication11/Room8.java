@@ -147,13 +147,12 @@ public class Room8 extends Room {
         //bedroom floor
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 13; j++) {
-                Floor tile = new Floor(i * 105, j * 42 +45, 125, 55, "bedroomWood");
+                Floor tile = new Floor(i * 105, j * 42 + 45, 125, 55, "bedroomWood");
                 floor.getChildren().add(tile);
             }
         }
-        
+
         //264
-        
         //bathroom floor
         for (int i = 0; i < 7; i++) {
             for (int j = 0; j < 4; j++) {
@@ -161,7 +160,6 @@ public class Room8 extends Room {
                 floor.getChildren().add(tile);
             }
         }
-
 
 //        for (int i = 0; i < 12; i++) {
 //            for (int j = 0; j < 12; j++) {
@@ -206,6 +204,7 @@ public class Room8 extends Room {
         Bathroom shower = new Bathroom(9, 0, 120, 120, "shower");
         Bathroom toilet = new Bathroom(295, 160, 60, 75, "toilet");
         Bathroom bathtub = new Bathroom(300, 50, 58, 110, "bathtub");
+        Bathroom extraCounter = new Bathroom(131, 46, 54, 64, "extraCounter");
 
         Bedroom bedsideH = new Bedroom(120, 255, 30, 45, "bedsideH");
         Bedroom bedsideV = new Bedroom(250, 255, 30, 45, "bedsideV");
@@ -216,7 +215,7 @@ public class Room8 extends Room {
         Bedroom armchairR = new Bedroom(x + 120, y, 60, 70, "armchairR");
         Bedroom blackStool = new Bedroom(x + 65, y + 15, 50, 60, "blackstool");
 
-        roomObjects.getChildren().addAll(sink, shower, toilet, bathtub, bed, bedsideH, bedsideV, blackStool, armchairL, armchairR);
+        roomObjects.getChildren().addAll(sink, shower, toilet, bathtub, extraCounter, bed, bedsideH, bedsideV, blackStool, armchairL, armchairR);
     }
 
     public void displayInv() {

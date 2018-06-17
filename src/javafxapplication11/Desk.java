@@ -22,7 +22,7 @@ public class Desk extends Furniture{
     public Desk(double x, double y, double width, double height) {
         super(x, y, width, height);
         try {
-            image = new Image(new FileInputStream("src/Sprites/Desk.png"), 100, 100, true, true);
+            image = new Image(new FileInputStream("src/Sprites/BlueTable.png"), 100, 100, true, true);
         } catch (IOException e) {
         }
         ip = new ImagePattern(image);

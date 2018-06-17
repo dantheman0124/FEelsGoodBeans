@@ -132,10 +132,23 @@ public class Room4 extends Room {
 
         walls.getChildren().add(rect);
 
+       
+       
+
+        //wooden floor
         floor = new Group();
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 14; j++) {
-                Floor tile = new Floor(i * 100, j * 39 + 48, 120, 50, "bedroomWood");
+                if (i < 3 || j > 3) {
+                    Floor tile = new Floor(i * 100, j * 39 + 48, 120, 50, "bedroomWood");
+                    floor.getChildren().add(tile);
+                }
+            }
+        }
+        
+        for (int i = 0; i < 6; i++) {
+            for (int j = 0; j < 2; j++) {
+                Floor tile = new Floor(i * 95 + 305, 43 + j * 88, 110, 105, "blueTile");
                 floor.getChildren().add(tile);
             }
         }
