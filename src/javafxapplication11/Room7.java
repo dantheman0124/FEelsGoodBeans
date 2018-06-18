@@ -15,7 +15,7 @@ public class Room7 extends Room {
     private ArrayList<Node> obj = new ArrayList<>();
     private KeyFrame frame = new KeyFrame(Duration.seconds(0.016), e -> {
         getPlayer().update(obj);
-        
+
         //displayInv();
         if (getPlayer().isColliding(doors.getChildren().get(0))) {
             root.getChildren().remove(darkness);
@@ -123,31 +123,29 @@ public class Room7 extends Room {
         walls.getChildren().add(rect);
 
         floor = new Group();
-        Rectangle bg = new Rectangle(0, 50, 900, 550);
+
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 14; j++) {
+                Floor tile = new Floor(i * 100, j * 39 + 48, 120, 50, "bedroomWood");
+                floor.getChildren().add(tile);
+            }
+        };
         FloorMat mat = new FloorMat(110, 170, 75, 75);
-        Bedroom rug = new Bedroom (120,420,100,80, "orangerug");
-        bg.setFill(Color.KHAKI);
-        Bedroom rug2 = new Bedroom (500,425,90, 70, "purplerug");
-        
-        floor.getChildren().addAll(bg, mat, rug, rug2);
+        Bedroom rug = new Bedroom(120, 420, 100, 80, "orangerug");
+
+        Bedroom rug2 = new Bedroom(500, 425, 90, 70, "purplerug");
+
+        floor.getChildren().addAll(mat, rug, rug2);
 
         //dividing walls
         Rectangle div1 = new Rectangle(20, 330, 790, 20);
         div1.setFill(wallsColor);
-        Rectangle div2 = new Rectangle(400, 130, 20,200);
+        Rectangle div2 = new Rectangle(400, 130, 20, 200);
         div2.setFill(wallsColor);
-        Rectangle div3 = new Rectangle(320,330, 20, 190);
+        Rectangle div3 = new Rectangle(320, 330, 20, 190);
         div3.setFill(wallsColor);
 
         walls.getChildren().addAll(div1, div2, div3);
-        
-        for (int i = 0; i < 9; i++) {
-            for (int j = 0; j < 14; j++) {
-                Floor tile = new Floor(i * 100, j * 39+48, 120, 50, "bedroomWood");
-                floor.getChildren().add(tile);
-            }
-        };
-
     }
 
     @Override
@@ -187,15 +185,15 @@ public class Room7 extends Room {
         Table aTable2 = new Table(475, 255, 70, 70, "prettyTable");
         Kitchen plant = new Kitchen(20, 528, 50, 60, "plant");
         Kitchen plant2 = new Kitchen(50, 528, 50, 60, "plant");
-        Bedroom emptyTable2 = new Bedroom(254,336,60,60, "bedsidetable");
+        Bedroom emptyTable2 = new Bedroom(254, 336, 60, 60, "bedsidetable");
         Bedroom couchL2 = new Bedroom(420, 410, 60, 100, "leftcouch");
         Bedroom couchR2 = new Bedroom(600, 410, 60, 100, "rightcouch");
         Kitchen plant3 = new Kitchen(830, 528, 50, 60, "plant");
         Kitchen plant4 = new Kitchen(800, 528, 50, 60, "plant");
-        
+
         roomObjects.getChildren().addAll(bed, bed2, couchR, couchL, tableWBook, emptyTable, cabinet, bookTable, aTable, aTable2, plant, plant2, emptyTable2, couchL2, couchR2, plant3, plant4);
     }
-    
+
     public void displayInv() {
         for (int i = 0; i < player.getInteractables().size(); i++) {
             Rectangle rect = new Rectangle(20 + i * 80, 620, 70, 70);
