@@ -130,7 +130,7 @@ public class Room7 extends Room {
                 floor.getChildren().add(tile);
             }
         };
-        FloorMat mat = new FloorMat(110, 170, 75, 75);
+        FloorMat mat = new FloorMat(600, 170, 75, 75);
         Bedroom rug = new Bedroom(120, 420, 100, 80, "orangerug");
 
         Bedroom rug2 = new Bedroom(500, 425, 90, 70, "purplerug");
@@ -190,8 +190,10 @@ public class Room7 extends Room {
         Bedroom couchR2 = new Bedroom(600, 410, 60, 100, "rightcouch");
         Kitchen plant3 = new Kitchen(830, 528, 50, 60, "plant");
         Kitchen plant4 = new Kitchen(800, 528, 50, 60, "plant");
+        
+        Bedroom chest = new Bedroom(25, 250, 60, 80, "chest");
 
-        roomObjects.getChildren().addAll(bed, bed2, couchR, couchL, tableWBook, emptyTable, cabinet, bookTable, aTable, aTable2, plant, plant2, emptyTable2, couchL2, couchR2, plant3, plant4);
+        roomObjects.getChildren().addAll(bed, bed2, couchR, couchL, tableWBook, emptyTable, cabinet, bookTable, aTable, aTable2, plant, plant2, emptyTable2, couchL2, couchR2, plant3, plant4, chest);
     }
 
     public void displayInv() {
