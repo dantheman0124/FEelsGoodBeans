@@ -220,6 +220,7 @@ public class Room4 extends Room {
                     CPTRewrite.player.getInteractables().add(key);
                     System.out.println("You found a key!");
                     source.setOnMouseClicked(null);
+                    Room6.nextRoom = true;
                 } else {
                     System.out.println("Wrong code.");
                 }

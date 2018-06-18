@@ -142,7 +142,7 @@ public class Room3 extends Room {
         setEnterSpawnY(enterY - getPLAYER_H() - 35); // come back and figure out why this is spawning weird without the 30 later, here and in room 2 exit door
 
         setExitSpawnX(exitX + getDOOR_W());
-        setExitSpawnY(exitY + getDOOR_H() / 2 - getPLAYER_H() / 2);
+        setExitSpawnY(exitY + getDOOR_H() / 2 - getPLAYER_H() / 2+10);
 
         enterSpawnX = getEnterSpawnX();
         enterSpawnY = getEnterSpawnY();

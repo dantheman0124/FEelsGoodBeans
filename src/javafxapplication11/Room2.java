@@ -17,6 +17,7 @@ public class Room2 extends Room {
 
     public static boolean nextRoom = false;
     public static boolean haveBattery = false;
+    public static boolean printed = true;
 
     private ArrayList<Node> obj = new ArrayList<>();
 
@@ -122,6 +123,19 @@ public class Room2 extends Room {
             doors.getChildren().get(doors.getChildren().size() - 1).setTranslateY(doors.getChildren().get(doors.getChildren().size() - 1).getTranslateY() + 16);
             nextRoom = false;
             haveBattery = false;
+        }
+        
+         if (nextRoom && haveBattery) {
+            walls.getChildren().remove(walls.getChildren().size() - 1);
+            doors.getChildren().get(doors.getChildren().size() - 1).setTranslateY(doors.getChildren().get(doors.getChildren().size() - 1).getTranslateY() + 16);
+            nextRoom = false;
+            haveBattery = false;
+        }
+
+        if (enemies.size() == 0 && printed) {
+            System.out.println("You found a battery for your flashlight after defeating the enemies!");
+            haveBattery = true;
+            printed = false;
         }
     }
     );
@@ -285,17 +299,6 @@ public class Room2 extends Room {
     public void fillRoom() {
         roomObjects = new Group();
 
-        EventHandler findItem = new EventHandler() {
-            @Override
-            public void handle(Event event) {
-                Node source = (Node) event.getSource();
-                System.out.println("You found a battery!");
-                Battery battery = new Battery(-100, -100, 0, 0);
-                CPTRewrite.inventory.add(battery);
-                roomObjects.getChildren().remove(source);
-                haveBattery = true;
-            }
-        };
 
         Crate crate = new Crate(20, 470, 50, 50);
         Crate crate2 = new Crate(20, 500, 50, 50);
@@ -307,8 +310,6 @@ public class Room2 extends Room {
         OilDrum bod3 = new OilDrum(465, 265, 70, 70, true);
         OilDrum od1 = new OilDrum(423, 265, 30, 57, false);
         OilDrum od2 = new OilDrum(383, 265, 30, 57, false);
-        
-        crate.setOnMouseClicked(findItem);
 
         roomObjects.getChildren().addAll(crate, crate2, crate3, crate4, crate5, bod1, bod2, bod3, od1, od2);
     }
