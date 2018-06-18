@@ -20,8 +20,9 @@ import javafx.scene.text.Text;
 public class Room1 extends Room {
 
     private ArrayList<Node> obj = new ArrayList<>();
+    private ArrayList<Node> interactableObjects = new ArrayList<>();
     private KeyFrame frame = new KeyFrame(Duration.seconds(0.016), e -> {
-        getPlayer().update(obj);
+        getPlayer().update(obj, interactableObjects);
 
         //displayInv();
         for (int i = 0; i < interactables.getChildren().size(); i++) {;
@@ -221,11 +222,15 @@ public class Room1 extends Room {
         Office bookcase4 = new Office(688, 24, 85, 85, "redGreen");
         Table desk = new Table(9, 200, 90, 180, "sideDiningTable");
         Office workDesk = new Office(500, 20, 120, 95, "workDeskYellow");
+        workDesk.setText("work desk");
+        interactableObjects.add(workDesk);
 
         // cabinets in top left corner
         Bedroom cabinetClosed1 = new Bedroom(30, 20, 65, 110, "cabinetsClosed");
         Bedroom cabinetClosed2 = new Bedroom(95, 20, 65, 110, "cabinetsClosed");
         Bedroom cabinetOpen = new Bedroom(160, 21, 65, 113, "cabinetsOpen");
+        cabinetOpen.setText("cabinet");
+        interactableObjects.add(cabinetOpen);
         Bedroom cabinetClosed4 = new Bedroom(225, 20, 65, 110, "cabinetsClosed");
 
         // distance formula code
