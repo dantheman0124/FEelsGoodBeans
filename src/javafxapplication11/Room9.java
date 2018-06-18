@@ -125,8 +125,6 @@ public class Room9 extends Room {
         rect.setTranslateY(getROOM_H() / 4 * 3 + getWALL_W() * 3);
         walls.getChildren().add(rect);
 
-        System.out.println(doorEnter.getTranslateY());
-
         floor = new Group();
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 14; j++) {

@@ -227,15 +227,9 @@ public class Room8 extends Room {
         Rectangle rect = new Rectangle(getWALL_W(), getHEADER_H(), Color.WHITE);
         rect.setTranslateX(0);
         rect.setTranslateY(0);
-        Rectangle rect1 = new Rectangle(50, 12, Color.WHITE);
-        rect1.setTranslateX(180);
-        rect1.setTranslateY(30);
-        Rectangle rect2 = new Rectangle(65, 12, Color.WHITE);
-        rect2.setTranslateX(240);
-        rect2.setTranslateY(30);
-
+        
         roomObjects.getChildren().addAll(sink, shower, toilet, bathtub, extraCounter, bed, bedsideH, bedsideV, blackStool, armchairL, armchairR, piano, couch, couch2, plant, workDesk1, workDesk2);
-        roomObjects.getChildren().addAll(rect, rect1, rect2);
+        roomObjects.getChildren().addAll(rect);
     }
 
     public void displayInv() {

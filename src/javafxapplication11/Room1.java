@@ -280,12 +280,35 @@ public class Room1 extends Room {
             }
         };
 
+        EventHandler bookMessage = new EventHandler() {
+            @Override
+            public void handle(Event event) {
+                Node source = (Node) event.getSource();
+                Rectangle coverUp = new Rectangle(0, 600, 900, 100);
+                coverUp.setFill(Color.WHITE);
+                Text comboMessage = new Text("You don't have time for reading!");
+                comboMessage.setX(20);
+                comboMessage.setY(660);
+                comboMessage.setFont(new Font(20));
+                root.getChildren().addAll(coverUp, comboMessage);
+
+            }
+        };
+
         cabinetOpen.setOnMouseClicked(findItem);
+        crate.setOnMouseClicked(objClick);
         crate2.setOnMouseClicked(objClick);
         crate3.setOnMouseClicked(objClick);
         crate4.setOnMouseClicked(objClick);
         crate5.setOnMouseClicked(objClick);
-        bookcase.setOnMouseClicked(objClick);
+        bookcase.setOnMouseClicked(bookMessage);
+        bookcase3.setOnMouseClicked(bookMessage);
+        bookcase4.setOnMouseClicked(bookMessage);
+        desk.setOnMouseClicked(objClick);
+        cabinetClosed1.setOnMouseClicked(objClick);
+        cabinetClosed2.setOnMouseClicked(objClick);
+        cabinetClosed4.setOnMouseClicked(objClick);
+
         workDesk.setOnMouseClicked(letter);
 
         roomObjects.getChildren().addAll(crate, crate2, crate3, crate4, crate5, bookcase, bookcase3, bookcase4, desk, workDesk);
