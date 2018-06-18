@@ -13,6 +13,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
 public class Room {
@@ -54,6 +55,7 @@ public class Room {
     Pane root;
     Scene scene;
     static Group darkness;
+    //Group promptText;
 
     private Timeline timeline = new Timeline();
     public Character player;
@@ -70,10 +72,10 @@ public class Room {
 
     public void fillRoom() {
     }
-    
-    public void displayInv(){
+
+    public void displayInv() {
     }
-    
+
     public void createInteractables() {
     }
 
@@ -224,7 +226,7 @@ public class Room {
                     player.setAction(characterAction.DOWN);
                     break;
                 case SPACE:
-                    player.setShoot(true);
+                    player.setShoot(true);                 
             }
         });
 
@@ -276,6 +278,14 @@ public class Room {
     public Pane getRoot() {
         return root;
     }
-    
-    
+
+//    public void displayPrompt() {
+//        promptText = new Group();
+//        Text prompt = new Text("Press 'S' to look in this object. You might find something important!");
+//        prompt.setX(20);
+//        prompt.setY(660);
+//        prompt.setFont(new Font(20));
+//        promptText.getChildren().add(prompt);
+//    }
+
 }
