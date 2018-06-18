@@ -15,6 +15,7 @@ import javafx.util.Duration;
 
 public class Room6 extends Room {
 
+    public static boolean nextRoom = false;
     private ArrayList<Node> obj = new ArrayList<>();
     private KeyFrame frame = new KeyFrame(Duration.seconds(0.016), e -> {
         getPlayer().update(obj);
@@ -24,6 +25,12 @@ public class Room6 extends Room {
             CPTRewrite.prevRoom();
         } else if (getPlayer().isColliding(doors.getChildren().get(1))) {
             CPTRewrite.nextRoom();
+        }
+        
+        if(nextRoom){
+            walls.getChildren().remove(walls.getChildren().size() - 1);
+            doors.getChildren().get(1).setTranslateX(875);
+            nextRoom = false;
         }
     });
 
@@ -141,6 +148,12 @@ public class Room6 extends Room {
         rect = new Rectangle(getWALL_W(), 100, wallsColor);
         rect.setTranslateX(760 - getWALL_W());
         rect.setTranslateY(doorEnter.getTranslateY() + getDOOR_H() + 120);
+        walls.getChildren().add(rect);
+        
+        // in front of door
+        rect = new Rectangle(getWALL_W(), doorExit.getTranslateY() - getHEADER_H(), wallsColor); // to find how long the vertical wall has to be, make it the length of the x coordinate of the door
+        rect.setTranslateX(880);
+        rect.setTranslateY(200);
         walls.getChildren().add(rect);
 
         floor = new Group();
