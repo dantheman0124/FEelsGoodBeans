@@ -20,8 +20,9 @@ import javafx.scene.text.Text;
 public class Room1 extends Room {
 
     private ArrayList<Node> obj = new ArrayList<>();
+    private ArrayList<Node> interactableObjects = new ArrayList<>();
     private KeyFrame frame = new KeyFrame(Duration.seconds(0.016), e -> {
-        getPlayer().update(obj);
+        getPlayer().update(obj, interactableObjects);
 
         //displayInv();
         for (int i = 0; i < interactables.getChildren().size(); i++) {;
@@ -221,11 +222,15 @@ public class Room1 extends Room {
         Office bookcase4 = new Office(688, 24, 85, 85, "redGreen");
         Table desk = new Table(9, 200, 90, 180, "sideDiningTable");
         Office workDesk = new Office(500, 20, 120, 95, "workDeskYellow");
+        workDesk.setText("work desk");
+        interactableObjects.add(workDesk);
 
         // cabinets in top left corner
         Bedroom cabinetClosed1 = new Bedroom(30, 20, 65, 110, "cabinetsClosed");
         Bedroom cabinetClosed2 = new Bedroom(95, 20, 65, 110, "cabinetsClosed");
         Bedroom cabinetOpen = new Bedroom(160, 21, 65, 113, "cabinetsOpen");
+        cabinetOpen.setText("cabinet");
+        interactableObjects.add(cabinetOpen);
         Bedroom cabinetClosed4 = new Bedroom(225, 20, 65, 110, "cabinetsClosed");
 
         // distance formula code
@@ -235,7 +240,7 @@ public class Room1 extends Room {
                 Node source = (Node) event.getSource();
                 Rectangle coverUp = new Rectangle(0, 600, 900, 100);
                 coverUp.setFill(Color.WHITE);
-                Text nothingMessage = new Text("There is nothing in here.");
+                Text nothingMessage = new Text("There's nothing here.");
                 nothingMessage.setX(20);
                 nothingMessage.setY(660);
                 nothingMessage.setFont(new Font(20));
@@ -247,8 +252,14 @@ public class Room1 extends Room {
             @Override
             public void handle(Event event) {
                 Node source = (Node) event.getSource();
-                System.out.println("918");
-                System.out.println("Hmmm... this seems like an important combination.");
+                Rectangle coverUp = new Rectangle(0, 600, 900, 100);
+                coverUp.setFill(Color.WHITE);
+                Text comboMessage = new Text("The paper says: 918. Hmmm.... better remember that, it seems like it could be important!");
+                comboMessage.setX(20);
+                comboMessage.setY(660);
+                comboMessage.setFont(new Font(20));
+                root.getChildren().addAll(coverUp, comboMessage);
+
             }
         };
 
@@ -265,16 +276,39 @@ public class Room1 extends Room {
                 root.getChildren().addAll(coverUp, foundMessage);
                 Flashlight flashlight = new Flashlight(-100, -100, 0, 0, false);
                 CPTRewrite.inventory.add(flashlight);
-                roomObjects.getChildren().remove(source);
                 Room2.nextRoom = true;
             }
         };
 
-        crate.setOnMouseClicked(findItem);
+        EventHandler bookMessage = new EventHandler() {
+            @Override
+            public void handle(Event event) {
+                Node source = (Node) event.getSource();
+                Rectangle coverUp = new Rectangle(0, 600, 900, 100);
+                coverUp.setFill(Color.WHITE);
+                Text comboMessage = new Text("You don't have time for reading!");
+                comboMessage.setX(20);
+                comboMessage.setY(660);
+                comboMessage.setFont(new Font(20));
+                root.getChildren().addAll(coverUp, comboMessage);
+
+            }
+        };
+
+        cabinetOpen.setOnMouseClicked(findItem);
+        crate.setOnMouseClicked(objClick);
         crate2.setOnMouseClicked(objClick);
         crate3.setOnMouseClicked(objClick);
         crate4.setOnMouseClicked(objClick);
         crate5.setOnMouseClicked(objClick);
+        bookcase.setOnMouseClicked(bookMessage);
+        bookcase3.setOnMouseClicked(bookMessage);
+        bookcase4.setOnMouseClicked(bookMessage);
+        desk.setOnMouseClicked(objClick);
+        cabinetClosed1.setOnMouseClicked(objClick);
+        cabinetClosed2.setOnMouseClicked(objClick);
+        cabinetClosed4.setOnMouseClicked(objClick);
+
         workDesk.setOnMouseClicked(letter);
 
         roomObjects.getChildren().addAll(crate, crate2, crate3, crate4, crate5, bookcase, bookcase3, bookcase4, desk, workDesk);

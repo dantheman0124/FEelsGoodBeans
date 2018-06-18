@@ -7,8 +7,13 @@ import javafx.scene.image.Image;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 import java.util.ArrayList;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.geometry.Point2D;
+import javafx.scene.Group;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 
 public class Character extends Rectangle {
 
@@ -19,9 +24,9 @@ public class Character extends Rectangle {
     private ImagePattern ip;
     private ArrayList<Interactables> interactables = new ArrayList<>();
     private ArrayList<Bullet> bullets = new ArrayList<>();
-    
+
     private characterAction lastAction = characterAction.NONE;
-    
+
     private Pane root = new Pane();
     private boolean shoot = false;
 
@@ -100,7 +105,7 @@ public class Character extends Rectangle {
             case NONE:
                 break;
         }
-        
+
         if (action != characterAction.NONE) {
             lastAction = action;
         }
@@ -125,15 +130,58 @@ public class Character extends Rectangle {
                     break;
             }
         }
-        
+
         if (action != characterAction.NONE) {
             lastAction = action;
         }
-        
+
         if (shoot) {
             shootBullet();
             shoot = false;
         }
+    }
+
+    public void update(ArrayList<Node> objects, ArrayList<Node> interactables) {
+
+        if (this.checkObstacle(objects)) {
+            switch (action) {
+                case LEFT:
+                    setTranslateX(getTranslateX() - speed);
+                    break;
+                case RIGHT:
+                    setTranslateX(getTranslateX() + speed);
+                    break;
+                case UP:
+                    setTranslateY(getTranslateY() - speed);
+                    break;
+                case DOWN:
+                    setTranslateY(getTranslateY() + speed);
+                    break;
+                case NONE:
+                    break;
+            }
+        }
+
+        if (action != characterAction.NONE) {
+            lastAction = action;
+        }
+
+        if (shoot) {
+            shootBullet();
+            shoot = false;
+        }
+
+//        for (Node interactable : interactables) {
+//            Rectangle object = (Rectangle) interactable;           
+//            Furniture thing = (Furniture) interactable;
+//            thing.setOnMouseClicked(printText);
+//            if (CPTRewrite.player.getTranslateX() >= (object.getTranslateX() - 50) && CPTRewrite.player.getTranslateX() <= (object.getTranslateX() + object.getWidth() + 50)) {
+//                if (CPTRewrite.player.getTranslateY() >= (object.getTranslateY() - 50) && CPTRewrite.player.getTranslateY() <= (object.getTranslateY() + object.getWidth() + 50)) {
+//                    System.out.println(thing.getText());
+//                }
+//            }
+//        }
+
     }
 
     public boolean isColliding(Node other) {
@@ -159,7 +207,7 @@ public class Character extends Rectangle {
     public ArrayList<Interactables> getInteractables() {
         return interactables;
     }
-    
+
     public HealthBar getHealthBar() {
         return healthBar;
     }
@@ -175,11 +223,11 @@ public class Character extends Rectangle {
     public void setShoot(boolean shoot) {
         this.shoot = shoot;
     }
-    
+
     public void shootBullet() {
         Bullet bullet = new Bullet(this.getX(), this.getY(), 5);
         bullet.setTranslateX(this.getTranslateX() + (this.getWidth() / 2));
-        bullet.setTranslateY(this.getTranslateY() + (this.getHeight()/ 2));
+        bullet.setTranslateY(this.getTranslateY() + (this.getHeight() / 2));
         switch (lastAction) {
             case RIGHT:
                 bullet.setVelocity(new Point2D(speed, 0));
@@ -194,7 +242,7 @@ public class Character extends Rectangle {
                 bullet.setVelocity(new Point2D(0, speed));
                 break;
         }
-        
+
         root.getChildren().add(bullet);
         bullets.add(bullet);
     }
@@ -210,13 +258,5 @@ public class Character extends Rectangle {
     public void setRoot(Pane root) {
         this.root = root;
     }
-    
-    
-    
-    
-    
-    
-    
-    
 
 }
