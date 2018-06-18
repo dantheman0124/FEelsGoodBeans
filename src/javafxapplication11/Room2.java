@@ -31,12 +31,6 @@ public class Room2 extends Room {
         bullets.forEach(Bullet::update);
         player.getBullets().forEach(Bullet::update);
 
-        for (Enemy enemy : enemies) {
-            if (enemy.getAction() == EnemyAction.SHOOT) {
-                enemy.setDestination(new Point2D(Math.random() * getSCENE_W(), Math.random() * getSCENE_H() + 100));
-            }
-        }
-
         for (int i = 0; i < bullets.size(); i++) {
             Bullet bullet = bullets.get(i);
             for (int j = 0; j < roomObjects.getChildren().size(); j++) {
@@ -177,12 +171,17 @@ public class Room2 extends Room {
         scene = new Scene(root, getSCENE_W(), getSCENE_H());
 
         for (int i = 0; i < 5; i++) {
-            Enemy enemy = new Enemy((Math.random() * 800) + 80, (Math.random() * 450) + 130, 20, 50);
+            Enemy enemy = new Enemy(30, 70, 20, 50);
             enemy.setAction(EnemyAction.MOVE);
             enemy.setRoot(root);
             enemy.setBullets(bullets);
             enemy.setTarget(CPTRewrite.player);
-            enemy.setDestination(new Point2D(Math.random() * root.getPrefWidth(), Math.random() * root.getPrefHeight()));
+            double startX = this.getWALL_W();
+            double startY = this.getHEADER_H() + this.getWALL_W();
+            double width = this.getROOM_W() - 2 * this.getWALL_W();
+            double height = this.getROOM_H() - 2 * this.getWALL_W();
+            enemy.setDestination(enemy.getRandomDestination(startX, startY, width, height, obj));
+            enemy.setRoom(this);
 
             enemies.add(enemy);
             root.getChildren().add(enemy.getHealthBar());
