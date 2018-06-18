@@ -227,16 +227,7 @@ public class Room1 extends Room {
         Bedroom cabinetClosed4 = new Bedroom(225, 20, 65, 110, "cabinetsClosed");
 
         // distance formula code
-        
 
-        
-        
-        
-        
-        
-        
-        
-        
         EventHandler objClick = new EventHandler() {
             @Override
             public void handle(Event event) {
