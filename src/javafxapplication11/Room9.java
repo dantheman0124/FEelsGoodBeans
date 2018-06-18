@@ -98,21 +98,35 @@ public class Room9 extends Room {
         rect.setTranslateX(getROOM_W() - getWALL_W());
         rect.setTranslateY(getHEADER_H());
         walls.getChildren().add(rect);
+
+        //divider walls
         
-        //left divider wall 
-        rect = new Rectangle(getWALL_W(), getROOM_H()/4, wallsColor);
-        rect.setTranslateX(getROOM_W()/4 - getWALL_W());
-        rect.setTranslateY(getROOM_H()/4 + getHEADER_H());
+        //left vertical divider wall 
+        rect = new Rectangle(getWALL_W(), getROOM_H() / 4, wallsColor);
+        rect.setTranslateX(getROOM_W() / 4 - getWALL_W());
+        rect.setTranslateY(getROOM_H() / 4 + getHEADER_H());
         walls.getChildren().add(rect);
-        
-        //right divider wall 
-        rect = new Rectangle(getWALL_W(), getROOM_H()/4, wallsColor);
-        rect.setTranslateX(getROOM_W()/4 - getWALL_W());
-        rect.setTranslateY(getROOM_H()/4 + getHEADER_H());
+
+        //right vertical divider wall 
+        rect = new Rectangle(getWALL_W(), getROOM_H() / 4, wallsColor);
+        rect.setTranslateX(getROOM_W() / 4 * 3);
+        rect.setTranslateY(getROOM_H() / 4 * 2 + getHEADER_H() + getWALL_W());
         walls.getChildren().add(rect);
-        
+
+        //right  horizontal divider wall 
+        rect = new Rectangle(getROOM_W() / 4, getWALL_W(), wallsColor);
+        rect.setTranslateX(getROOM_W() / 2);
+        rect.setTranslateY(getROOM_H() / 4 + getWALL_W() * 2);
+        walls.getChildren().add(rect);
+
+        //left horizontal divider wall 
+        rect = new Rectangle(getROOM_W() / 4, getWALL_W(), wallsColor);
+        rect.setTranslateX(getROOM_W() / 2 +getWALL_W());
+        rect.setTranslateY(getROOM_H() / 4 * 3 + getWALL_W() * 3);
+        walls.getChildren().add(rect);
+
         System.out.println(doorEnter.getTranslateY());
-        
+
         floor = new Group();
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 14; j++) {
