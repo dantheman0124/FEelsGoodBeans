@@ -276,6 +276,12 @@ public class Room {
     public Pane getRoot() {
         return root;
     }
+
+    public Group getDoors() {
+        return doors;
+    }
+    
+    
     
     
 }
