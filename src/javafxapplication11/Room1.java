@@ -14,6 +14,8 @@ import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 import javafxapplication11.CPTRewrite;
 import java.math.*;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 
 public class Room1 extends Room {
 
@@ -232,21 +234,32 @@ public class Room1 extends Room {
         Bedroom cabinetClosed4 = new Bedroom(225, 20, 65, 110, "cabinetsClosed");
 
         // distance formula code
-
         EventHandler objClick = new EventHandler() {
             @Override
             public void handle(Event event) {
                 Node source = (Node) event.getSource();
-                System.out.println("There is nothing in here.");
+                Rectangle coverUp = new Rectangle(0, 600, 900, 100);
+                coverUp.setFill(Color.WHITE);
+                Text nothingMessage = new Text("There's nothing here.");
+                nothingMessage.setX(20);
+                nothingMessage.setY(660);
+                nothingMessage.setFont(new Font(20));
+                root.getChildren().addAll(coverUp, nothingMessage);
             }
         };
-        
+
         EventHandler letter = new EventHandler() {
             @Override
             public void handle(Event event) {
                 Node source = (Node) event.getSource();
-                System.out.println("918");
-                System.out.println("Hmmm... this seems like an important combination.");
+                Rectangle coverUp = new Rectangle(0, 600, 900, 100);
+                coverUp.setFill(Color.WHITE);
+                Text comboMessage = new Text("The paper says: 918. Hmmm.... better remember that, it seems like it could be important!");
+                comboMessage.setX(20);
+                comboMessage.setY(660);
+                comboMessage.setFont(new Font(20));
+                root.getChildren().addAll(coverUp, comboMessage);
+
             }
         };
 
@@ -254,19 +267,25 @@ public class Room1 extends Room {
             @Override
             public void handle(Event event) {
                 Node source = (Node) event.getSource();
-                System.out.println("You found a flashlight!");
+                Rectangle coverUp = new Rectangle(0, 600, 900, 100);
+                coverUp.setFill(Color.WHITE);
+                Text foundMessage = new Text("You found a flashlight!");
+                foundMessage.setX(20);
+                foundMessage.setY(660);
+                foundMessage.setFont(new Font(20));
+                root.getChildren().addAll(coverUp, foundMessage);
                 Flashlight flashlight = new Flashlight(-100, -100, 0, 0, false);
                 CPTRewrite.inventory.add(flashlight);
-                roomObjects.getChildren().remove(source);
                 Room2.nextRoom = true;
             }
         };
 
-        crate.setOnMouseClicked(findItem);
+        cabinetOpen.setOnMouseClicked(findItem);
         crate2.setOnMouseClicked(objClick);
         crate3.setOnMouseClicked(objClick);
         crate4.setOnMouseClicked(objClick);
         crate5.setOnMouseClicked(objClick);
+        bookcase.setOnMouseClicked(objClick);
         workDesk.setOnMouseClicked(letter);
 
         roomObjects.getChildren().addAll(crate, crate2, crate3, crate4, crate5, bookcase, bookcase3, bookcase4, desk, workDesk);
