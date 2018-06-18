@@ -251,7 +251,7 @@ public class Room8 extends Room {
                 Node source = (Node) event.getSource();
                 Rectangle coverUp = new Rectangle(0, 600, 900, 100);
                 coverUp.setFill(Color.WHITE);
-                Text comboMessage = new Text("This bed is just right. But you can't sleep in someone else's bed, ");
+                Text comboMessage = new Text("This bed is just right. But you can't sleep in someone else's bed, who do you think you are.");
                 comboMessage.setX(20);
                 comboMessage.setY(660);
                 comboMessage.setFont(new Font(20));
@@ -260,11 +260,13 @@ public class Room8 extends Room {
             }
         };
 
+        Bedroom chest = new Bedroom(815, 405, 60, 80, "chest");
+
         piano.setOnMouseClicked(pianoMessage);
         bed.setOnMouseClicked(bedMessage);
 
-        roomObjects.getChildren().addAll(sink, shower, toilet, bathtub, extraCounter, bed, bedsideH, bedsideV, blackStool, armchairL, armchairR, piano, couch, couch2, plant, workDesk1, workDesk2);
-        roomObjects.getChildren().addAll(rect);
+        roomObjects.getChildren().addAll(sink, shower, toilet, bathtub, extraCounter, bed, bedsideH, bedsideV, blackStool, armchairL, armchairR, piano, couch, couch2, plant, workDesk1);
+        roomObjects.getChildren().addAll(rect, chest);
     }
 
     public void displayInv() {
