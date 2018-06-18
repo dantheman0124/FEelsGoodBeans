@@ -279,6 +279,7 @@ public class Room {
         return root;
     }
 
+
 //    public void displayPrompt() {
 //        promptText = new Group();
 //        Text prompt = new Text("Press 'S' to look in this object. You might find something important!");
@@ -288,4 +289,10 @@ public class Room {
 //        promptText.getChildren().add(prompt);
 //    }
 
+    public Group getDoors() {
+        return doors;
+    }
+    
+    
+    
 }

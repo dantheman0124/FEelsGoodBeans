@@ -31,7 +31,7 @@ public class Room3 extends Room {
     private KeyFrame frame = new KeyFrame(Duration.seconds(0.016), e -> {
         getPlayer().update(obj);
 
-        displayInv();
+        //displayInv();
         for (int i = 0; i < interactables.getChildren().size(); i++) {
             if (getPlayer().getBoundsInParent().intersects(interactables.getChildren().get(i).getBoundsInParent())) {
                 player.getInteractables().add((Interactables) interactables.getChildren().get(i));
@@ -122,11 +122,16 @@ public class Room3 extends Room {
         for (int i = 0; i < roomObjects.getChildren().size(); i++) {
             obj.add(roomObjects.getChildren().get(i));
         }
+        
+        
 
         for (int i = 0; i < walls.getChildren().size(); i++) {
             obj.add(walls.getChildren().get(i));
         }
 
+        //obj.addAll(this.getDoors().getChildren());
+        
+        
         int enterX = (int) doors.getChildren().get(0).getTranslateX();
         int enterY = (int) doors.getChildren().get(0).getTranslateY();
 
@@ -212,13 +217,13 @@ public class Room3 extends Room {
         // door enter (0)
         door = new Rectangle(getDOOR_H(), getDOOR_W(), doorColor);
         door.setTranslateX(getROOM_W() - getDOOR_H() - 200);
-        door.setTranslateY(getHEADER_H() + getROOM_H() - getDOOR_W());
+        door.setTranslateY(getHEADER_H() + getROOM_H() - getDOOR_W() - 15);
 
         doors.getChildren().add(door);
 
         // door exit (1)
         door = new Rectangle(getDOOR_W(), getDOOR_H(), doorColor);
-        door.setTranslateX(0);
+        door.setTranslateX(20);
         door.setTranslateY(200 + getHEADER_H());
 
         doors.getChildren().add(door);
@@ -236,7 +241,7 @@ public class Room3 extends Room {
     public void createInteractables() {
         interactables = new Group();
 
-        Key key = new Key(600, 400, 50, 50);
+        Key key = new Key(doors.getChildren().get(1).getTranslateX() + 20, doors.getChildren().get(1).getTranslateY() - 20, 50, 50);
         interactables.getChildren().addAll(key);
     }
 

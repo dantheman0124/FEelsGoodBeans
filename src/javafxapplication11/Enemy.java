@@ -18,13 +18,15 @@ import javafx.scene.shape.Rectangle;
  *
  * @author Payam
  */
-public class Enemy extends Rectangle{
+public class Enemy extends Rectangle {
 
     private EnemyAction action = EnemyAction.NONE;
     private Node target;
-    private double speed = 0.5;
+    private double speed = 1;
     private HealthBar healthBar = new HealthBar(0.3);
     private boolean alive = true;
+    
+    private Room room;
 
     private Pane root;
     private ArrayList<Bullet> bullets;
@@ -63,16 +65,18 @@ public class Enemy extends Rectangle{
     }
 
     public void update() {
+        double startX = room.getWALL_W();
+        double startY = room.getHEADER_H() + room.getWALL_W();
+        double width = room.getROOM_W() - 2 * room.getWALL_W();
+        double height = room.getROOM_H() - 2 * room.getWALL_W();
         switch (action) {
             case AIM:
                 if (Math.abs(this.getRotate() - this.getAimAngle()) < aimSpeed) {
                     this.setAction(EnemyAction.SHOOT);
-                    this.setDestination(getRandomDestination(CPTRewrite.rooms.get(1).getROOM_W(), CPTRewrite.rooms.get(1).getROOM_H()));
+                    this.setDestination(getRandomDestination(startX, startY, width, height));
 
                 } else {
                     this.setRotate(this.getRotate() + (this.getRotate() > this.getAimAngle() ? -1 * aimSpeed : aimSpeed));
-                    //aim();
-                    //System.out.println(this.getRotate());
                 }
                 break;
             case MOVE:
@@ -104,23 +108,25 @@ public class Enemy extends Rectangle{
         }
 
         healthBar.relocate(this.getX(), this.getY() - 20);
-        
+
         if (healthBar.getHealth() <= 0) {
             alive = false;
         }
     }
 
     public void update(ArrayList<Node> all) {
+        double startX = room.getWALL_W();
+        double startY = room.getHEADER_H() + room.getWALL_W();
+        double width = room.getROOM_W() - 2 * room.getWALL_W();
+        double height = room.getROOM_H() - 2 * room.getWALL_W();
         switch (action) {
             case AIM:
-                if (Math.abs(this.getRotate() - this.getAimAngle()) < aimSpeed) {
+                if (Math.abs(this.getRotate() - this.getAimAngle()) < aimSpeed || !checkRotate(all)) {
                     this.setAction(EnemyAction.SHOOT);
-                    this.setDestination(getRandomDestination(CPTRewrite.rooms.get(1).getROOM_W(), CPTRewrite.rooms.get(1).getROOM_H(), all));
+                    this.setDestination(getRandomDestination(startX, startY, width, height, all));
 
                 } else {
                     this.setRotate(this.getRotate() + (this.getRotate() > this.getAimAngle() ? -1 * aimSpeed : aimSpeed));
-                    //aim();
-                    //System.out.println(this.getRotate());
                 }
                 break;
             case MOVE:
@@ -136,15 +142,15 @@ public class Enemy extends Rectangle{
                     this.setAction(EnemyAction.AIM);
                 }
 
-                if (!checkMove(Move.HORIZONTAL, all) && !checkMove(Move.VERTICAL, all)) {
-                    this.setAction(EnemyAction.AIM);
-                }
-
                 if (Math.abs(this.getX() - destination.getX()) <= speed && !checkMove(Move.VERTICAL, all)) {
                     this.setAction(EnemyAction.AIM);
                 }
 
                 if (Math.abs(this.getY() - destination.getY()) <= speed && !checkMove(Move.HORIZONTAL, all)) {
+                    this.setAction(EnemyAction.AIM);
+                }
+
+                if (!checkMove(Move.HORIZONTAL, all) && !checkMove(Move.VERTICAL, all)) {
                     this.setAction(EnemyAction.AIM);
                 }
 
@@ -165,7 +171,7 @@ public class Enemy extends Rectangle{
         }
 
         healthBar.relocate(this.getX(), this.getY() - 20);
-        
+
         if (healthBar.getHealth() < 0) {
             alive = false;
         }
@@ -226,21 +232,15 @@ public class Enemy extends Rectangle{
         this.healthBar = healthBar;
     }
 
-    public boolean checkDestination(Point2D destination, ArrayList<Node> objects) {
+    public boolean checkDestination(Point2D destination, ArrayList<Node> objects) { //Check any destination
         boolean result;
 
         Enemy temp = new Enemy(this.getX(), this.getY(), this.getWidth(), this.getHeight());
+        temp.setRotate(this.getRotate());
         temp.setTranslateX(destination.getX());
         temp.setTranslateY(destination.getY());
-        temp.setRotate(this.getRotate());
 
-        for (Node object : objects) {
-            if (temp.isColliding(object)) {
-                return false;
-            }
-        }
-
-        return true;
+        return !temp.isColliding(objects);
     }
 
     public boolean isColliding(Node node) {
@@ -261,7 +261,7 @@ public class Enemy extends Rectangle{
         HORIZONTAL, VERTICAL;
     }
 
-    public boolean checkMove(Move move, ArrayList<Node> objects) {
+    public boolean checkMove(Move move, ArrayList<Node> objects) { //Check if this is a valid move
         boolean result = true;
         Enemy temp = new Enemy(this.getX(), this.getY(), this.getWidth(), this.getHeight());
         temp.setTranslateX(this.getTranslateX());
@@ -277,17 +277,10 @@ public class Enemy extends Rectangle{
                 break;
         }
 
-        for (Node object : objects) {
-            if (temp.isColliding(object)) {
-                result = false;
-                break;
-            }
-        }
-
-        return result;
+        return !temp.isColliding(objects);
     }
 
-    public boolean checkLocation(Point2D location, ArrayList<Node> all) {
+    public boolean checkLocation(Point2D location, ArrayList<Node> all) { //Check if the current location is valid
         Enemy enemy = new Enemy(this.getX(), this.getY(), this.getWidth(), this.getHeight());
         enemy.setTranslateX(location.getX());
         enemy.setTranslateY(location.getY());
@@ -296,21 +289,37 @@ public class Enemy extends Rectangle{
         return !enemy.isColliding(all);
     }
 
-    public Point2D getRandomDestination(double width, double height) {
-        return new Point2D(Math.random() * width, Math.random() * height);
+    public Point2D getRandomDestination(double startX, double startY, double width, double height) {
+        return new Point2D(startX + Math.random() * width, startY + Math.random() * height);
     }
 
-    public Point2D getRandomDestination(double width, double height, ArrayList<Node> all) {
+    public Point2D getRandomDestination(double startX, double startY, double width, double height, ArrayList<Node> all) {
         Point2D output;
-        do {
-            output = getRandomDestination(width, height);
-        } while (!checkLocation(output, all));
+
+        do{
+        output = getRandomDestination(startX, startY, width, height);
+        } while(!checkLocation(output, all));
 
         return output;
     }
-    
+
     public boolean isDead() {
         return !alive;
+    }
+
+    public boolean checkRotate(ArrayList<Node> all) {
+        Enemy enemy = new Enemy(this.getX(), this.getY(), this.getWidth(), this.getHeight());
+        enemy.setTranslateX(this.getTranslateX());
+        enemy.setTranslateY(this.getTranslateY());
+        enemy.setDestination(this.getDestination());
+
+        enemy.setRotate(this.getRotate() + (this.getRotate() > this.getAimAngle() ? -1 * aimSpeed : aimSpeed));
+
+        return !enemy.isColliding(all);
+    }
+
+    public void setRoom(Room room) {
+        this.room = room;
     }
     
     

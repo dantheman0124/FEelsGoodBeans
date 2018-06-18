@@ -15,9 +15,8 @@ public class Room8 extends Room {
     private ArrayList<Node> obj = new ArrayList<>();
     private KeyFrame frame = new KeyFrame(Duration.seconds(0.016), e -> {
         getPlayer().update(obj);
-
-        displayInv();
-
+        
+        //displayInv();
         if (getPlayer().isColliding(doors.getChildren().get(0))) {
             CPTRewrite.prevRoom();
         } else if (getPlayer().isColliding(doors.getChildren().get(1))) {
@@ -154,7 +153,7 @@ public class Room8 extends Room {
         Bedroom rug2 = new Bedroom(725, 220, 80, 60, "purplerug");
         rug2.setRotate(90);
 
-        floor.getChildren().addAll(rug2);
+        
 
         //bedroom floor
         for (int i = 0; i < 9; i++) {
@@ -172,6 +171,7 @@ public class Room8 extends Room {
             }
         }
         floor.getChildren().add(mat);
+        floor.getChildren().add(rug2);
 
     }
 

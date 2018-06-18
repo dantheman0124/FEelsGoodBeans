@@ -1,8 +1,11 @@
 package javafxapplication11;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.paint.Color;
 import javafx.scene.Group;
@@ -16,8 +19,7 @@ public class Room5 extends Room {
     private KeyFrame frame = new KeyFrame(Duration.seconds(0.016), e -> {
         getPlayer().update(obj);
 
-        displayInv();
-
+        //displayInv();
         if (getPlayer().isColliding(doors.getChildren().get(0))) {
             CPTRewrite.prevRoom();
         } else if (getPlayer().isColliding(doors.getChildren().get(1))) {
@@ -229,7 +231,7 @@ public class Room5 extends Room {
         }
 
         // table and chairs at the bottom
-        for (int j = 260; j < 451; j+=170) {
+        for (int j = 260; j < 451; j += 170) {
             for (int i = 0; i < 2; i++) {
                 Chair chairL = new Chair(j, 500 + i * 40, 25, 30, false);
                 Chair chairR = new Chair(j + 113, 500 + i * 40, 25, 30, true);
@@ -245,6 +247,34 @@ public class Room5 extends Room {
         Lab lockers = new Lab(x, 30, 90, 100, "lockers");
         Lab lockers1 = new Lab(x + 90, 30, 90, 100, "lockers");
         Lab lockers2 = new Lab(x - 90, 30, 90, 100, "lockers");
+
+        EventHandler enterCode = new EventHandler() {
+            @Override
+            public void handle(Event event) {
+                Scanner input = new Scanner(System.in);
+                Node source = (Node) event.getSource();
+                System.out.print("Enter a 3-Digit passcode: ");
+                String passcode = input.next();
+                if (passcode.equals("918")) {
+                    System.out.println("'tUtTiFrUtTi.'");
+                    System.out.println(" - Some Cool Dude");
+                    source.setOnMouseClicked(null);
+                } else {
+                    System.out.println("Wrong code.");
+                }
+            }
+        };
+
+        EventHandler colour = new EventHandler() {
+            @Override
+            public void handle(Event event) {
+                Node source = (Node) event.getSource();
+                System.out.println("Wow these colours look important. Maybe they're used for something?");
+            }
+        };
+
+        beakers.setOnMouseClicked(colour);
+        lockers.setOnMouseClicked(enterCode);
 
         roomObjects.getChildren().addAll(machine, machine2, machine3, machine4);
         //roomObjects.getChildren().addAll(desk4, desk5, chair4, chair5, chair6, chair7, chair8, chair9, chair10, chair11);
