@@ -1,8 +1,11 @@
 package javafxapplication11;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.paint.Color;
 import javafx.scene.Group;
@@ -16,8 +19,7 @@ public class Room6 extends Room {
     private KeyFrame frame = new KeyFrame(Duration.seconds(0.016), e -> {
         getPlayer().update(obj);
 
-        displayInv();
-
+        //displayInv();
         if (getPlayer().isColliding(doors.getChildren().get(0))) {
             CPTRewrite.prevRoom();
         } else if (getPlayer().isColliding(doors.getChildren().get(1))) {
@@ -194,10 +196,33 @@ public class Room6 extends Room {
         Office bookshelf13 = new Office(594, y, 78, 95, "redBlueDark");
         Office bookshelf14 = new Office(670, y, 85, 95, "redGreen");
 
+        EventHandler enterCode = new EventHandler() {
+            @Override
+            public void handle(Event event) {
+                Scanner input = new Scanner(System.in);
+                Node source = (Node) event.getSource();
+                System.out.print("Enter a passcode: ");
+                String passcode = input.next();
+                if (passcode.equalsIgnoreCase("tuttifrutti")) {
+                    System.out.println("Orange = 4");
+                    System.out.println("Green = 8");
+                    System.out.println("Red = 7");
+                    System.out.println("Blue = 0");
+                    System.out.println("Yellow = 2");
+                    System.out.println("Purple = 1");
+                    System.out.println("Chartreuse = 9");
+                    source.setOnMouseClicked(null);
+                } else {
+                    System.out.println("Wrong code.");
+                }
+            }
+        };
+
         Office workDesk1 = new Office(747, 195, 120, 95, "workDeskYellow");
         Office computer = new Office(778, 200, 30, 40, "computer");
         Office computerTower = new Office(808, 245, 18, 36, "computerTower");
-
+        computer.setOnMouseClicked(enterCode);
+        
         int x = 95;
         y = 405;
         Table table1 = new Table(x, y - 10, 110, 110, "brownWChairs");
@@ -208,6 +233,7 @@ public class Room6 extends Room {
         Chair chairR2 = new Chair(x - 40, y + 95, 35, 60, "brownChairRight");
         Chair chairL = new Chair(x + 79, y + 70, 35, 60, "brownChairLeft");
         Chair chairL2 = new Chair(x + 79, y + 95, 35, 60, "brownChairLeft");
+        
 
         x = 340;
         y = 520;

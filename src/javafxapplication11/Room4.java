@@ -18,8 +18,8 @@ public class Room4 extends Room {
     private ArrayList<Node> obj = new ArrayList<>();
     private KeyFrame frame = new KeyFrame(Duration.seconds(0.016), e -> {
         getPlayer().update(obj);
-
-        displayInv();
+        
+        //displayInv();
         for (int i = 0; i < interactables.getChildren().size(); i++) {
             if (getPlayer().getBoundsInParent().intersects(interactables.getChildren().get(i).getBoundsInParent())) {
                 player.getInteractables().add((Interactables) interactables.getChildren().get(i));
@@ -218,6 +218,7 @@ public class Room4 extends Room {
                 if (passcode.equals("8240")) {
                     Key key = new Key(-100, -100, 0, 0);
                     CPTRewrite.player.getInteractables().add(key);
+                    System.out.println("You found a key!");
                     source.setOnMouseClicked(null);
                 } else {
                     System.out.println("Wrong code.");
@@ -239,10 +240,6 @@ public class Room4 extends Room {
     @Override
     public void createInteractables() {
         interactables = new Group();
-
-        Flashlight flashlight = new Flashlight(300, 150, 50, 50, true);
-        Key key = new Key(600, 400, 50, 50);
-        interactables.getChildren().addAll(flashlight, key);
     }
 
     public void displayInv() {

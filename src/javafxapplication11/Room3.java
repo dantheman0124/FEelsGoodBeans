@@ -217,13 +217,13 @@ public class Room3 extends Room {
         // door enter (0)
         door = new Rectangle(getDOOR_H(), getDOOR_W(), doorColor);
         door.setTranslateX(getROOM_W() - getDOOR_H() - 200);
-        door.setTranslateY(getHEADER_H() + getROOM_H() - getDOOR_W());
+        door.setTranslateY(getHEADER_H() + getROOM_H() - getDOOR_W() - 15);
 
         doors.getChildren().add(door);
 
         // door exit (1)
         door = new Rectangle(getDOOR_W(), getDOOR_H(), doorColor);
-        door.setTranslateX(0);
+        door.setTranslateX(20);
         door.setTranslateY(200 + getHEADER_H());
 
         doors.getChildren().add(door);
@@ -241,7 +241,7 @@ public class Room3 extends Room {
     public void createInteractables() {
         interactables = new Group();
 
-        Key key = new Key(600, 400, 50, 50);
+        Key key = new Key(doors.getChildren().get(1).getTranslateX() + 20, doors.getChildren().get(1).getTranslateY() - 20, 50, 50);
         interactables.getChildren().addAll(key);
     }
 

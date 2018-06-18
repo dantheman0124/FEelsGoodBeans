@@ -21,7 +21,7 @@ public class Room1 extends Room {
     private KeyFrame frame = new KeyFrame(Duration.seconds(0.016), e -> {
         getPlayer().update(obj);
 
-        displayInv();
+        //displayInv();
         for (int i = 0; i < interactables.getChildren().size(); i++) {;
             if (getPlayer().getBoundsInParent().intersects(interactables.getChildren().get(i).getBoundsInParent())) {
                 player.getInteractables().add((Interactables) interactables.getChildren().get(i));
@@ -227,21 +227,21 @@ public class Room1 extends Room {
         Bedroom cabinetClosed4 = new Bedroom(225, 20, 65, 110, "cabinetsClosed");
 
         // distance formula code
-        
 
-        
-        
-        
-        
-        
-        
-        
-        
         EventHandler objClick = new EventHandler() {
             @Override
             public void handle(Event event) {
                 Node source = (Node) event.getSource();
                 System.out.println("There is nothing in here.");
+            }
+        };
+        
+        EventHandler letter = new EventHandler() {
+            @Override
+            public void handle(Event event) {
+                Node source = (Node) event.getSource();
+                System.out.println("918");
+                System.out.println("Hmmm... this seems like an important combination.");
             }
         };
 
@@ -251,9 +251,9 @@ public class Room1 extends Room {
                 Node source = (Node) event.getSource();
                 System.out.println("You found a flashlight!");
                 Flashlight flashlight = new Flashlight(-100, -100, 0, 0, false);
-                CPTRewrite.player.getInteractables().add(flashlight);
-                System.out.println(CPTRewrite.player.getInteractables().size());
+                CPTRewrite.inventory.add(flashlight);
                 roomObjects.getChildren().remove(source);
+                Room2.nextRoom = true;
             }
         };
 
@@ -262,6 +262,7 @@ public class Room1 extends Room {
         crate3.setOnMouseClicked(objClick);
         crate4.setOnMouseClicked(objClick);
         crate5.setOnMouseClicked(objClick);
+        workDesk.setOnMouseClicked(letter);
 
         roomObjects.getChildren().addAll(crate, crate2, crate3, crate4, crate5, bookcase, bookcase3, bookcase4, desk, workDesk);
         roomObjects.getChildren().addAll(cabinetClosed1, cabinetClosed2, cabinetOpen, cabinetClosed4);

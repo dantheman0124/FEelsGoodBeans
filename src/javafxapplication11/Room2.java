@@ -3,6 +3,9 @@ package javafxapplication11;
 import java.util.ArrayList;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.event.Event;
+import javafx.event.EventHandler;
+import javafx.geometry.Point2D;
 import javafx.scene.Scene;
 import javafx.scene.paint.Color;
 import javafx.scene.Group;
@@ -11,6 +14,9 @@ import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 
 public class Room2 extends Room {
+
+    public static boolean nextRoom = false;
+    public static boolean haveBattery = false;
 
     private ArrayList<Node> obj = new ArrayList<>();
 
@@ -111,6 +117,12 @@ public class Room2 extends Room {
             CPTRewrite.nextRoom();
         }
 
+        if (nextRoom && haveBattery) {
+            walls.getChildren().remove(walls.getChildren().size() - 1);
+            doors.getChildren().get(doors.getChildren().size() - 1).setTranslateY(doors.getChildren().get(doors.getChildren().size() - 1).getTranslateY() + 16);
+            nextRoom = false;
+            haveBattery = false;
+        }
     }
     );
 
@@ -230,6 +242,13 @@ public class Room2 extends Room {
 
         walls.getChildren().add(rect);
 
+        //in front of door
+        rect = new Rectangle(doorExit.getTranslateX(), getWALL_W(), wallsColor);
+        rect.setTranslateX(150);
+        rect.setTranslateY(getHEADER_H());
+
+        walls.getChildren().add(rect);
+
         floor = new Group();
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 14; j++) {
@@ -266,6 +285,18 @@ public class Room2 extends Room {
     public void fillRoom() {
         roomObjects = new Group();
 
+        EventHandler findItem = new EventHandler() {
+            @Override
+            public void handle(Event event) {
+                Node source = (Node) event.getSource();
+                System.out.println("You found a battery!");
+                Battery battery = new Battery(-100, -100, 0, 0);
+                CPTRewrite.inventory.add(battery);
+                roomObjects.getChildren().remove(source);
+                haveBattery = true;
+            }
+        };
+
         Crate crate = new Crate(20, 470, 50, 50);
         Crate crate2 = new Crate(20, 500, 50, 50);
         Crate crate3 = new Crate(20, 530, 50, 50);
@@ -276,15 +307,10 @@ public class Room2 extends Room {
         OilDrum bod3 = new OilDrum(465, 265, 70, 70, true);
         OilDrum od1 = new OilDrum(423, 265, 30, 57, false);
         OilDrum od2 = new OilDrum(383, 265, 30, 57, false);
-        OilDrum od3 = new OilDrum(775, 130, 30, 57, false);
-        OilDrum od4 = new OilDrum(775, 160, 30, 57, false);
-        Table table = new Table(170, 180, 100, 60);
-        TrashCan trash1 = new TrashCan(857, 310, 20, 25);
-        TrashCan trash2 = new TrashCan(857, 340, 20, 25);
-        TrashCan trash3 = new TrashCan(857, 370, 20, 25);
-        TrashCan trash4 = new TrashCan(857, 280, 20, 25);
+        
+        crate.setOnMouseClicked(findItem);
 
-        roomObjects.getChildren().addAll(crate, crate2, crate3, crate4, crate5, bod1, bod2, bod3, od1, od2, od3, od4, table, trash1, trash2, trash3, trash4);
+        roomObjects.getChildren().addAll(crate, crate2, crate3, crate4, crate5, bod1, bod2, bod3, od1, od2);
     }
 
     @Override
