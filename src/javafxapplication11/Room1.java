@@ -709,7 +709,7 @@ if (CPTRewrite.player.checkInRange(interactableObjects)) {
 //
 //        workDesk.setOnMouseClicked(letter);
 
-        roomObjects.getChildren().addAll(crate, crate2, crate3, crate4, crate5, desk, workDesk);
+        roomObjects.getChildren().addAll(crate, crate2, crate3, crate4, crate5, desk, workDesk, bookcase, bookcase3, bookcase4);
         roomObjects.getChildren().addAll(cabinetClosed1, cabinetClosed2, cabinetOpen, cabinetClosed4);
     }
 
