@@ -22,7 +22,7 @@ public class Enemy extends Rectangle {
 
     private EnemyAction action = EnemyAction.NONE;
     private Node target;
-    private double speed = 1;
+    private double speed = 3;
     private HealthBar healthBar = new HealthBar(0.3);
     private boolean alive = true;
     
