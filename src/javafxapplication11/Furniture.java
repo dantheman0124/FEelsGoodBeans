@@ -25,7 +25,7 @@ public class Furniture extends Rectangle {
     public Furniture(double x, double y, double width, double height) {
         super(x, y, width, height);
     }
-    
+
     public Furniture(Image image, ImagePattern ip, double width, double height) {
         super(width, height);
         this.image = image;
@@ -47,11 +47,12 @@ public class Furniture extends Rectangle {
     public void setIp(ImagePattern ip) {
         this.ip = ip;
     }
-    
-        public String getText(){
+
+    public String getText() {
         return this.text;
     }
-    public void setText (String text){
+
+    public void setText(String text) {
         this.text = text;
     }
 }
