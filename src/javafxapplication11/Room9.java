@@ -13,12 +13,87 @@ import javafx.util.Duration;
 public class Room9 extends Room {
 
     private ArrayList<Node> obj = new ArrayList<>();
+
+    private ArrayList<Enemy> enemies = new ArrayList<Enemy>();
+    private ArrayList<Bullet> bullets = new ArrayList<Bullet>();
+    
     private KeyFrame frame = new KeyFrame(Duration.seconds(0.016), e -> {
         getPlayer().update(obj);
+        for (Enemy enemy : enemies) {
+            enemy.update(obj);
+        }
+        bullets.forEach(Bullet::update);
+        player.getBullets().forEach(Bullet::update);
 
-        //displayInv();
-        if (getPlayer().isColliding(doors.getChildren().get(0))) {
-            CPTRewrite.prevRoom();
+        for (int i = 0; i < bullets.size(); i++) {
+            Bullet bullet = bullets.get(i);
+            for (int j = 0; j < roomObjects.getChildren().size(); j++) {
+                if (bullet.getBoundsInParent().intersects(roomObjects.getChildren().get(j).getBoundsInParent())) {
+                    root.getChildren().remove(bullet);
+                    bullets.remove(bullet);
+                }
+            }
+
+            for (int k = 0; k < walls.getChildren().size(); k++) {
+                if (bullet.getBoundsInParent().intersects(walls.getChildren().get(k).getBoundsInParent())) {
+                    root.getChildren().remove(bullet);
+                    bullets.remove(bullet);
+                }
+            }
+
+            for (int k = 0; k < doors.getChildren().size(); k++) {
+                if (bullet.getBoundsInParent().intersects(doors.getChildren().get(k).getBoundsInParent())) {
+                    root.getChildren().remove(bullet);
+                    bullets.remove(bullet);
+                }
+            }
+
+            if (player.isColliding((Node) bullet)) {
+                root.getChildren().remove(bullet);
+                bullets.remove(bullet);
+                player.getHealthBar().loseHealth(1);
+                //player.getHealthBar().update();
+            }
+        }
+
+        for (int i = 0; i < player.getBullets().size(); i++) {
+            Bullet bullet = player.getBullets().get(i);
+            for (int j = 0; j < roomObjects.getChildren().size(); j++) {
+                if (bullet.getBoundsInParent().intersects(roomObjects.getChildren().get(j).getBoundsInParent())) {
+                    root.getChildren().remove(bullet);
+                    player.getBullets().remove(bullet);
+                }
+            }
+
+            for (int k = 0; k < walls.getChildren().size(); k++) {
+                if (bullet.getBoundsInParent().intersects(walls.getChildren().get(k).getBoundsInParent())) {
+                    root.getChildren().remove(bullet);
+                    player.getBullets().remove(bullet);
+                }
+            }
+
+            for (int k = 0; k < doors.getChildren().size(); k++) {
+                if (bullet.getBoundsInParent().intersects(doors.getChildren().get(k).getBoundsInParent())) {
+                    root.getChildren().remove(bullet);
+                    player.getBullets().remove(bullet);
+                }
+            }
+
+            for (int l = 0; l < enemies.size(); l++) {
+                Enemy enemy = enemies.get(l);
+                if (enemy.isColliding(bullet)) {
+                    enemy.getHealthBar().loseHealth(10);
+                    enemy.getHealthBar().update();
+                    root.getChildren().remove(bullet);
+                    player.getBullets().remove(bullet);
+                }
+
+                if (enemy.isDead()) {
+                    enemies.remove(enemy);
+                    root.getChildren().remove(enemy);
+                    root.getChildren().remove(enemy.getHealthBar());
+                }
+            }
         }
     });
 
@@ -59,6 +134,27 @@ public class Room9 extends Room {
 
         scene = new Scene(root, getSCENE_W(), getSCENE_H());
 
+        for (int i = 0; i < 5; i++) {
+            Enemy enemy = new Enemy(30, 70, 20, 50);
+            enemy.setAction(EnemyAction.MOVE);
+            enemy.setRoot(root);
+            enemy.setBullets(bullets);
+            enemy.setTarget(CPTRewrite.player);
+            double startX = this.getWALL_W();
+            double startY = this.getHEADER_H() + this.getWALL_W();
+            double width = this.getROOM_W() - 2 * this.getWALL_W();
+            double height = this.getROOM_H() - 2 * this.getWALL_W();
+            enemy.setDestination(enemy.getRandomDestination(startX, startY, width, height, obj));
+            enemy.setRoom(this);
+
+            enemies.add(enemy);
+            root.getChildren().add(enemy.getHealthBar());
+        }
+        
+        root.getChildren().addAll(enemies);
+        //root.getChildren().add(CPTRewrite.player.getHealthBar());
+        
+       
         setKeyHandlers();
     }
 
@@ -146,7 +242,6 @@ public class Room9 extends Room {
         door.setTranslateY(getHEADER_H());
 
         doors.getChildren().add(door);
-
     }
 
     @Override
