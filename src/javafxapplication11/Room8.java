@@ -241,7 +241,6 @@ public class Room8 extends Room {
                 comboMessage.setY(660);
                 comboMessage.setFont(new Font(20));
                 root.getChildren().addAll(coverUp, comboMessage);
-
             }
         };
 
