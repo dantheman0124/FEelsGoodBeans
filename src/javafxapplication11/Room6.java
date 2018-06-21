@@ -19,6 +19,7 @@ import javafx.scene.text.Text;
 
 public class Room6 extends Room {
 
+    public boolean enter = false;
     public TextField passwordInput = new TextField();
     public String password = "hello";
     public static boolean nextRoom = false;
@@ -220,10 +221,15 @@ public class Room6 extends Room {
         enterButton.setTranslateY(640);
         enterButton.setScaleX(1);
         enterButton.setScaleY(1);
-        
+
         EventHandler clickBookshelf = new EventHandler() {
             @Override
             public void handle(Event event) {
+                if (enter) {
+
+                } else {
+                    root.getChildren().removeAll(enterButton, passwordInput);
+                }
                 Rectangle coverUp = new Rectangle(0, 600, 900, 100);
                 coverUp.setFill(Color.WHITE);
                 Text enterMessage = new Text("Much books, many wow.");
@@ -234,20 +240,25 @@ public class Room6 extends Room {
                 root.getChildren().addAll(coverUp, enterMessage);
             }
         };
-        
+
         bookshelf2.setOnMouseClicked(clickBookshelf);
         bookshelf4.setOnMouseClicked(clickBookshelf);
         bookshelf6.setOnMouseClicked(clickBookshelf);
         bookshelf8.setOnMouseClicked(clickBookshelf);
 
-        EventHandler enterCode = new EventHandler() {
+        EventHandler enterPassword = new EventHandler() {
             @Override
             public void handle(Event event) {
+                if (enter) {
+
+                } else {
+                    root.getChildren().removeAll(enterButton, passwordInput);
+                }
                 passwordInput.setTranslateX(200);
                 passwordInput.setTranslateY(640);
                 Rectangle coverUp = new Rectangle(0, 600, 900, 100);
                 coverUp.setFill(Color.WHITE);
-                Text enterMessage = new Text("Enter a passcode: ");
+                Text enterMessage = new Text("Enter a password: ");
                 enterMessage.setX(20);
                 enterMessage.setY(660);
                 enterMessage.setFont(new Font(20));
@@ -264,6 +275,7 @@ public class Room6 extends Room {
 //                    System.out.println("You found a key!");
 //                    Room6.nextRoom = true;
 //                
+                enter = true;
                 password = passwordInput.getText();
                 root.getChildren().removeAll(enterButton, passwordInput);
 
@@ -289,7 +301,7 @@ public class Room6 extends Room {
         Office workDesk1 = new Office(747, 195, 120, 95, "workDeskYellow");
         Office computer = new Office(778, 200, 30, 40, "computer");
         Office computerTower = new Office(808, 245, 18, 36, "computerTower");
-        computer.setOnMouseClicked(enterCode);
+        computer.setOnMouseClicked(enterPassword);
 
         int x = 95;
         y = 405;
@@ -301,6 +313,27 @@ public class Room6 extends Room {
         Chair chairR2 = new Chair(x - 40, y + 95, 35, 60, "brownChairRight");
         Chair chairL = new Chair(x + 79, y + 70, 35, 60, "brownChairLeft");
         Chair chairL2 = new Chair(x + 79, y + 95, 35, 60, "brownChairLeft");
+
+        EventHandler clickChair = new EventHandler() {
+            @Override
+            public void handle(Event event) {
+                if (enter) {
+
+                } else {
+                    root.getChildren().removeAll(enterButton, passwordInput);
+                }
+
+                Rectangle coverUp = new Rectangle(0, 600, 900, 100);
+                coverUp.setFill(Color.WHITE);
+                Text enterMessage = new Text("Someone left their chair untucked. How rude.");
+                enterMessage.setX(20);
+                enterMessage.setY(660);
+                enterMessage.setFont(new Font(20));
+
+                root.getChildren().addAll(coverUp, enterMessage);
+            }
+        };
+        chairR2.setOnMouseClicked(clickChair);
 
         x = 340;
         y = 520;

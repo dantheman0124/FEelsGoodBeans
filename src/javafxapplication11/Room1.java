@@ -1,7 +1,6 @@
 package javafxapplication11;
 
 import java.util.ArrayList;
-import javafxapplication11.CPTRewrite;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.Event;
@@ -12,9 +11,7 @@ import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
-import javafxapplication11.CPTRewrite;
 import java.math.*;
-import javafx.scene.control.Button;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
