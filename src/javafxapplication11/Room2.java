@@ -12,6 +12,7 @@ import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
+import static javafxapplication11.CPTRewrite.rooms;
 
 public class Room2 extends Room {
 
@@ -26,6 +27,9 @@ public class Room2 extends Room {
 
     private KeyFrame frame = new KeyFrame(Duration.seconds(0.016), e -> {
         getPlayer().update(obj);
+        this.getHealthBar().setHealth(CPTRewrite.player.getHealthBar().getHealth());
+        this.getHealthBar().update();
+        System.out.println(this.getHealthBar().getHealth());
         for (Enemy enemy : enemies) {
             enemy.update(obj);
         }
@@ -58,7 +62,7 @@ public class Room2 extends Room {
             if (player.isColliding((Node) bullet)) {
                 root.getChildren().remove(bullet);
                 bullets.remove(bullet);
-                player.getHealthBar().loseHealth(1);
+                player.getHealthBar().loseHealth(10);
                 player.getHealthBar().update();
             }
         }
@@ -201,7 +205,7 @@ public class Room2 extends Room {
             root.getChildren().add(enemy.getHealthBar());
         }
         root.getChildren().addAll(enemies);
-        root.getChildren().add(CPTRewrite.player.getHealthBar());
+        //root.getChildren().add(CPTRewrite.player.getHealthBar());
 
         setKeyHandlers();
     }
