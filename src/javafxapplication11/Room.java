@@ -18,6 +18,8 @@ import javafx.scene.text.Text;
 
 public class Room {
 
+    private HealthBar healthBar;
+    
     static ArrayList rooms = new ArrayList<Room>();
     private final int ROOM_W = 900;
     private final int ROOM_H = 550;
@@ -62,6 +64,8 @@ public class Room {
 
     public Room() {
         this.root = new Pane();
+        healthBar = new HealthBar(1);
+        root.getChildren().add(healthBar);
     }
 
     public void createWalls() {
@@ -292,6 +296,18 @@ public class Room {
     public Group getDoors() {
         return doors;
     }
+
+    public void setHealthBar(HealthBar healthBar) {
+        this.healthBar = healthBar;
+    }
+
+    public HealthBar getHealthBar() {
+        return healthBar;
+    }
+
+    
+    
+
     
     
     

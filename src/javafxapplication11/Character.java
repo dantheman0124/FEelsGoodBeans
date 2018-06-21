@@ -12,6 +12,7 @@ import javafx.event.EventHandler;
 import javafx.geometry.Point2D;
 import javafx.scene.Group;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
@@ -52,6 +53,7 @@ public class Character extends Rectangle {
         }
         ip = new ImagePattern(image);
         this.setFill(ip);
+        healthBar.setColor(Color.YELLOW);
     }
 
     public boolean isAlive() {

@@ -98,7 +98,7 @@ public class CPTRewrite extends Application {
                 EventHandler playGame = new EventHandler() {
                     @Override
                     public void handle(Event event) {
-                        rooms.add(new Room8());
+                        rooms.add(new Room1());
                         rooms.add(new Room2());
                         rooms.add(new Room3());
                         rooms.add(new Room4());
@@ -108,7 +108,10 @@ public class CPTRewrite extends Application {
                         rooms.add(new Room8());
                         rooms.add(new Room9());
 
-                        player.setRoot(rooms.get(1).getRoot());
+                        player.setRoot(rooms.get(0).getRoot());
+                        rooms.get(0).setHealthBar(player.getHealthBar());
+                        
+                        
 
                         rooms.get(currentRoom).startEnter(player, currentRoom);
                         stage = primaryStage;
@@ -254,6 +257,7 @@ public class CPTRewrite extends Application {
         stage.setScene(rooms.get(currentRoom).getScene());
         stage.setTitle("Room " + (currentRoom + 1) + "!");
         rooms.get(currentRoom).startEnter(player, currentRoom);
+        rooms.get(currentRoom).getHealthBar().setHealth(CPTRewrite.player.getHealthBar().getHealth());
     }
 
     public static void prevRoom() {
@@ -266,6 +270,7 @@ public class CPTRewrite extends Application {
         stage.setScene(rooms.get(currentRoom).getScene());
         stage.setTitle("Room " + (currentRoom + 1) + "!");
         rooms.get(currentRoom).startExit(player, currentRoom);
+        rooms.get(currentRoom).setHealthBar(player.getHealthBar());
     }
 
 //    public static void setRoom(int room) {
