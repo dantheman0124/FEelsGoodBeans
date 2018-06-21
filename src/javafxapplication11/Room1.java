@@ -291,7 +291,20 @@ public class Room1 extends Room {
                 comboMessage.setY(660);
                 comboMessage.setFont(new Font(20));
                 root.getChildren().addAll(coverUp, comboMessage);
-
+            }
+        };
+        
+        EventHandler drawersMessage = new EventHandler() {
+            @Override
+            public void handle(Event event) {
+                Node source = (Node) event.getSource();
+                Rectangle coverUp = new Rectangle(0, 600, 900, 100);
+                coverUp.setFill(Color.WHITE);
+                Text comboMessage = new Text("These drawers are empty. How boring.");
+                comboMessage.setX(20);
+                comboMessage.setY(660);
+                comboMessage.setFont(new Font(20));
+                root.getChildren().addAll(coverUp, comboMessage);
             }
         };
 
@@ -302,7 +315,7 @@ public class Room1 extends Room {
         crate4.setOnMouseClicked(objClick);
         crate5.setOnMouseClicked(objClick);
         bookcase.setOnMouseClicked(bookMessage);
-        bookcase3.setOnMouseClicked(bookMessage);
+        bookcase3.setOnMouseClicked(drawersMessage);
         bookcase4.setOnMouseClicked(bookMessage);
         desk.setOnMouseClicked(objClick);
         cabinetClosed1.setOnMouseClicked(objClick);

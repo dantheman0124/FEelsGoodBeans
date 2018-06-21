@@ -212,6 +212,7 @@ public class Room6 extends Room {
         EventHandler enterCode = new EventHandler() {
             @Override
             public void handle(Event event) {
+                //Text text = new Text();
                 Scanner input = new Scanner(System.in);
                 Node source = (Node) event.getSource();
                 System.out.print("Enter a passcode: ");

@@ -98,7 +98,7 @@ public class CPTRewrite extends Application {
                 EventHandler playGame = new EventHandler() {
                     @Override
                     public void handle(Event event) {
-                        rooms.add(new Room8());
+                        rooms.add(new Room5());
                         rooms.add(new Room2());
                         rooms.add(new Room3());
                         rooms.add(new Room4());
