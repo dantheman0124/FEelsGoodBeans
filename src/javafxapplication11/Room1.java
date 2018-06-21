@@ -55,41 +55,216 @@ public class Room1 extends Room {
             CPTRewrite.nextRoom();
         }
 
-        if (CPTRewrite.player.checkInRange(interactableObjects)) {
-
+        if (CPTRewrite.player.checkInRange(interactableObjects) == 0) {
             cabinetOpen.setOnMouseClicked(this.findItem);
+            crate.setOnMouseClicked(null);
+            crate2.setOnMouseClicked(null);
+            crate3.setOnMouseClicked(null);
+            crate4.setOnMouseClicked(null);
+            crate5.setOnMouseClicked(null);
+            bookcase.setOnMouseClicked(null);
+            bookcase3.setOnMouseClicked(null);
+            bookcase4.setOnMouseClicked(null);
+            desk.setOnMouseClicked(null);
+            cabinetClosed1.setOnMouseClicked(null);
+            cabinetClosed2.setOnMouseClicked(null);
+            cabinetClosed4.setOnMouseClicked(null);
+            workDesk.setOnMouseClicked(null);
+        } else if (CPTRewrite.player.checkInRange(interactableObjects) == 1) {
+            cabinetOpen.setOnMouseClicked(null);
             crate.setOnMouseClicked(this.objClick);
+            crate2.setOnMouseClicked(null);
+            crate3.setOnMouseClicked(null);
+            crate4.setOnMouseClicked(null);
+            crate5.setOnMouseClicked(null);
+            bookcase.setOnMouseClicked(null);
+            bookcase3.setOnMouseClicked(null);
+            bookcase4.setOnMouseClicked(null);
+            desk.setOnMouseClicked(null);
+            cabinetClosed1.setOnMouseClicked(null);
+            cabinetClosed2.setOnMouseClicked(null);
+            cabinetClosed4.setOnMouseClicked(null);
+            workDesk.setOnMouseClicked(null);
+        } else if (CPTRewrite.player.checkInRange(interactableObjects) == 2) {
+            cabinetOpen.setOnMouseClicked(null);
+            crate.setOnMouseClicked(null);
             crate2.setOnMouseClicked(this.objClick);
+            crate3.setOnMouseClicked(null);
+            crate4.setOnMouseClicked(null);
+            crate5.setOnMouseClicked(null);
+            bookcase.setOnMouseClicked(null);
+            bookcase3.setOnMouseClicked(null);
+            bookcase4.setOnMouseClicked(null);
+            desk.setOnMouseClicked(null);
+            cabinetClosed1.setOnMouseClicked(null);
+            cabinetClosed2.setOnMouseClicked(null);
+            cabinetClosed4.setOnMouseClicked(null);
+            workDesk.setOnMouseClicked(null);
+        } else if (CPTRewrite.player.checkInRange(interactableObjects) == 3) {
+            cabinetOpen.setOnMouseClicked(null);
+            crate.setOnMouseClicked(null);
+            crate2.setOnMouseClicked(null);
             crate3.setOnMouseClicked(this.objClick);
+            crate4.setOnMouseClicked(null);
+            crate5.setOnMouseClicked(null);
+            bookcase.setOnMouseClicked(null);
+            bookcase3.setOnMouseClicked(null);
+            bookcase4.setOnMouseClicked(null);
+            desk.setOnMouseClicked(null);
+            cabinetClosed1.setOnMouseClicked(null);
+            cabinetClosed2.setOnMouseClicked(null);
+            cabinetClosed4.setOnMouseClicked(null);
+            workDesk.setOnMouseClicked(null);
+        } else if (CPTRewrite.player.checkInRange(interactableObjects) == 4) {
+            cabinetOpen.setOnMouseClicked(null);
+            crate.setOnMouseClicked(null);
+            crate2.setOnMouseClicked(null);
+            crate3.setOnMouseClicked(null);
             crate4.setOnMouseClicked(this.objClick);
+            crate5.setOnMouseClicked(null);
+            bookcase.setOnMouseClicked(null);
+            bookcase3.setOnMouseClicked(null);
+            bookcase4.setOnMouseClicked(null);
+            desk.setOnMouseClicked(null);
+            cabinetClosed1.setOnMouseClicked(null);
+            cabinetClosed2.setOnMouseClicked(null);
+            cabinetClosed4.setOnMouseClicked(null);
+            workDesk.setOnMouseClicked(null);
+        } else if (CPTRewrite.player.checkInRange(interactableObjects) == 5) {
+            cabinetOpen.setOnMouseClicked(null);
+            crate.setOnMouseClicked(null);
+            crate2.setOnMouseClicked(null);
+            crate3.setOnMouseClicked(null);
+            crate4.setOnMouseClicked(null);
             crate5.setOnMouseClicked(this.objClick);
+            bookcase.setOnMouseClicked(null);
+            bookcase3.setOnMouseClicked(null);
+            bookcase4.setOnMouseClicked(null);
+            desk.setOnMouseClicked(null);
+            cabinetClosed1.setOnMouseClicked(null);
+            cabinetClosed2.setOnMouseClicked(null);
+            cabinetClosed4.setOnMouseClicked(null);
+            workDesk.setOnMouseClicked(null);
+        } else if (CPTRewrite.player.checkInRange(interactableObjects) == 6) {
+            cabinetOpen.setOnMouseClicked(null);
+            crate.setOnMouseClicked(null);
+            crate2.setOnMouseClicked(null);
+            crate3.setOnMouseClicked(null);
+            crate4.setOnMouseClicked(null);
+            crate5.setOnMouseClicked(null);
             bookcase.setOnMouseClicked(this.bookMessage);
+            bookcase3.setOnMouseClicked(null);
+            bookcase4.setOnMouseClicked(null);
+            desk.setOnMouseClicked(null);
+            cabinetClosed1.setOnMouseClicked(null);
+            cabinetClosed2.setOnMouseClicked(null);
+            cabinetClosed4.setOnMouseClicked(null);
+            workDesk.setOnMouseClicked(null);
+        } else if (CPTRewrite.player.checkInRange(interactableObjects) == 7) {
+            cabinetOpen.setOnMouseClicked(null);
+            crate.setOnMouseClicked(null);
+            crate2.setOnMouseClicked(null);
+            crate3.setOnMouseClicked(null);
+            crate4.setOnMouseClicked(null);
+            crate5.setOnMouseClicked(null);
+            bookcase.setOnMouseClicked(null);
             bookcase3.setOnMouseClicked(this.bookMessage);
+            bookcase4.setOnMouseClicked(null);
+            desk.setOnMouseClicked(null);
+            cabinetClosed1.setOnMouseClicked(null);
+            cabinetClosed2.setOnMouseClicked(null);
+            cabinetClosed4.setOnMouseClicked(null);
+            workDesk.setOnMouseClicked(null);
+        } else if (CPTRewrite.player.checkInRange(interactableObjects) == 8) {
+            cabinetOpen.setOnMouseClicked(null);
+            crate.setOnMouseClicked(null);
+            crate2.setOnMouseClicked(null);
+            crate3.setOnMouseClicked(null);
+            crate4.setOnMouseClicked(null);
+            crate5.setOnMouseClicked(null);
+            bookcase.setOnMouseClicked(null);
+            bookcase3.setOnMouseClicked(null);
             bookcase4.setOnMouseClicked(this.bookMessage);
+            desk.setOnMouseClicked(null);
+            cabinetClosed1.setOnMouseClicked(null);
+            cabinetClosed2.setOnMouseClicked(null);
+            cabinetClosed4.setOnMouseClicked(null);
+            workDesk.setOnMouseClicked(null);
+        } else if (CPTRewrite.player.checkInRange(interactableObjects) == 9) {
+            cabinetOpen.setOnMouseClicked(null);
+            crate.setOnMouseClicked(null);
+            crate2.setOnMouseClicked(null);
+            crate3.setOnMouseClicked(null);
+            crate4.setOnMouseClicked(null);
+            crate5.setOnMouseClicked(null);
+            bookcase.setOnMouseClicked(null);
+            bookcase3.setOnMouseClicked(null);
+            bookcase4.setOnMouseClicked(null);
             desk.setOnMouseClicked(this.objClick);
+            cabinetClosed1.setOnMouseClicked(null);
+            cabinetClosed2.setOnMouseClicked(null);
+            cabinetClosed4.setOnMouseClicked(null);
+            workDesk.setOnMouseClicked(null);
+        } else if (CPTRewrite.player.checkInRange(interactableObjects) == 10) {
+            cabinetOpen.setOnMouseClicked(null);
+            crate.setOnMouseClicked(null);
+            crate2.setOnMouseClicked(null);
+            crate3.setOnMouseClicked(null);
+            crate4.setOnMouseClicked(null);
+            crate5.setOnMouseClicked(null);
+            bookcase.setOnMouseClicked(null);
+            bookcase3.setOnMouseClicked(null);
+            bookcase4.setOnMouseClicked(null);
+            desk.setOnMouseClicked(null);
             cabinetClosed1.setOnMouseClicked(this.objClick);
+            cabinetClosed2.setOnMouseClicked(null);
+            cabinetClosed4.setOnMouseClicked(null);
+            workDesk.setOnMouseClicked(null);
+        } else if (CPTRewrite.player.checkInRange(interactableObjects) == 11) {
+            cabinetOpen.setOnMouseClicked(null);
+            crate.setOnMouseClicked(null);
+            crate2.setOnMouseClicked(null);
+            crate3.setOnMouseClicked(null);
+            crate4.setOnMouseClicked(null);
+            crate5.setOnMouseClicked(null);
+            bookcase.setOnMouseClicked(null);
+            bookcase3.setOnMouseClicked(null);
+            bookcase4.setOnMouseClicked(null);
+            desk.setOnMouseClicked(null);
+            cabinetClosed1.setOnMouseClicked(null);
             cabinetClosed2.setOnMouseClicked(this.objClick);
+            cabinetClosed4.setOnMouseClicked(null);
+            workDesk.setOnMouseClicked(null);
+        } else if (CPTRewrite.player.checkInRange(interactableObjects) == 12) {
+            cabinetOpen.setOnMouseClicked(null);
+            crate.setOnMouseClicked(null);
+            crate2.setOnMouseClicked(null);
+            crate3.setOnMouseClicked(null);
+            crate4.setOnMouseClicked(null);
+            crate5.setOnMouseClicked(null);
+            bookcase.setOnMouseClicked(null);
+            bookcase3.setOnMouseClicked(null);
+            bookcase4.setOnMouseClicked(null);
+            desk.setOnMouseClicked(null);
+            cabinetClosed1.setOnMouseClicked(null);
+            cabinetClosed2.setOnMouseClicked(null);
             cabinetClosed4.setOnMouseClicked(this.objClick);
+            workDesk.setOnMouseClicked(null);
+        } else if (CPTRewrite.player.checkInRange(interactableObjects) == 13) {
+            cabinetOpen.setOnMouseClicked(null);
+            crate.setOnMouseClicked(null);
+            crate2.setOnMouseClicked(null);
+            crate3.setOnMouseClicked(null);
+            crate4.setOnMouseClicked(null);
+            crate5.setOnMouseClicked(null);
+            bookcase.setOnMouseClicked(null);
+            bookcase3.setOnMouseClicked(null);
+            bookcase4.setOnMouseClicked(null);
+            desk.setOnMouseClicked(null);
+            cabinetClosed1.setOnMouseClicked(null);
+            cabinetClosed2.setOnMouseClicked(null);
+            cabinetClosed4.setOnMouseClicked(null);
             workDesk.setOnMouseClicked(this.letter);
-        }
-
-        if (CPTRewrite.player.checkInRange(interactableObjects)) {
-
-            cabinetOpen.setOnMouseClicked(this.findItem);
-            crate.setOnMouseClicked(this.objClick);
-            crate2.setOnMouseClicked(this.objClick);
-            crate3.setOnMouseClicked(this.objClick);
-            crate4.setOnMouseClicked(this.objClick);
-            crate5.setOnMouseClicked(this.objClick);
-            bookcase.setOnMouseClicked(this.bookMessage);
-            bookcase3.setOnMouseClicked(this.bookMessage);
-            bookcase4.setOnMouseClicked(this.bookMessage);
-            desk.setOnMouseClicked(this.objClick);
-            cabinetClosed1.setOnMouseClicked(this.objClick);
-            cabinetClosed2.setOnMouseClicked(this.objClick);
-            cabinetClosed4.setOnMouseClicked(this.objClick);
-            workDesk.setOnMouseClicked(this.letter);
-            
         } else {
             cabinetOpen.setOnMouseClicked(null);
             crate.setOnMouseClicked(null);

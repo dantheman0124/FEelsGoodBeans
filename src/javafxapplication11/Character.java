@@ -141,23 +141,23 @@ public class Character extends Rectangle {
         }
     }
 
-    public boolean checkInRange(ArrayList<Node> interactables) {
+    public int checkInRange(ArrayList<Node> interactables) {
 
         double playerX = CPTRewrite.player.getTranslateX() + CPTRewrite.player.getWidth() / 2;
-        double playerY = CPTRewrite.player.getTranslateY() + CPTRewrite.player.getHeight() / 2;       
-        
-        for (int i = 0; i < interactables.size(); i ++){
+        double playerY = CPTRewrite.player.getTranslateY() + CPTRewrite.player.getHeight() / 2;
+
+        for (int i = 0; i < interactables.size(); i++) {
             Rectangle object = (Rectangle) interactables.get(i);
             int j = 0;
-            
+
             //Furniture thing = (Furniture) interactable;
             if (playerX >= (object.getX() - 50) && playerX <= (object.getX() + object.getWidth() + 50)) {
-                if (playerY >= (object.getY() - 50) && playerY <= (object.getY() + object.getHeight() + 50)) {                    
-                    return true;
+                if (playerY >= (object.getY() - 50) && playerY <= (object.getY() + object.getHeight() + 50)) {
+                    return i;
                 }
-            }        
-        }    
-        return false;
+            }
+        }
+        return -1;
     }
 
     public boolean isColliding(Node other) {
