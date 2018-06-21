@@ -97,6 +97,7 @@ public class Room1 extends Room {
             crate2.setOnMouseClicked(null);
             crate3.setOnMouseClicked(null);
             crate4.setOnMouseClicked(null);
+
             crate5.setOnMouseClicked(null);
             bookcase.setOnMouseClicked(null);
             bookcase3.setOnMouseClicked(null);
