@@ -141,22 +141,51 @@ public class Character extends Rectangle {
         }
     }
 
+//    public int checkInRange(ArrayList<Node> interactables) {
+//
+//        double playerX = CPTRewrite.player.getTranslateX() + CPTRewrite.player.getWidth() / 2;
+//        double playerY = CPTRewrite.player.getTranslateY() + CPTRewrite.player.getHeight() / 2;
+//        double objectX;
+//        double objectY;
+//        double closest = 1000;
+//        double distance;
+//        int index = -1;
+//
+//        for (int i = 0; i < interactables.size(); i++) {
+//            Rectangle object = (Rectangle) interactables.get(i);
+//
+//            objectX = object.getX() + object.getWidth() / 2;
+//            objectY = object.getY() + object.getHeight() / 2;
+//
+//            if (playerX >= (object.getX() - 100) && playerX <= (object.getX() + object.getWidth() + 100)) {
+//                if (playerY >= (object.getY() - 100) && playerY <= (object.getY() + object.getHeight() + 100)) {
+//                    distance = Math.sqrt((objectX - playerX) * (objectX - playerX) + (objectY - playerY) * (objectY - playerY));
+//                    if (distance < closest) {
+//                        closest = distance;
+//                        index = i;
+//                    }
+//                    return index;
+//                }
+//            }
+//        }
+//        return index;
+//    }
     public boolean checkInRange(ArrayList<Node> interactables) {
 
         double playerX = CPTRewrite.player.getTranslateX() + CPTRewrite.player.getWidth() / 2;
-        double playerY = CPTRewrite.player.getTranslateY() + CPTRewrite.player.getHeight() / 2;       
-        
-        for (int i = 0; i < interactables.size(); i ++){
+        double playerY = CPTRewrite.player.getTranslateY() + CPTRewrite.player.getHeight() / 2;
+
+        for (int i = 0; i < interactables.size(); i++) {
             Rectangle object = (Rectangle) interactables.get(i);
             int j = 0;
-            
+
             //Furniture thing = (Furniture) interactable;
             if (playerX >= (object.getX() - 50) && playerX <= (object.getX() + object.getWidth() + 50)) {
-                if (playerY >= (object.getY() - 50) && playerY <= (object.getY() + object.getHeight() + 50)) {                    
+                if (playerY >= (object.getY() - 50) && playerY <= (object.getY() + object.getHeight() + 50)) {
                     return true;
                 }
-            }        
-        }    
+            }
+        }
         return false;
     }
 

@@ -52,7 +52,248 @@ public class Room1 extends Room {
             CPTRewrite.nextRoom();
         }
 
-        if (CPTRewrite.player.checkInRange(interactableObjects)) {
+//        if (CPTRewrite.player.checkInRange(interactableObjects) == 0) {
+//            cabinetOpen.setOnMouseClicked(this.findItem);
+//            crate.setOnMouseClicked(null);
+//            crate2.setOnMouseClicked(null);
+//            crate3.setOnMouseClicked(null);
+//            crate4.setOnMouseClicked(null);
+//            crate5.setOnMouseClicked(null);
+//            bookcase.setOnMouseClicked(null);
+//            bookcase3.setOnMouseClicked(null);
+//            bookcase4.setOnMouseClicked(null);
+//            desk.setOnMouseClicked(null);
+//            cabinetClosed1.setOnMouseClicked(null);
+//            cabinetClosed2.setOnMouseClicked(null);
+//            cabinetClosed4.setOnMouseClicked(null);
+//            workDesk.setOnMouseClicked(null);
+//            System.out.println(CPTRewrite.player.checkInRange(interactableObjects));
+//        } else if (CPTRewrite.player.checkInRange(interactableObjects) == 1) {
+//            cabinetOpen.setOnMouseClicked(null);
+//            crate.setOnMouseClicked(this.objClick);
+//            crate2.setOnMouseClicked(null);
+//            crate3.setOnMouseClicked(null);
+//            crate4.setOnMouseClicked(null);
+//            crate5.setOnMouseClicked(null);
+//            bookcase.setOnMouseClicked(null);
+//            bookcase3.setOnMouseClicked(null);
+//            bookcase4.setOnMouseClicked(null);
+//            desk.setOnMouseClicked(null);
+//            cabinetClosed1.setOnMouseClicked(null);
+//            cabinetClosed2.setOnMouseClicked(null);
+//            cabinetClosed4.setOnMouseClicked(null);
+//            workDesk.setOnMouseClicked(null);
+//            System.out.println(CPTRewrite.player.checkInRange(interactableObjects));
+//        } else if (CPTRewrite.player.checkInRange(interactableObjects) == 2) {
+//            cabinetOpen.setOnMouseClicked(null);
+//            crate.setOnMouseClicked(null);
+//            crate2.setOnMouseClicked(this.objClick);
+//            crate3.setOnMouseClicked(null);
+//            crate4.setOnMouseClicked(null);
+//            crate5.setOnMouseClicked(null);
+//            bookcase.setOnMouseClicked(null);
+//            bookcase3.setOnMouseClicked(null);
+//            bookcase4.setOnMouseClicked(null);
+//            desk.setOnMouseClicked(null);
+//            cabinetClosed1.setOnMouseClicked(null);
+//            cabinetClosed2.setOnMouseClicked(null);
+//            cabinetClosed4.setOnMouseClicked(null);
+//            workDesk.setOnMouseClicked(null);
+//            System.out.println(CPTRewrite.player.checkInRange(interactableObjects));
+//        } else if (CPTRewrite.player.checkInRange(interactableObjects) == 3) {
+//            cabinetOpen.setOnMouseClicked(null);
+//            crate.setOnMouseClicked(null);
+//            crate2.setOnMouseClicked(null);
+//            crate3.setOnMouseClicked(this.objClick);
+//            crate4.setOnMouseClicked(null);
+//            crate5.setOnMouseClicked(null);
+//            bookcase.setOnMouseClicked(null);
+//            bookcase3.setOnMouseClicked(null);
+//            bookcase4.setOnMouseClicked(null);
+//            desk.setOnMouseClicked(null);
+//            cabinetClosed1.setOnMouseClicked(null);
+//            cabinetClosed2.setOnMouseClicked(null);
+//            cabinetClosed4.setOnMouseClicked(null);
+//            workDesk.setOnMouseClicked(null);
+//            System.out.println(CPTRewrite.player.checkInRange(interactableObjects));
+//        } else if (CPTRewrite.player.checkInRange(interactableObjects) == 4) {
+//            cabinetOpen.setOnMouseClicked(null);
+//            crate.setOnMouseClicked(null);
+//            crate2.setOnMouseClicked(null);
+//            crate3.setOnMouseClicked(null);
+//            crate4.setOnMouseClicked(this.objClick);
+//            crate5.setOnMouseClicked(null);
+//            bookcase.setOnMouseClicked(null);
+//            bookcase3.setOnMouseClicked(null);
+//            bookcase4.setOnMouseClicked(null);
+//            desk.setOnMouseClicked(null);
+//            cabinetClosed1.setOnMouseClicked(null);
+//            cabinetClosed2.setOnMouseClicked(null);
+//            cabinetClosed4.setOnMouseClicked(null);
+//            workDesk.setOnMouseClicked(null);
+//            System.out.println(CPTRewrite.player.checkInRange(interactableObjects));
+//        } else if (CPTRewrite.player.checkInRange(interactableObjects) == 5) {
+//            cabinetOpen.setOnMouseClicked(null);
+//            crate.setOnMouseClicked(null);
+//            crate2.setOnMouseClicked(null);
+//            crate3.setOnMouseClicked(null);
+//            crate4.setOnMouseClicked(null);
+//            crate5.setOnMouseClicked(this.objClick);
+//            bookcase.setOnMouseClicked(null);
+//            bookcase3.setOnMouseClicked(null);
+//            bookcase4.setOnMouseClicked(null);
+//            desk.setOnMouseClicked(null);
+//            cabinetClosed1.setOnMouseClicked(null);
+//            cabinetClosed2.setOnMouseClicked(null);
+//            cabinetClosed4.setOnMouseClicked(null);
+//            workDesk.setOnMouseClicked(null);
+//            System.out.println(CPTRewrite.player.checkInRange(interactableObjects));
+//        } else if (CPTRewrite.player.checkInRange(interactableObjects) == 6) {
+//            cabinetOpen.setOnMouseClicked(null);
+//            crate.setOnMouseClicked(null);
+//            crate2.setOnMouseClicked(null);
+//            crate3.setOnMouseClicked(null);
+//            crate4.setOnMouseClicked(null);
+//            crate5.setOnMouseClicked(null);
+//            bookcase.setOnMouseClicked(this.bookMessage);
+//            bookcase3.setOnMouseClicked(null);
+//            bookcase4.setOnMouseClicked(null);
+//            desk.setOnMouseClicked(null);
+//            cabinetClosed1.setOnMouseClicked(null);
+//            cabinetClosed2.setOnMouseClicked(null);
+//            cabinetClosed4.setOnMouseClicked(null);
+//            workDesk.setOnMouseClicked(null);
+//            System.out.println(CPTRewrite.player.checkInRange(interactableObjects));
+//        } else if (CPTRewrite.player.checkInRange(interactableObjects) == 7) {
+//            cabinetOpen.setOnMouseClicked(null);
+//            crate.setOnMouseClicked(null);
+//            crate2.setOnMouseClicked(null);
+//            crate3.setOnMouseClicked(null);
+//            crate4.setOnMouseClicked(null);
+//            crate5.setOnMouseClicked(null);
+//            bookcase.setOnMouseClicked(null);
+//            bookcase3.setOnMouseClicked(this.bookMessage);
+//            bookcase4.setOnMouseClicked(null);
+//            desk.setOnMouseClicked(null);
+//            cabinetClosed1.setOnMouseClicked(null);
+//            cabinetClosed2.setOnMouseClicked(null);
+//            cabinetClosed4.setOnMouseClicked(null);
+//            workDesk.setOnMouseClicked(null);
+//            System.out.println(CPTRewrite.player.checkInRange(interactableObjects));
+//        } else if (CPTRewrite.player.checkInRange(interactableObjects) == 8) {
+//            cabinetOpen.setOnMouseClicked(null);
+//            crate.setOnMouseClicked(null);
+//            crate2.setOnMouseClicked(null);
+//            crate3.setOnMouseClicked(null);
+//            crate4.setOnMouseClicked(null);
+//            crate5.setOnMouseClicked(null);
+//            bookcase.setOnMouseClicked(null);
+//            bookcase3.setOnMouseClicked(null);
+//            bookcase4.setOnMouseClicked(this.bookMessage);
+//            desk.setOnMouseClicked(null);
+//            cabinetClosed1.setOnMouseClicked(null);
+//            cabinetClosed2.setOnMouseClicked(null);
+//            cabinetClosed4.setOnMouseClicked(null);
+//            workDesk.setOnMouseClicked(null);
+//            System.out.println(CPTRewrite.player.checkInRange(interactableObjects));
+//        } else if (CPTRewrite.player.checkInRange(interactableObjects) == 9) {
+//            cabinetOpen.setOnMouseClicked(null);
+//            crate.setOnMouseClicked(null);
+//            crate2.setOnMouseClicked(null);
+//            crate3.setOnMouseClicked(null);
+//            crate4.setOnMouseClicked(null);
+//            crate5.setOnMouseClicked(null);
+//            bookcase.setOnMouseClicked(null);
+//            bookcase3.setOnMouseClicked(null);
+//            bookcase4.setOnMouseClicked(null);
+//            desk.setOnMouseClicked(this.objClick);
+//            cabinetClosed1.setOnMouseClicked(null);
+//            cabinetClosed2.setOnMouseClicked(null);
+//            cabinetClosed4.setOnMouseClicked(null);
+//            workDesk.setOnMouseClicked(null);
+//            System.out.println(CPTRewrite.player.checkInRange(interactableObjects));
+//        } else if (CPTRewrite.player.checkInRange(interactableObjects) == 10) {
+//            cabinetOpen.setOnMouseClicked(null);
+//            crate.setOnMouseClicked(null);
+//            crate2.setOnMouseClicked(null);
+//            crate3.setOnMouseClicked(null);
+//            crate4.setOnMouseClicked(null);
+//            crate5.setOnMouseClicked(null);
+//            bookcase.setOnMouseClicked(null);
+//            bookcase3.setOnMouseClicked(null);
+//            bookcase4.setOnMouseClicked(null);
+//            desk.setOnMouseClicked(null);
+//            cabinetClosed1.setOnMouseClicked(this.objClick);
+//            cabinetClosed2.setOnMouseClicked(null);
+//            cabinetClosed4.setOnMouseClicked(null);
+//            workDesk.setOnMouseClicked(null);
+//            System.out.println(CPTRewrite.player.checkInRange(interactableObjects));
+//        } else if (CPTRewrite.player.checkInRange(interactableObjects) == 11) {
+//            cabinetOpen.setOnMouseClicked(null);
+//            crate.setOnMouseClicked(null);
+//            crate2.setOnMouseClicked(null);
+//            crate3.setOnMouseClicked(null);
+//            crate4.setOnMouseClicked(null);
+//            crate5.setOnMouseClicked(null);
+//            bookcase.setOnMouseClicked(null);
+//            bookcase3.setOnMouseClicked(null);
+//            bookcase4.setOnMouseClicked(null);
+//            desk.setOnMouseClicked(null);
+//            cabinetClosed1.setOnMouseClicked(null);
+//            cabinetClosed2.setOnMouseClicked(this.objClick);
+//            cabinetClosed4.setOnMouseClicked(null);
+//            workDesk.setOnMouseClicked(null);
+//            System.out.println(CPTRewrite.player.checkInRange(interactableObjects));
+//        } else if (CPTRewrite.player.checkInRange(interactableObjects) == 12) {
+//            cabinetOpen.setOnMouseClicked(null);
+//            crate.setOnMouseClicked(null);
+//            crate2.setOnMouseClicked(null);
+//            crate3.setOnMouseClicked(null);
+//            crate4.setOnMouseClicked(null);
+//            crate5.setOnMouseClicked(null);
+//            bookcase.setOnMouseClicked(null);
+//            bookcase3.setOnMouseClicked(null);
+//            bookcase4.setOnMouseClicked(null);
+//            desk.setOnMouseClicked(null);
+//            cabinetClosed1.setOnMouseClicked(null);
+//            cabinetClosed2.setOnMouseClicked(null);
+//            cabinetClosed4.setOnMouseClicked(this.objClick);
+//            workDesk.setOnMouseClicked(null);
+//            System.out.println(CPTRewrite.player.checkInRange(interactableObjects));
+//        } else if (CPTRewrite.player.checkInRange(interactableObjects) == 13) {
+//            cabinetOpen.setOnMouseClicked(null);
+//            crate.setOnMouseClicked(null);
+//            crate2.setOnMouseClicked(null);
+//            crate3.setOnMouseClicked(null);
+//            crate4.setOnMouseClicked(null);
+//            crate5.setOnMouseClicked(null);
+//            bookcase.setOnMouseClicked(null);
+//            bookcase3.setOnMouseClicked(null);
+//            bookcase4.setOnMouseClicked(null);
+//            desk.setOnMouseClicked(null);
+//            cabinetClosed1.setOnMouseClicked(null);
+//            cabinetClosed2.setOnMouseClicked(null);
+//            cabinetClosed4.setOnMouseClicked(null);
+//            workDesk.setOnMouseClicked(this.letter);
+//            System.out.println(CPTRewrite.player.checkInRange(interactableObjects));
+//        } else {
+//            cabinetOpen.setOnMouseClicked(null);
+//            crate.setOnMouseClicked(null);
+//            crate2.setOnMouseClicked(null);
+//            crate3.setOnMouseClicked(null);
+//            crate4.setOnMouseClicked(null);
+//            crate5.setOnMouseClicked(null);
+//            bookcase.setOnMouseClicked(null);
+//            bookcase3.setOnMouseClicked(null);
+//            bookcase4.setOnMouseClicked(null);
+//            desk.setOnMouseClicked(null);
+//            cabinetClosed1.setOnMouseClicked(null);
+//            cabinetClosed2.setOnMouseClicked(null);
+//            cabinetClosed4.setOnMouseClicked(null);
+//            workDesk.setOnMouseClicked(null);
+//        }
+
+if (CPTRewrite.player.checkInRange(interactableObjects)) {
 
             cabinetOpen.setOnMouseClicked(this.findItem);
             crate.setOnMouseClicked(this.objClick);
@@ -450,23 +691,23 @@ public class Room1 extends Room {
             }
         };
 
-        cabinetOpen.setOnMouseClicked(findItem);
-        crate.setOnMouseClicked(objClick);
-        crate2.setOnMouseClicked(objClick);
-        crate3.setOnMouseClicked(objClick);
-        crate4.setOnMouseClicked(objClick);
-        crate5.setOnMouseClicked(objClick);
-        bookcase.setOnMouseClicked(bookMessage);
-        bookcase3.setOnMouseClicked(drawersMessage);
-        bookcase4.setOnMouseClicked(bookMessage);
-        desk.setOnMouseClicked(objClick);
-        cabinetClosed1.setOnMouseClicked(objClick);
-        cabinetClosed2.setOnMouseClicked(objClick);
-        cabinetClosed4.setOnMouseClicked(objClick);
+//        cabinetOpen.setOnMouseClicked(findItem);
+//        crate.setOnMouseClicked(objClick);
+//        crate2.setOnMouseClicked(objClick);
+//        crate3.setOnMouseClicked(objClick);
+//        crate4.setOnMouseClicked(objClick);
+//        crate5.setOnMouseClicked(objClick);
+//        bookcase.setOnMouseClicked(bookMessage);
+//        bookcase3.setOnMouseClicked(drawersMessage);
+//        bookcase4.setOnMouseClicked(bookMessage);
+//        desk.setOnMouseClicked(objClick);
+//        cabinetClosed1.setOnMouseClicked(objClick);
+//        cabinetClosed2.setOnMouseClicked(objClick);
+//        cabinetClosed4.setOnMouseClicked(objClick);
+//
+//        workDesk.setOnMouseClicked(letter);
 
-        workDesk.setOnMouseClicked(letter);
-
-        roomObjects.getChildren().addAll(crate, crate2, crate3, crate4, crate5, bookcase, bookcase3, bookcase4, desk, workDesk);
+        roomObjects.getChildren().addAll(crate, crate2, crate3, crate4, crate5, desk, workDesk, bookcase, bookcase3, bookcase4);
         roomObjects.getChildren().addAll(cabinetClosed1, cabinetClosed2, cabinetOpen, cabinetClosed4);
     }
 
