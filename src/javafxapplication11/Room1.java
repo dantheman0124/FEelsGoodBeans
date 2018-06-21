@@ -89,8 +89,7 @@ public class Room1 extends Room {
             cabinetClosed2.setOnMouseClicked(this.objClick);
             cabinetClosed4.setOnMouseClicked(this.objClick);
             workDesk.setOnMouseClicked(this.letter);
-
-            System.out.println("fhjdsf");
+            
         } else {
             cabinetOpen.setOnMouseClicked(null);
             crate.setOnMouseClicked(null);
