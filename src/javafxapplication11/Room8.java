@@ -3,11 +3,15 @@ package javafxapplication11;
 import java.util.ArrayList;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.paint.Color;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import javafx.util.Duration;
 
 public class Room8 extends Room {
@@ -15,7 +19,7 @@ public class Room8 extends Room {
     private ArrayList<Node> obj = new ArrayList<>();
     private KeyFrame frame = new KeyFrame(Duration.seconds(0.016), e -> {
         getPlayer().update(obj);
-        
+
         //displayInv();
         if (getPlayer().isColliding(doors.getChildren().get(0))) {
             CPTRewrite.prevRoom();
@@ -153,8 +157,6 @@ public class Room8 extends Room {
         Bedroom rug2 = new Bedroom(725, 220, 80, 60, "purplerug");
         rug2.setRotate(90);
 
-        
-
         //bedroom floor
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 13; j++) {
@@ -222,14 +224,49 @@ public class Room8 extends Room {
 
         Office workDesk1 = new Office(540, 405, 120, 95, "workDeskYellow");
         Office workDesk2 = new Office(760, 405, 120, 95, "workDeskYellow");
-        
+
         //fixing photoshop errors
         Rectangle rect = new Rectangle(getWALL_W(), getHEADER_H(), Color.WHITE);
         rect.setTranslateX(0);
         rect.setTranslateY(0);
-        
-        roomObjects.getChildren().addAll(sink, shower, toilet, bathtub, extraCounter, bed, bedsideH, bedsideV, blackStool, armchairL, armchairR, piano, couch, couch2, plant, workDesk1, workDesk2);
-        roomObjects.getChildren().addAll(rect);
+
+        EventHandler pianoMessage = new EventHandler() {
+            @Override
+            public void handle(Event event) {
+                Node source = (Node) event.getSource();
+                Rectangle coverUp = new Rectangle(0, 600, 900, 100);
+                coverUp.setFill(Color.WHITE);
+                Text comboMessage = new Text("You quit piano lessons in grade five. Bet you regret that now.");
+                comboMessage.setX(20);
+                comboMessage.setY(660);
+                comboMessage.setFont(new Font(20));
+                root.getChildren().addAll(coverUp, comboMessage);
+
+            }
+        };
+
+        EventHandler bedMessage = new EventHandler() {
+            @Override
+            public void handle(Event event) {
+                Node source = (Node) event.getSource();
+                Rectangle coverUp = new Rectangle(0, 600, 900, 100);
+                coverUp.setFill(Color.WHITE);
+                Text comboMessage = new Text("This bed is just right. But you can't sleep in someone else's bed, who do you think you are.");
+                comboMessage.setX(20);
+                comboMessage.setY(660);
+                comboMessage.setFont(new Font(20));
+                root.getChildren().addAll(coverUp, comboMessage);
+
+            }
+        };
+
+        Bedroom chest = new Bedroom(815, 405, 60, 80, "chest");
+
+        piano.setOnMouseClicked(pianoMessage);
+        bed.setOnMouseClicked(bedMessage);
+
+        roomObjects.getChildren().addAll(sink, shower, toilet, bathtub, extraCounter, bed, bedsideH, bedsideV, blackStool, armchairL, armchairR, piano, couch, couch2, plant, workDesk1);
+        roomObjects.getChildren().addAll(rect, chest);
     }
 
     public void displayInv() {
