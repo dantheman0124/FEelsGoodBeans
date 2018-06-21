@@ -153,6 +153,7 @@ public class Room1 extends Room {
             Flashlight flashlight = new Flashlight(-100, -100, 0, 0, false);
             CPTRewrite.inventory.add(flashlight);
             Room2.nextRoom = true;
+            source.setOnMouseClicked(null);
         }
     };
 

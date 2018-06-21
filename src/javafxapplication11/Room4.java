@@ -21,6 +21,7 @@ public class Room4 extends Room {
     private ArrayList<Node> obj = new ArrayList<>();
     private Group buttons = new Group();
     private String passcode = "";
+    private Text enterMessage;
     private KeyFrame frame = new KeyFrame(Duration.seconds(0.016), e -> {
         getPlayer().update(obj);
 
@@ -283,17 +284,30 @@ public class Room4 extends Room {
         EventHandler clickEnter = new EventHandler() {
             @Override
             public void handle(Event event) {
+                Rectangle coverUp = new Rectangle(0, 600, 900, 100);
+                coverUp.setFill(Color.WHITE);
+                Text message;
                 if (passcode.equals("8240")) {
                     Key key = new Key(-100, -100, 0, 0);
                     CPTRewrite.player.getInteractables().add(key);
-                    System.out.println("You found a key!");
+                    message = new Text("You found a key!");
+                    message.setX(20);
+                    message.setY(660);
+                    message.setFont(new Font(20));
                     Room6.nextRoom = true;
+                    microwave.setOnMouseClicked(null);
                 } else {
-                    System.out.println("Wrong code.");
+                    message = new Text("Wrong code.");
+                    message.setX(20);
+                    message.setY(660);
+                    message.setFont(new Font(20));
+                    passcode = "";
                 }
+                root.getChildren().addAll(coverUp, message);
+                root.getChildren().removeAll(enterMessage, btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9, btn0, enterButton);
             }
         };
-        
+
         enterButton.setOnMouseClicked(clickEnter);
 
         EventHandler enterCode = new EventHandler() {
@@ -303,12 +317,12 @@ public class Room4 extends Room {
                 Node source = (Node) event.getSource();
                 Rectangle coverUp = new Rectangle(0, 600, 900, 100);
                 coverUp.setFill(Color.WHITE);
-                Text nothingMessage = new Text("Enter a passcode: ");
-                nothingMessage.setX(20);
-                nothingMessage.setY(660);
-                nothingMessage.setFont(new Font(20));
+                Text enterMessage = new Text("Enter a passcode: ");
+                enterMessage.setX(20);
+                enterMessage.setY(660);
+                enterMessage.setFont(new Font(20));
 
-                root.getChildren().addAll(coverUp, nothingMessage, btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9, btn0, enterButton);
+                root.getChildren().addAll(coverUp, enterMessage, btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9, btn0, enterButton);
 
             }
         };

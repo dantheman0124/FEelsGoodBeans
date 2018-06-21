@@ -226,6 +226,25 @@ public class Room5 extends Room {
         Lab machine3 = new Lab(x, y + 460, 48, 61, "healingMachine");
         Lab machine4 = new Lab(x + 48, y + 460, 48, 61, "healingMachine");
 
+        EventHandler clickLab = new EventHandler() {
+            @Override
+            public void handle(Event event) {
+                Rectangle coverUp = new Rectangle(0, 600, 900, 100);
+                coverUp.setFill(Color.WHITE);
+                Text enterMessage = new Text("You probably shouldn't be touching this...");
+                enterMessage.setX(20);
+                enterMessage.setY(660);
+                enterMessage.setFont(new Font(20));
+
+                root.getChildren().addAll(coverUp, enterMessage);
+            }
+
+        };
+        machine.setOnMouseClicked(clickLab);
+        machine2.setOnMouseClicked(clickLab);
+        machine3.setOnMouseClicked(clickLab);
+        machine4.setOnMouseClicked(clickLab);
+
         // display shelves
         Lab shelf;
         for (int i = 0; i < 4; i++) {
@@ -253,22 +272,6 @@ public class Room5 extends Room {
         Lab lockers1 = new Lab(x + 90, 30, 90, 100, "lockers");
         Lab lockers2 = new Lab(x - 90, 30, 90, 100, "lockers");
 
-//        EventHandler enterCode = new EventHandler() {
-//            @Override
-//            public void handle(Event event) {
-//                Scanner input = new Scanner(System.in);
-//                Node source = (Node) event.getSource();
-//                System.out.print("Enter a 3-Digit passcode: ");
-//                String passcode = input.next();
-//                if (passcode.equals("918")) {
-//                    System.out.println("'tUtTiFrUtTi.'");
-//                    System.out.println(" - Some Cool Dude");
-//                    source.setOnMouseClicked(null);
-//                } else {
-//                    System.out.println("Wrong code.");
-//                }
-//            }
-//        };
         EventHandler colour = new EventHandler() {
             @Override
             public void handle(Event event) {
@@ -369,7 +372,13 @@ public class Room5 extends Room {
                     root.getChildren().addAll(coverUp, message);
 
                 } else {
-                    System.out.println("Wrong code.");
+                    Rectangle coverUp = new Rectangle(0, 600, 900, 100);
+                    coverUp.setFill(Color.WHITE);
+                    Text message = new Text("Wrong code.");
+                    message.setX(20);
+                    message.setY(660);
+                    message.setFont(new Font(20));
+                    root.getChildren().addAll(coverUp, message);
                 }
             }
         };
