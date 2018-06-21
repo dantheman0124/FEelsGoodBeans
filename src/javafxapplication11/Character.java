@@ -141,47 +141,23 @@ public class Character extends Rectangle {
         }
     }
 
-    public void update(ArrayList<Node> objects, ArrayList<Node> interactables) {
+    public boolean checkInRange(ArrayList<Node> interactables) {
 
-        if (this.checkObstacle(objects)) {
-            switch (action) {
-                case LEFT:
-                    setTranslateX(getTranslateX() - speed);
-                    break;
-                case RIGHT:
-                    setTranslateX(getTranslateX() + speed);
-                    break;
-                case UP:
-                    setTranslateY(getTranslateY() - speed);
-                    break;
-                case DOWN:
-                    setTranslateY(getTranslateY() + speed);
-                    break;
-                case NONE:
-                    break;
-            }
-        }
-
-        if (action != characterAction.NONE) {
-            lastAction = action;
-        }
-
-        if (shoot) {
-            shootBullet();
-            shoot = false;
-        }
-
-//        for (Node interactable : interactables) {
-//            Rectangle object = (Rectangle) interactable;           
-//            Furniture thing = (Furniture) interactable;
-//            thing.setOnMouseClicked(printText);
-//            if (CPTRewrite.player.getTranslateX() >= (object.getTranslateX() - 50) && CPTRewrite.player.getTranslateX() <= (object.getTranslateX() + object.getWidth() + 50)) {
-//                if (CPTRewrite.player.getTranslateY() >= (object.getTranslateY() - 50) && CPTRewrite.player.getTranslateY() <= (object.getTranslateY() + object.getWidth() + 50)) {
-//                    System.out.println(thing.getText());
-//                }
-//            }
-//        }
-
+        double playerX = CPTRewrite.player.getTranslateX() + CPTRewrite.player.getWidth() / 2;
+        double playerY = CPTRewrite.player.getTranslateY() + CPTRewrite.player.getHeight() / 2;       
+        
+        for (int i = 0; i < interactables.size(); i ++){
+            Rectangle object = (Rectangle) interactables.get(i);
+            int j = 0;
+            
+            //Furniture thing = (Furniture) interactable;
+            if (playerX >= (object.getX() - 50) && playerX <= (object.getX() + object.getWidth() + 50)) {
+                if (playerY >= (object.getY() - 50) && playerY <= (object.getY() + object.getHeight() + 50)) {                    
+                    return true;
+                }
+            }        
+        }    
+        return false;
     }
 
     public boolean isColliding(Node other) {
