@@ -10,15 +10,21 @@ import javafx.scene.Scene;
 import javafx.scene.paint.Color;
 import javafx.scene.Group;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import javafx.util.Duration;
 
 public class Room4 extends Room {
 
     private ArrayList<Node> obj = new ArrayList<>();
+    private Group buttons = new Group();
+    private String passcode = "";
+    private Text enterMessage;
     private KeyFrame frame = new KeyFrame(Duration.seconds(0.016), e -> {
         getPlayer().update(obj);
-        
+
         //displayInv();
         for (int i = 0; i < interactables.getChildren().size(); i++) {
             if (getPlayer().getBoundsInParent().intersects(interactables.getChildren().get(i).getBoundsInParent())) {
@@ -132,9 +138,6 @@ public class Room4 extends Room {
 
         walls.getChildren().add(rect);
 
-       
-       
-
         //wooden floor
         floor = new Group();
         for (int i = 0; i < 9; i++) {
@@ -145,7 +148,7 @@ public class Room4 extends Room {
                 }
             }
         }
-        
+
         for (int i = 0; i < 6; i++) {
             for (int j = 0; j < 2; j++) {
                 Floor tile = new Floor(i * 95 + 305, 43 + j * 88, 110, 105, "blueTile");
@@ -208,26 +211,157 @@ public class Room4 extends Room {
         Kitchen plant2 = new Kitchen(260, y + 20, 30, 90, "plant");
         Kitchen plant3 = new Kitchen(270, y + 30, 30, 90, "plant");
 
+        x = 200;
+        Button btn1 = new Button("1");
+        btn1.setTranslateX(x);
+        btn1.setTranslateY(640);
+        btn1.setScaleX(1);
+        btn1.setScaleY(1);
+        Button btn2 = new Button("2");
+        btn2.setTranslateX(x + 40);
+        btn2.setTranslateY(640);
+        btn2.setScaleX(1);
+        btn2.setScaleY(1);
+        Button btn3 = new Button("3");
+        btn3.setTranslateX(x + 80);
+        btn3.setTranslateY(640);
+        btn3.setScaleX(1);
+        btn3.setScaleY(1);
+        Button btn4 = new Button("4");
+        btn4.setTranslateX(x + 120);
+        btn4.setTranslateY(640);
+        btn4.setScaleX(1);
+        btn4.setScaleY(1);
+        Button btn5 = new Button("5");
+        btn5.setTranslateX(x + 160);
+        btn5.setTranslateY(640);
+        btn5.setScaleX(1);
+        btn5.setScaleY(1);
+        Button btn6 = new Button("6");
+        btn6.setTranslateX(x + 200);
+        btn6.setTranslateY(640);
+        btn6.setScaleX(1);
+        btn6.setScaleY(1);
+        Button btn7 = new Button("7");
+        btn7.setTranslateX(x + 240);
+        btn7.setTranslateY(640);
+        btn7.setScaleX(1);
+        btn7.setScaleY(1);
+        Button btn8 = new Button("8");
+        btn8.setTranslateX(x + 280);
+        btn8.setTranslateY(640);
+        btn8.setScaleX(1);
+        btn8.setScaleY(1);
+        Button btn9 = new Button("9");
+        btn9.setTranslateX(x + 320);
+        btn9.setTranslateY(640);
+        btn9.setScaleX(1);
+        btn9.setScaleY(1);
+        Button btn0 = new Button("0");
+        btn0.setTranslateX(x + 360);
+        btn0.setTranslateY(640);
+        btn0.setScaleX(1);
+        btn0.setScaleY(1);
+        Button enterButton = new Button("Enter");
+        enterButton.setTranslateX(x + 400);
+        enterButton.setTranslateY(640);
+        enterButton.setScaleX(1);
+        enterButton.setScaleY(1);
+        buttons.getChildren().addAll(btn0, btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9);
+
+        for (int i = 0; i < buttons.getChildren().size(); i++) {
+            Button btn = (Button) buttons.getChildren().get(i);
+
+            EventHandler click = new EventHandler() {
+                @Override
+                public void handle(Event event) {
+                    passcode += btn.getText();
+                }
+            };
+            btn.setOnMouseClicked(click);
+        }
+
+        EventHandler clickEnter = new EventHandler() {
+            @Override
+            public void handle(Event event) {
+                Rectangle coverUp = new Rectangle(0, 600, 900, 100);
+                coverUp.setFill(Color.WHITE);
+                Text message;
+                if (passcode.equals("8240")) {
+                    Key key = new Key(-100, -100, 0, 0);
+                    CPTRewrite.player.getInteractables().add(key);
+                    message = new Text("You found a key!");
+                    message.setX(20);
+                    message.setY(660);
+                    message.setFont(new Font(20));
+                    Room6.nextRoom = true;
+                    microwave.setOnMouseClicked(null);
+                } else {
+                    message = new Text("Wrong code.");
+                    message.setX(20);
+                    message.setY(660);
+                    message.setFont(new Font(20));
+                    passcode = "";
+                }
+                root.getChildren().addAll(coverUp, message);
+                root.getChildren().removeAll(enterMessage, btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9, btn0, enterButton);
+            }
+        };
+
+        enterButton.setOnMouseClicked(clickEnter);
+
         EventHandler enterCode = new EventHandler() {
             @Override
             public void handle(Event event) {
                 Scanner input = new Scanner(System.in);
                 Node source = (Node) event.getSource();
-                System.out.print("Enter a passcode: ");
-                String passcode = input.next();
-                if (passcode.equals("8240")) {
-                    Key key = new Key(-100, -100, 0, 0);
-                    CPTRewrite.player.getInteractables().add(key);
-                    System.out.println("You found a key!");
-                    source.setOnMouseClicked(null);
-                    Room6.nextRoom = true;
-                } else {
-                    System.out.println("Wrong code.");
-                }
+                Rectangle coverUp = new Rectangle(0, 600, 900, 100);
+                coverUp.setFill(Color.WHITE);
+                Text enterMessage = new Text("Enter a passcode: ");
+                enterMessage.setX(20);
+                enterMessage.setY(660);
+                enterMessage.setFont(new Font(20));
+
+                root.getChildren().addAll(coverUp, enterMessage, btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9, btn0, enterButton);
+
+            }
+        };
+
+        EventHandler trashMessage = new EventHandler() {
+            @Override
+            public void handle(Event event) {
+                Node source = (Node) event.getSource();
+                Rectangle coverUp = new Rectangle(0, 600, 900, 100);
+                coverUp.setFill(Color.WHITE);
+                Text comboMessage = new Text("Are these trash cans? Vases? Mario pipes?");
+                comboMessage.setX(20);
+                comboMessage.setY(660);
+                comboMessage.setFont(new Font(20));
+                root.getChildren().addAll(coverUp, comboMessage);
+
+            }
+        };
+
+        EventHandler stovePotsMessage = new EventHandler() {
+            @Override
+            public void handle(Event event) {
+                Node source = (Node) event.getSource();
+                Rectangle coverUp = new Rectangle(0, 600, 900, 100);
+                coverUp.setFill(Color.WHITE);
+                Text comboMessage = new Text("There's no food in these pots. Why are they even out?");
+                comboMessage.setX(20);
+                comboMessage.setY(660);
+                comboMessage.setFont(new Font(20));
+                root.getChildren().addAll(coverUp, comboMessage);
             }
         };
 
         microwave.setOnMouseClicked(enterCode);
+        trash1.setOnMouseClicked(trashMessage);
+        trash2.setOnMouseClicked(trashMessage);
+        trash3.setOnMouseClicked(trashMessage);
+        trash4.setOnMouseClicked(trashMessage);
+        stoveAndPots.setOnMouseClicked(stovePotsMessage);
 
         int n = 667;
         Kitchen plant4 = new Kitchen(n, y + 10, 30, 90, "plant");

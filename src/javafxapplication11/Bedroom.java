@@ -60,6 +60,14 @@ public class Bedroom extends Furniture {
                 image = new Image(new FileInputStream("src/Sprites/washingMachineB.png"), 100, 100, true, true);
             } else if (bedroomType.equals("chest")) {
                 image = new Image(new FileInputStream("src/Sprites/Chest.png"), 100, 100, true, true);
+            } else if (bedroomType.equals("vaseBrP")) {
+                image = new Image(new FileInputStream("src/Sprites/vaseBrP.png"), 100, 100, true, true);
+            } else if (bedroomType.equals("vaseBr")) {
+                image = new Image(new FileInputStream("src/Sprites/vaseBr.png"), 100, 100, true, true);
+            } else if (bedroomType.equals("vaseBP")) {
+                image = new Image(new FileInputStream("src/Sprites/vaseBP.png"), 100, 100, true, true);
+            } else if (bedroomType.equals("vaseB")) {
+                image = new Image(new FileInputStream("src/Sprites/vaseB.png"), 100, 100, true, true);
             }
 
         } catch (IOException e) {

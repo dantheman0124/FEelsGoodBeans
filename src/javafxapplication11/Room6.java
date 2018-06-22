@@ -10,11 +10,18 @@ import javafx.scene.Scene;
 import javafx.scene.paint.Color;
 import javafx.scene.Group;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
+import javafx.scene.control.TextField;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 
 public class Room6 extends Room {
 
+    public boolean enter = false;
+    public TextField passwordInput = new TextField();
+    public String password = "hello";
     public static boolean nextRoom = false;
     private ArrayList<Node> obj = new ArrayList<>();
     private KeyFrame frame = new KeyFrame(Duration.seconds(0.016), e -> {
@@ -26,8 +33,8 @@ public class Room6 extends Room {
         } else if (getPlayer().isColliding(doors.getChildren().get(1))) {
             CPTRewrite.nextRoom();
         }
-        
-        if(nextRoom){
+
+        if (nextRoom) {
             walls.getChildren().remove(walls.getChildren().size() - 1);
             doors.getChildren().get(1).setTranslateX(875);
             nextRoom = false;
@@ -149,7 +156,7 @@ public class Room6 extends Room {
         rect.setTranslateX(760 - getWALL_W());
         rect.setTranslateY(doorEnter.getTranslateY() + getDOOR_H() + 120);
         walls.getChildren().add(rect);
-        
+
         // in front of door
         rect = new Rectangle(getWALL_W(), doorExit.getTranslateY() - getHEADER_H(), wallsColor); // to find how long the vertical wall has to be, make it the length of the x coordinate of the door
         rect.setTranslateX(880);
@@ -209,33 +216,93 @@ public class Room6 extends Room {
         Office bookshelf13 = new Office(594, y, 78, 95, "redBlueDark");
         Office bookshelf14 = new Office(670, y, 85, 95, "redGreen");
 
-        EventHandler enterCode = new EventHandler() {
+        Button enterButton = new Button("Enter");
+        enterButton.setTranslateX(400);
+        enterButton.setTranslateY(640);
+        enterButton.setScaleX(1);
+        enterButton.setScaleY(1);
+
+        EventHandler clickBookshelf = new EventHandler() {
             @Override
             public void handle(Event event) {
-                Scanner input = new Scanner(System.in);
-                Node source = (Node) event.getSource();
-                System.out.print("Enter a passcode: ");
-                String passcode = input.next();
-                if (passcode.equalsIgnoreCase("tuttifrutti")) {
-                    System.out.println("Orange = 4");
-                    System.out.println("Green = 8");
-                    System.out.println("Red = 7");
-                    System.out.println("Blue = 0");
-                    System.out.println("Yellow = 2");
-                    System.out.println("Purple = 1");
-                    System.out.println("Chartreuse = 9");
-                    source.setOnMouseClicked(null);
+                if (enter) {
+
                 } else {
-                    System.out.println("Wrong code.");
+                    root.getChildren().removeAll(enterButton, passwordInput);
                 }
+                Rectangle coverUp = new Rectangle(0, 600, 900, 100);
+                coverUp.setFill(Color.WHITE);
+                Text enterMessage = new Text("Much books, many wow.");
+                enterMessage.setX(20);
+                enterMessage.setY(660);
+                enterMessage.setFont(new Font(20));
+
+                root.getChildren().addAll(coverUp, enterMessage);
             }
         };
+
+        bookshelf2.setOnMouseClicked(clickBookshelf);
+        bookshelf4.setOnMouseClicked(clickBookshelf);
+        bookshelf6.setOnMouseClicked(clickBookshelf);
+        bookshelf8.setOnMouseClicked(clickBookshelf);
+
+        EventHandler enterPassword = new EventHandler() {
+            @Override
+            public void handle(Event event) {
+                if (enter) {
+
+                } else {
+                    root.getChildren().removeAll(enterButton, passwordInput);
+                }
+                passwordInput.setTranslateX(200);
+                passwordInput.setTranslateY(640);
+                Rectangle coverUp = new Rectangle(0, 600, 900, 100);
+                coverUp.setFill(Color.WHITE);
+                Text enterMessage = new Text("Enter a password: ");
+                enterMessage.setX(20);
+                enterMessage.setY(660);
+                enterMessage.setFont(new Font(20));
+
+                root.getChildren().addAll(coverUp, passwordInput, enterButton, enterMessage);
+            }
+        };
+
+        EventHandler clickEnter = new EventHandler() {
+            @Override
+            public void handle(Event event) {
+//                    Key key = new Key(-100, -100, 0, 0);
+//                    CPTRewrite.player.getInteractables().add(key);
+//                    System.out.println("You found a key!");
+//                    Room6.nextRoom = true;
+//                
+                enter = true;
+                password = passwordInput.getText();
+                root.getChildren().removeAll(enterButton, passwordInput);
+
+                Rectangle coverUp = new Rectangle(0, 600, 900, 100);
+                coverUp.setFill(Color.WHITE);
+                Text message;
+
+                if (password.equalsIgnoreCase("tuttifrutti")) {
+                    message = new Text("Orange = 4 \tGreen = 8 \tRed = 7 \tBlue = 0 \nYellow = 2 \tPurple = 1 \tChartreuse = 9");
+                    message.setY(640);
+                } else {
+                    message = new Text("Incorrect password.");
+                    message.setY(660);
+                }
+                message.setX(20);
+                message.setFont(new Font(20));
+                root.getChildren().addAll(coverUp, message);
+            }
+        };
+
+        enterButton.setOnMouseClicked(clickEnter);
 
         Office workDesk1 = new Office(747, 195, 120, 95, "workDeskYellow");
         Office computer = new Office(778, 200, 30, 40, "computer");
         Office computerTower = new Office(808, 245, 18, 36, "computerTower");
-        computer.setOnMouseClicked(enterCode);
-        
+        computer.setOnMouseClicked(enterPassword);
+
         int x = 95;
         y = 405;
         Table table1 = new Table(x, y - 10, 110, 110, "brownWChairs");
@@ -246,7 +313,27 @@ public class Room6 extends Room {
         Chair chairR2 = new Chair(x - 40, y + 95, 35, 60, "brownChairRight");
         Chair chairL = new Chair(x + 79, y + 70, 35, 60, "brownChairLeft");
         Chair chairL2 = new Chair(x + 79, y + 95, 35, 60, "brownChairLeft");
-        
+
+        EventHandler clickChair = new EventHandler() {
+            @Override
+            public void handle(Event event) {
+                if (enter) {
+
+                } else {
+                    root.getChildren().removeAll(enterButton, passwordInput);
+                }
+
+                Rectangle coverUp = new Rectangle(0, 600, 900, 100);
+                coverUp.setFill(Color.WHITE);
+                Text enterMessage = new Text("Someone left their chair untucked. How rude.");
+                enterMessage.setX(20);
+                enterMessage.setY(660);
+                enterMessage.setFont(new Font(20));
+
+                root.getChildren().addAll(coverUp, enterMessage);
+            }
+        };
+        chairR2.setOnMouseClicked(clickChair);
 
         x = 340;
         y = 520;
@@ -264,22 +351,6 @@ public class Room6 extends Room {
         roomObjects.getChildren().addAll(bookshelf11, bookshelf12, bookshelf13, bookshelf14);
         roomObjects.getChildren().addAll(chairDown, table1, chairR, chairR2, chairL, chairL2, table2, chairUp);
 
-//        Table table = new Table(190, 225, 100, 100, "prettyTable");
-//        Table table6 = new Table(190, 295, 100, 100, "prettyTable");
-//        Chair deskChair = new Chair(280, 260, 30, 30, true);
-//        Chair deskChair2 = new Chair(280, 320, 30, 30, true);
-//        Chair deskChair3 = new Chair(155, 260, 30, 30, false);
-//        Chair deskChair4 = new Chair(155, 320, 30, 30, false);
-//
-//        Table table2 = new Table(465, 420, 100, 100, "prettyTable");
-//        Table table3 = new Table(540, 420, 100, 100, "prettyTable");
-//        Table table4 = new Table(465, 490, 100, 100, "prettyTable");
-//        Table table5 = new Table(540, 490, 100, 100, "prettyTable");
-//        Chair deskChair7 = new Chair(630, 455, 30, 30, true);
-//        Chair deskChair8 = new Chair(630, 525, 30, 30, true);
-//        Chair deskChair9 = new Chair(440, 455, 30, 30, false);
-//        Chair deskChair10 = new Chair(440, 525, 30, 30, false);
-//        roomObjects.getChildren().addAll(table, deskChair, deskChair2, deskChair3, deskChair4, table2, table3, table4, table5, deskChair7, deskChair8, deskChair9, deskChair10, table6);
     }
 
     public void displayInv() {

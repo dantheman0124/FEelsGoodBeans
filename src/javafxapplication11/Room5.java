@@ -10,12 +10,17 @@ import javafx.scene.Scene;
 import javafx.scene.paint.Color;
 import javafx.scene.Group;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import javafx.util.Duration;
 
 public class Room5 extends Room {
 
     private ArrayList<Node> obj = new ArrayList<>();
+    private Group buttons = new Group();
+    private String passcode = "";
     private KeyFrame frame = new KeyFrame(Duration.seconds(0.016), e -> {
         getPlayer().update(obj);
 
@@ -221,6 +226,25 @@ public class Room5 extends Room {
         Lab machine3 = new Lab(x, y + 460, 48, 61, "healingMachine");
         Lab machine4 = new Lab(x + 48, y + 460, 48, 61, "healingMachine");
 
+        EventHandler clickLab = new EventHandler() {
+            @Override
+            public void handle(Event event) {
+                Rectangle coverUp = new Rectangle(0, 600, 900, 100);
+                coverUp.setFill(Color.WHITE);
+                Text enterMessage = new Text("You probably shouldn't be touching this...");
+                enterMessage.setX(20);
+                enterMessage.setY(660);
+                enterMessage.setFont(new Font(20));
+
+                root.getChildren().addAll(coverUp, enterMessage);
+            }
+
+        };
+        machine.setOnMouseClicked(clickLab);
+        machine2.setOnMouseClicked(clickLab);
+        machine3.setOnMouseClicked(clickLab);
+        machine4.setOnMouseClicked(clickLab);
+
         // display shelves
         Lab shelf;
         for (int i = 0; i < 4; i++) {
@@ -248,32 +272,135 @@ public class Room5 extends Room {
         Lab lockers1 = new Lab(x + 90, 30, 90, 100, "lockers");
         Lab lockers2 = new Lab(x - 90, 30, 90, 100, "lockers");
 
+        EventHandler colour = new EventHandler() {
+            @Override
+            public void handle(Event event) {
+                Node source = (Node) event.getSource();
+                //System.out.println("Wow these colours look important. Maybe they're used for something?");
+                Rectangle coverUp = new Rectangle(0, 600, 900, 100);
+                coverUp.setFill(Color.WHITE);
+                Text message = new Text("Wow these colours look important. Maybe they're used for something?");
+                message.setX(20);
+                message.setY(660);
+                message.setFont(new Font(20));
+                root.getChildren().addAll(coverUp, message);
+            }
+        };
+
+        beakers.setOnMouseClicked(colour);
+
+        x = 200;
+        Button btn1 = new Button("1");
+        btn1.setTranslateX(x);
+        btn1.setTranslateY(640);
+        btn1.setScaleX(1);
+        btn1.setScaleY(1);
+        Button btn2 = new Button("2");
+        btn2.setTranslateX(x + 40);
+        btn2.setTranslateY(640);
+        btn2.setScaleX(1);
+        btn2.setScaleY(1);
+        Button btn3 = new Button("3");
+        btn3.setTranslateX(x + 80);
+        btn3.setTranslateY(640);
+        btn3.setScaleX(1);
+        btn3.setScaleY(1);
+        Button btn4 = new Button("4");
+        btn4.setTranslateX(x + 120);
+        btn4.setTranslateY(640);
+        btn4.setScaleX(1);
+        btn4.setScaleY(1);
+        Button btn5 = new Button("5");
+        btn5.setTranslateX(x + 160);
+        btn5.setTranslateY(640);
+        btn5.setScaleX(1);
+        btn5.setScaleY(1);
+        Button btn6 = new Button("6");
+        btn6.setTranslateX(x + 200);
+        btn6.setTranslateY(640);
+        btn6.setScaleX(1);
+        btn6.setScaleY(1);
+        Button btn7 = new Button("7");
+        btn7.setTranslateX(x + 240);
+        btn7.setTranslateY(640);
+        btn7.setScaleX(1);
+        btn7.setScaleY(1);
+        Button btn8 = new Button("8");
+        btn8.setTranslateX(x + 280);
+        btn8.setTranslateY(640);
+        btn8.setScaleX(1);
+        btn8.setScaleY(1);
+        Button btn9 = new Button("9");
+        btn9.setTranslateX(x + 320);
+        btn9.setTranslateY(640);
+        btn9.setScaleX(1);
+        btn9.setScaleY(1);
+        Button btn0 = new Button("0");
+        btn0.setTranslateX(x + 360);
+        btn0.setTranslateY(640);
+        btn0.setScaleX(1);
+        btn0.setScaleY(1);
+        Button enterButton = new Button("Enter");
+        enterButton.setTranslateX(x + 400);
+        enterButton.setTranslateY(640);
+        enterButton.setScaleX(1);
+        enterButton.setScaleY(1);
+        buttons.getChildren().addAll(btn0, btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9);
+
+        for (int i = 0; i < buttons.getChildren().size(); i++) {
+            Button btn = (Button) buttons.getChildren().get(i);
+
+            EventHandler click = new EventHandler() {
+                @Override
+                public void handle(Event event) {
+                    passcode += btn.getText();
+                }
+            };
+            btn.setOnMouseClicked(click);
+        }
+
+        EventHandler clickEnter = new EventHandler() {
+            @Override
+            public void handle(Event event) {
+                if (passcode.equals("918")) {
+                    Rectangle coverUp = new Rectangle(0, 600, 900, 100);
+                    coverUp.setFill(Color.WHITE);
+                    Text message = new Text("tuttifrutti");
+                    message.setX(20);
+                    message.setY(660);
+                    message.setFont(new Font(20));
+                    root.getChildren().addAll(coverUp, message);
+
+                } else {
+                    Rectangle coverUp = new Rectangle(0, 600, 900, 100);
+                    coverUp.setFill(Color.WHITE);
+                    Text message = new Text("Wrong code.");
+                    message.setX(20);
+                    message.setY(660);
+                    message.setFont(new Font(20));
+                    root.getChildren().addAll(coverUp, message);
+                }
+            }
+        };
+
+        enterButton.setOnMouseClicked(clickEnter);
+
         EventHandler enterCode = new EventHandler() {
             @Override
             public void handle(Event event) {
                 Scanner input = new Scanner(System.in);
                 Node source = (Node) event.getSource();
-                System.out.print("Enter a 3-Digit passcode: ");
-                String passcode = input.next();
-                if (passcode.equals("918")) {
-                    System.out.println("'tUtTiFrUtTi.'");
-                    System.out.println(" - Some Cool Dude");
-                    source.setOnMouseClicked(null);
-                } else {
-                    System.out.println("Wrong code.");
-                }
+                Rectangle coverUp = new Rectangle(0, 600, 900, 100);
+                coverUp.setFill(Color.WHITE);
+                Text nothingMessage = new Text("Enter a passcode: ");
+                nothingMessage.setX(20);
+                nothingMessage.setY(660);
+                nothingMessage.setFont(new Font(20));
+
+                root.getChildren().addAll(coverUp, nothingMessage, btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9, btn0, enterButton);
+
             }
         };
-
-        EventHandler colour = new EventHandler() {
-            @Override
-            public void handle(Event event) {
-                Node source = (Node) event.getSource();
-                System.out.println("Wow these colours look important. Maybe they're used for something?");
-            }
-        };
-
-        beakers.setOnMouseClicked(colour);
         lockers.setOnMouseClicked(enterCode);
 
         roomObjects.getChildren().addAll(machine, machine2, machine3, machine4);
