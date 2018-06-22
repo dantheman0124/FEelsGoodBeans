@@ -20,6 +20,9 @@ public class Room8 extends Room {
     private KeyFrame frame = new KeyFrame(Duration.seconds(0.016), e -> {
         getPlayer().update(obj);
 
+        this.getHealthBar().setHealth(CPTRewrite.player.getHealthBar().getHealth());
+        this.getHealthBar().update();
+        
         //displayInv();
         if (getPlayer().isColliding(doors.getChildren().get(0))) {
             CPTRewrite.prevRoom();

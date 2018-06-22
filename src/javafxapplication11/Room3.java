@@ -30,6 +30,9 @@ public class Room3 extends Room {
     private ArrayList<Node> obj = new ArrayList<>();
     private KeyFrame frame = new KeyFrame(Duration.seconds(0.016), e -> {
         getPlayer().update(obj);
+        
+        this.getHealthBar().setHealth(CPTRewrite.player.getHealthBar().getHealth());
+        this.getHealthBar().update();
 
         //displayInv();
         for (int i = 0; i < interactables.getChildren().size(); i++) {

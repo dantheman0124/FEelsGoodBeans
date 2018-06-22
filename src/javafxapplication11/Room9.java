@@ -21,6 +21,10 @@ public class Room9 extends Room {
     
     private KeyFrame frame = new KeyFrame(Duration.seconds(0.016), e -> {
         getPlayer().update(obj);
+        
+        this.getHealthBar().setHealth(CPTRewrite.player.getHealthBar().getHealth());
+        this.getHealthBar().update();
+        
         for (Enemy enemy : enemies) {
             enemy.update(obj);
         }
