@@ -11,6 +11,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import javafx.util.Duration;
 import static javafxapplication11.CPTRewrite.rooms;
 
@@ -27,9 +29,11 @@ public class Room2 extends Room {
 
     private KeyFrame frame = new KeyFrame(Duration.seconds(0.016), e -> {
         getPlayer().update(obj);
+        
         this.getHealthBar().setHealth(CPTRewrite.player.getHealthBar().getHealth());
         this.getHealthBar().update();
-        System.out.println(this.getHealthBar().getHealth());
+        
+        
         for (Enemy enemy : enemies) {
             enemy.update(obj);
         }
@@ -62,9 +66,23 @@ public class Room2 extends Room {
             if (player.isColliding((Node) bullet)) {
                 root.getChildren().remove(bullet);
                 bullets.remove(bullet);
-                player.getHealthBar().loseHealth(10);
+                player.getHealthBar().loseHealth(5);
                 player.getHealthBar().update();
             }
+        }
+        
+        if (player.getHealthBar().getHealth() <= 0) {
+            this.stop();
+            root.getChildren().removeAll(root.getChildren());
+            Rectangle bg = new Rectangle(0, 0, 900, 700);
+            bg.setFill(Color.BLACK);
+            player.getHealthBar().setHealth(1);
+            Text display = new Text("GAME OVER");
+            display.setFill(Color.RED);
+            display.setTranslateX(325);
+            display.setTranslateY(350);
+            display.setFont(Font.font(40));
+            root.getChildren().addAll(bg, display);
         }
 
         for (int i = 0; i < player.getBullets().size(); i++) {
@@ -146,6 +164,8 @@ public class Room2 extends Room {
 
     public Room2() {
         super();
+        
+        this.shoot = true;
 
         wallsColor = Color.DARKRED;
         doorColor = Color.BISQUE;

@@ -8,6 +8,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import javafx.util.Duration;
 
 public class Room9 extends Room {
@@ -95,10 +97,26 @@ public class Room9 extends Room {
                 }
             }
         }
+        
+        if (player.getHealthBar().getHealth() <= 0) {
+            this.stop();
+            root.getChildren().removeAll(root.getChildren());
+            Rectangle bg = new Rectangle(0, 0, 900, 700);
+            bg.setFill(Color.BLACK);
+            player.getHealthBar().setHealth(1);
+            Text display = new Text("GAME OVER");
+            display.setFill(Color.RED);
+            display.setTranslateX(325);
+            display.setTranslateY(350);
+            display.setFont(Font.font(40));
+            root.getChildren().addAll(bg, display);
+        }
     });
 
     public Room9() {
         super();
+        
+        this.shoot = true;
 
         wallsColor = Color.DARKRED;
         doorColor = Color.BISQUE;

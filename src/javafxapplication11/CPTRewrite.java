@@ -109,9 +109,6 @@ public class CPTRewrite extends Application {
                         rooms.add(new Room9());
 
                         player.setRoot(rooms.get(0).getRoot());
-                        rooms.get(0).setHealthBar(player.getHealthBar());
-                        
-                        
 
                         rooms.get(currentRoom).startEnter(player, currentRoom);
                         stage = primaryStage;
@@ -214,7 +211,6 @@ public class CPTRewrite extends Application {
 //        rect.setTranslateX(20);
 //        rect.setTranslateY(520);
 //        mainWalls.getChildren().add(rect);
-
         Crate crate = new Crate(780, 40, 50, 50);
         Crate crate2 = new Crate(830, 40, 50, 50);
         Crate crate3 = new Crate(830, 68, 50, 50);
@@ -257,7 +253,8 @@ public class CPTRewrite extends Application {
         stage.setScene(rooms.get(currentRoom).getScene());
         stage.setTitle("Room " + (currentRoom + 1) + "!");
         rooms.get(currentRoom).startEnter(player, currentRoom);
-        rooms.get(currentRoom).getHealthBar().setHealth(CPTRewrite.player.getHealthBar().getHealth());
+        CPTRewrite.player.setRoot(rooms.get(currentRoom).getRoot());
+
     }
 
     public static void prevRoom() {
@@ -270,7 +267,9 @@ public class CPTRewrite extends Application {
         stage.setScene(rooms.get(currentRoom).getScene());
         stage.setTitle("Room " + (currentRoom + 1) + "!");
         rooms.get(currentRoom).startExit(player, currentRoom);
-        rooms.get(currentRoom).setHealthBar(player.getHealthBar());
+
+        CPTRewrite.player.setRoot(rooms.get(currentRoom).getRoot());
+
     }
 
 //    public static void setRoom(int room) {

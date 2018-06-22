@@ -62,6 +62,8 @@ public class Room {
     private Timeline timeline = new Timeline();
     public Character player;
 
+    public boolean shoot = false;
+    
     public Room() {
         this.root = new Pane();
         healthBar = new HealthBar(1);
@@ -230,6 +232,7 @@ public class Room {
                     player.setAction(characterAction.DOWN);
                     break;
                 case SPACE:
+                    if (shoot)
                     player.setShoot(true);                 
             }
         });

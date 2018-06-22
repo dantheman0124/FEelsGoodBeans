@@ -22,10 +22,14 @@ public class Room1 extends Room {
     private ArrayList<Node> obj = new ArrayList<>();
     private ArrayList<Node> interactableObjects = new ArrayList<>();
     private KeyFrame frame = new KeyFrame(Duration.seconds(0.016), e -> {
+
         getPlayer().update(obj);
+        this.getHealthBar().setHealth(CPTRewrite.player.getHealthBar().getHealth());
+        this.getHealthBar().update();
+        System.out.println(this.getHealthBar().getHealth());
 
         //displayInv();
-        for (int i = 0; i < interactables.getChildren().size(); i++) {;
+        for (int i = 0; i < interactables.getChildren().size(); i++) {
             if (getPlayer().getBoundsInParent().intersects(interactables.getChildren().get(i).getBoundsInParent())) {
                 player.getInteractables().add((Interactables) interactables.getChildren().get(i));
                 interactables.getChildren().remove(interactables.getChildren().get(i));
@@ -37,7 +41,7 @@ public class Room1 extends Room {
         } else if (getPlayer().isColliding(doors.getChildren().get(1))) {
             CPTRewrite.nextRoom();
         }
-        
+
         if (CPTRewrite.player.checkInRange(interactableObjects)) {
 //            cabinetOpen.setOnMouseClicked(findItem);
 //            crate.setOnMouseClicked(objClick);
@@ -53,11 +57,8 @@ public class Room1 extends Room {
 //            cabinetClosed2.setOnMouseClicked(objClick);
 //            cabinetClosed4.setOnMouseClicked(objClick);
 //            workDesk.setOnMouseClicked(letter);
-
-            System.out.println("fhjdsf");
         }
-        
-        
+
     });
 
     public Room1() {
@@ -264,7 +265,6 @@ public class Room1 extends Room {
         interactableObjects.add(cabinetClosed1);
         interactableObjects.add(cabinetClosed2);
         interactableObjects.add(cabinetClosed4);
-        
 
         EventHandler objClick = new EventHandler() {
             @Override
@@ -345,7 +345,6 @@ public class Room1 extends Room {
 //
 //            System.out.println("fhjdsf");
 //        }
-
         roomObjects.getChildren().addAll(crate, crate2, crate3, crate4, crate5, bookcase, bookcase3, bookcase4, desk, workDesk);
         roomObjects.getChildren().addAll(cabinetClosed1, cabinetClosed2, cabinetOpen, cabinetClosed4);
     }
